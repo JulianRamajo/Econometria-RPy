@@ -1,16 +1,6 @@
 ---
+format: html
 engine: knitr
-excerpt: ""
-draft: false
-format: 
-  html:
-    theme: simplex
-    self-contained: true
-    max-width: 1920px
-    code-fold: show
-    code-tools: true
-    highlight-style: atom-one-dark
-    code-block-bg: "#282c34"
 ---
 
 ```{css, echo = FALSE}
@@ -22,7 +12,22 @@ format:
 
 ## Relación entre los precios de los carburantes y el precio del petroleo {.unnumbered}
 
-En esta aplicación se estimará un modelo econométrico con dinámica en el tiempo para explicar el precio de la gasolina en el mercado minorista de Canadá. En la regresión planteada los residuos MCO muestran clústeres de volatilidad, por lo que se generalizará la especificación inicial permitiedo heteroscedasticidad autorregresiva condicional (efectos ARCH) en los errores del modelo.
+En esta aplicación se estimará un modelo econométrico con dinámica en el tiempo para explicar el precio semanal de la gasolina en el mercado minorista de Canadá. En la regresión planteada los residuos MCO muestran clústeres de volatilidad, por lo que se generalizará la especificación inicial permitiedo heteroscedasticidad autorregresiva condicional (efectos ARCH) en los errores del modelo.
+
+La regresión que sirve como soporte de partida para la aplicación viene dada por la siguiente especificación $ARDL(2,2)$ en las variables precio del modelo:
+
+$$log(PGASOL_{t}) = \beta_1 + \beta_2 D2008JD_{t} + \beta_3 time_{t}   + $$
+
+$$+ \beta_4 log(PGASOL_{t-1}) + \beta_5 log(PGASOL_{t-2})  + $$
+
+$$ +\beta_6 log(PCRUDO_{t}) + \beta_7 log(PCRUDO_{t-1}) + \beta_8 log(PCRUDO_{t-2}) + e_{t}$$
+
+donde $PGASOL$ es el precio de la gasolina, $PCRUDO$ es el precio del petróleo en los mercados internacionales, $D2008JD$ es una variable ficticia que diferencia el período que abarca desde julio hasta diciembre de 2008 de resto de semanas, y $time$ es una tendencia temporal determinista.
+
+En cuanto a la modelización de los efectos ARCH, se utilizará una especifación $ARCH(2)$ para la varianza condicional, $h_{t}$, dada por la expresión:
+
+$${h_{t} = \alpha_{0} + \alpha_{1}e_{t - 1}^{2} + \alpha_{2}e_{t - 2}^{2} }$$
+
 :::
 
 ## Código R {.unnumbered}
@@ -118,7 +123,6 @@ from arch import arch_model
 GASOL_CRUDO_ts = pd.read_csv("data/GASOL_CRUDO.csv", 
 parse_dates=['date'], index_col='date')
 GASOL_CRUDO_ts.info()
-GASOL_CRUDO_ts.head()
 GASOL_CRUDO_ts.index
 # Asignación del formato semanal (opcional)
 date_w = pd.date_range(start = '2000', 
@@ -140,8 +144,8 @@ plt.show()
 # Modelo dinámico para el precio de la gasolina 
 GASOL_CRUDO_ts['l_PGASOL'] = np.log(GASOL_CRUDO_ts['PGASOL'])
 GASOL_CRUDO_ts['l_PCRUDO'] = np.log(GASOL_CRUDO_ts['PCRUDO'])
-formula = 'l_PGASOL ~ D2008JD + time + l_PGASOL.shift(1) + l_PGASOL.shift(2) + l_PCRUDO + l_PCRUDO.shift(1) + l_PCRUDO.shift(2)'
-dyn_model = smf.ols(formula, data = GASOL_CRUDO_ts)
+form = 'l_PGASOL ~ D2008JD + time + l_PGASOL.shift(1) + l_PGASOL.shift(2) + l_PCRUDO + l_PCRUDO.shift(1) + l_PCRUDO.shift(2)'
+dyn_model = smf.ols(form, data = GASOL_CRUDO_ts)
 lm_dyn_model = dyn_model.fit()
 print(lm_dyn_model.summary())
 # Estimación de efectos parciales a corto y largo plazo
@@ -174,7 +178,8 @@ E_test_2 = smsdiag.het_arch(residuals, nlags=2)
 lzip(name,E_test_2)
 print(pd.DataFrame([np.round(E_test_2, 3)], columns=name))
 # Modelo GARCH para los errores del modelo
-garch_model = arch_model(residuals, mean='Zero', vol='GARCH', p=2, q=0, dist='normal')
+garch_model = arch_model(residuals, mean='Zero', vol='GARCH', p=2, q=0, 
+dist='normal')
 mv_garch_model = garch_model.fit()
 print(mv_garch_model)
 fig = mv_garch_model.plot()

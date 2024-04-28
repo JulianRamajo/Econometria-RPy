@@ -1,16 +1,6 @@
 ---
+format: html
 engine: knitr
-excerpt: ""
-draft: false
-format: 
-  html:
-    theme: simplex
-    self-contained: true
-    max-width: 1920px
-    code-fold: show
-    code-tools: true
-    highlight-style: atom-one-dark
-    code-block-bg: "#282c34"
 ---
 
 ```{css, echo = FALSE}
@@ -22,11 +12,11 @@ format:
 
 ## Curva de costes en el sector textil {.unnumbered}
 
-En esta aplicación trabajaremos con datos de series temporales que consisten en 28 observaciones mensuales sobre los costes totales (_COST_) y la cantidad producida (_Q_) de una empresa del sector textil.
+En esta aplicación trabajaremos con datos de series temporales que consisten en 28 observaciones mensuales sobre los costes totales ($COST$) y la cantidad producida ($Q$) de una empresa del sector textil.
 
-Se estimará por MCO el siguiente modelo de regresión lineal:
+Se estimará por MCO el siguiente modelo de regresión lineal asociado a la [curva de costes](https://en.wikipedia.org/wiki/Cost_curve) de la empresa:
 
-$$COST_{i} = \beta_1 + \beta_2  Q_{i} +  \beta_3  Q_{i}^2 + e_{i}$$
+$$COST_{t} = \beta_1 + \beta_2  Q_{t} +  \beta_3  Q_{t}^2 + e_{t}$$
 
 es decir, se supondrá que los costes totales son una función polinómica (cuadrática) de la cantidad producida.
 :::

@@ -1,16 +1,6 @@
 ---
+format: html
 engine: knitr
-excerpt: ""
-draft: false
-format: 
-  html:
-    theme: simplex
-    self-contained: true
-    max-width: 1920px
-    code-fold: show
-    code-tools: true
-    highlight-style: atom-one-dark
-    code-block-bg: "#282c34"
 ---
 
 ```{css, echo = FALSE}
@@ -22,7 +12,11 @@ format:
 
 ## Análisis de la rentabilidad empresarial {.unnumbered}
 
-En este ejercicio se intentará explicar la rentabilidad anual (RENTAB) obtenida por 80 empresas, utilizando para ello diferente información contable interna en forma de ratios económico-financieros (R1, R2,..., R10), así como datos sobre el volumen de ventas totales (VT) y el tamaño de las empresas, medido este último por el valor total de los activos (AT).
+En este ejercicio se intentará explicar la rentabilidad anual (RENTAB) obtenida por 80 empresas, utilizando para ello diferente información contable interna en forma de ratios económico-financieros (R1, R2,..., R10), así como datos sobre el volumen de ventas totales (VT), usándose esta última variable como medida del tamaño de cada empresa:
+
+$$RENTAB_{i} = \beta_1 + \beta_2  log(VT_{i}) + \beta_3  R1_{i} + ... + \beta_{12}  R10_{i}+ e_{i}$$
+
+Desde un punto de vista metodológico, en este ejemplo se usarán distintas técnicas estadísticas para detectar y corregir el problema de colinealidad elevada entre las variables explicativas de la regresión propuesta.
 :::
 
 ## Código R {.unnumbered}
@@ -49,6 +43,7 @@ lm_1 <- lm(RENTAB ~ log(VT) + R1 + R2 + R3 + R4 + R5 + R6 + R7 + R8 + R9 + R10,
 S(lm_1)
 # Detección de la multicolinealidad
 # Análisis global
+# Librería mctest: https://cran.r-project.org/web/packages/mctest/
 mctest::omcdiag(lm_1)
 # Matríz de correlaciones de las variables explicativas (sin constante)
 attach(RENTAB_EMP)
@@ -64,15 +59,12 @@ sqrt(vif(lm_1)) > 2 # cota alternativa: VIF>4, es decir, Rj^2>0.75
 mctest::imcdiag(lm_1, method = "VIF", vif=10)
 mctest::imcdiag(lm_1, method = "VIF", vif=4)
 # Corrección del problema de la multicolinealidad
-# Método de componentes principales (PCA)
-# Estándar de R
+# Método de componentes principales (PCA) (librería stats)
 PCA_X <- prcomp(X, scale. = TRUE)
 summary(PCA_X)
 dim(PCA_X$rotation)
 PCA_X$rotation
 dim(PCA_X$x)
-# plot(PCA_X)
-# Estilo tidyverse
 PCA_X %>% tidy(matrix = "eigenvalues")
 PCA_X %>% tidy(matrix = "rotation")
 PCA_X %>%
@@ -105,6 +97,7 @@ round(PCA_X$rotation[,4],2)
 lm_2 <- lm(RENTAB ~ PCA_X$x[,1:4])
 S(lm_2)
 # Método de mínimos cuadrados parciales (PLS)
+# Librería pls: https://cran.r-project.org/web/packages/pls/
 library(pls)
 lm_3 <- plsr(RENTAB ~ log(VT) + R1 + R2 + R3 + R4 + R5 + R6 + R7 + R8 + R9 + R10, 
              data=RENTAB_EMP, ncomp=11, validation="CV")
@@ -118,7 +111,7 @@ plot(lm_3, plottype = "scores", comps = 1:3)
 plot(lm_3, plottype = "correlation")
 plot(lm_3, plottype = "coef", comps = 1:3, legendpos = "bottomright")
 # Método Ridge
-# Librería MASS
+# Librería MASS: https://cran.r-project.org/web/packages/MASS/
 library(MASS)
 lm_4_1 <- lm.ridge(RENTAB ~ log(VT) + R1 + R2 + R3 + R4 + R5 + R6 + R7 + R8 + R9 + R10, 
                    data=RENTAB_EMP) # lambda por defecto
@@ -126,7 +119,7 @@ lm_4_1
 lm_4_2 <- lm.ridge(RENTAB ~ log(VT) + R1 + R2 + R3 + R4 + R5 + R6 + R7 + R8 + R9 + R10, 
                    data=RENTAB_EMP, lambda = 0.05)
 lm_4_2
-# Librería glmnet
+# Librería glmnet: https://cran.r-project.org/web/packages/glmnet/
 library(glmnet)
 # Variables dependiente e independientes del modelo
 data <- data.frame(cbind(log(RENTAB_EMP$VT),RENTAB_EMP$R1,RENTAB_EMP$R2,RENTAB_EMP$R3,
@@ -148,7 +141,7 @@ plot(cvfit_ridge)
 cvfit_ridge$lambda.min
 coef(cvfit_ridge, s = "lambda.min")
 # Método LASSO
-# Librería lars
+# Librería lars: https://cran.r-project.org/web/packages/lars/
 library(lars)
 lm_5 <- lars(as.matrix(data[,-12]),data$RENTAB)
 plot(lm_5)
@@ -171,7 +164,7 @@ cvfit_lasso$lambda.min
 coef(cvfit_lasso, s = "lambda.min")
 # NOTA FINAL: Hay que estandarizar las variables antes de aplicar 
 # los modelos lm.ridge y lars (glmnet estandariza las variables 
-# X e y por defecto para la familia Gaussiana de modelos)
+# X e y por defecto para la familia de modelos Gausianos)
 library(caret)
 preProcValues <- preProcess(data[,-12], method = c("center", "scale"))
 dataTransformed <- predict(preProcValues, data)
@@ -216,17 +209,18 @@ plt.show()
 from statsmodels.stats.outliers_influence import variance_inflation_factor
 for i in range(1, lm_1.model.exog.shape[1]): print(variance_inflation_factor(lm_1.model.exog, i))
 # Corrección del problema de la multicolinealidad
+# Librería scikit-learn: https://scikit-learn.org/stable/
 # Método de componentes principales (PCA)
 # Reescalamiento de la matriz de datos
 from sklearn.preprocessing import scale
 Xs = pd.DataFrame(scale(X))
 Xs.head().round(2)
-# Método PCA de la librería sklearn
+# Método PCA 
 from sklearn.decomposition import PCA
 pca = PCA()
 pca.fit(Xs)
 # Importancia de componentes
-# Desviaciones estándar (SDs) de los componentes principales
+# Desviaciones estándar de los componentes principales
 (np.sqrt(pca.explained_variance_)).round(2)
 # Proporción de varianza explicada
 ((pca.explained_variance_ratio_)*100).round(2)
@@ -292,10 +286,10 @@ for a in alphas:
 ax = plt.gca()
 ax.plot(alphas, coefs)
 ax.set_xscale('log')
-ax.set_xlim(ax.get_xlim()[::-1])  # reverse axis
+ax.set_xlim(ax.get_xlim()[::-1])  # eje invertido
 plt.xlabel('alpha')
 plt.ylabel('weights')
-plt.title('Coeficientes ridge en función del parámetros de regularización')
+plt.title('Coeficientes ridge en función del parámetro de regularización')
 plt.axis('tight')
 plt.show()
 # Regresión LASSO
@@ -329,7 +323,7 @@ clf.fit(X, y)
 scores = clf.cv_results_['mean_test_score']
 scores_std = clf.cv_results_['std_test_score']
 plt.semilogx(alphas, scores)
-# gráfica que muestra los errores (+/- una desviación estándar de las puntuaciones)
+# se muestran los errores (+/- una desv. típica de las puntuaciones)
 std_error = scores_std / np.sqrt(n_folds)
 plt.semilogx(alphas, scores + std_error, 'b--')
 plt.semilogx(alphas, scores - std_error, 'b--')

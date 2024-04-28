@@ -1,16 +1,6 @@
 ---
+format: html
 engine: knitr
-excerpt: ""
-draft: false
-format: 
-  html:
-    theme: simplex
-    self-contained: true
-    max-width: 1920px
-    code-fold: show
-    code-tools: true
-    highlight-style: atom-one-dark
-    code-block-bg: "#282c34"
 ---
 
 ```{css, echo = FALSE}
@@ -18,19 +8,19 @@ format:
 ```
 
 ::: justify
-# Aplicación 2.6: Modelo de regresión lineal con términos de interacción  {.unnumbered}
+# Aplicación 2.6: Modelo de regresión lineal con términos de interacción {.unnumbered}
 
 ## Efectos diferenciados de la publicidad sobre las ventas {.unnumbered}
 
-Supongamos que somos consultores contratados por un cliente para asesorarle sobre cómo mejorar las ventas de un determinado producto. No es posible para el empresario incrementar las ventas del producto de una forma directa (vía mejoras de la calidad o reducciones en el precio, por ejemplo), sino de forma indirecta a través de campañas publicitarias. La idea es construir un modelo que pueda usarse para predecir las ventas en función de la inversión realizada en publicidad.
+Supongamos que somos consultores contratados por un cliente para asesorarle sobre cómo mejorar las ventas de un determinado producto. No es posible para el empresario incrementar las ventas del producto de una forma directa (vía mejoras de la calidad o reducciones en el precio, por ejemplo), sino sólo de forma indirecta a través de [campañas publicitarias](https://es.wikipedia.org/wiki/Publicidad). La idea es construir un modelo que pueda usarse para predecir las ventas en función de la inversión realizada en publicidad.
 
-Los datos que utilizaremos consisten en las _VENTAS_ del producto analizado (en miles de unidades) en 200 mercados diferentes, junto con los gastos realizados (en miles de dólares) en publicitar el producto en cada uno de esos mercados en dos medios de difusión diferentes, _TV_ y _RADIO_.
+Los datos que utilizaremos consisten en las ventas totales ($VENTAS$) del producto analizado (en miles de unidades) en 200 mercados diferentes, junto con los gastos realizados (en miles de dólares) en publicitar el producto en cada uno de esos mercados en dos medios de difusión diferentes, televisión ($TV$) y radio ($RADIO$).
 
 Podría proponerse, en primer lugar, un modelo de regresión estándar de tipo aditivo como el siguiente,
 
 $$VENTAS_{i} = \beta_1 + \beta_2  TV_{i} +  \beta_3  RADIO_{i} + e_{i}$$
 
-en el que el efecto de un cambio unitario en una variable explicativa (ceteris paribus) sobre la variable de respuesta no depende de los valores de las otras variables explicativas. En nuestro caso, esto implica que el efecto sobre las ventas de un incremento en el gasto de publicidad en un determinado medio (televisión o radio) es constante y, por tanto, independiente de la cantidad gastada en los otros medios de promoción.
+en el que el efecto de un cambio unitario en una variable explicativa (*ceteris paribus*) sobre la variable de respuesta no depende de los valores de las otras variables explicativas. En nuestro caso, esto implica que el efecto sobre las ventas de un incremento en el gasto de publicidad en un determinado medio (televisión o radio) es constante y, por tanto, independiente de la cantidad gastada en los otros medios de promoción.
 
 Si se contempla la posibilidad de que existan *efectos sinergia*, es decir, que el gasto realizado en un medio, por ejemplo, la radio, incremente la efectividad del gasto en otro medio, por ejemplo, la televisión, hay que generalizar el modelo inicial permitiendo la aparición de términos de interacción:
 

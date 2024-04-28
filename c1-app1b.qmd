@@ -1,19 +1,6 @@
 ---
+format: html
 engine: knitr
-excerpt: ""
-draft: false
-format: 
-  html:
-    theme: simplex
-    self-contained: true
-    max-width: 1920px
-    code-fold: show
-    code-tools: true
-    highlight-style: atom-one-dark
-    code-block-bg: "#282c34"
-editor: 
-  markdown: 
-    wrap: 72
 ---
 
 ```{css, echo = FALSE}
@@ -29,13 +16,11 @@ En esta aplicación se usarán las librerías estándar de R y Python en
 "ciencia de datos" (*data science*), replicando los resultados con los
 correspondientes comandos en ambos lenguajes. En concreto, para el
 lenguaje R se utilizará la colección de librerías contenidas en el
-paquete __*Tidyverse*__ (<https://www.tidyverse.org/packages/>), y para
-Python se usarán las librerías __*NumPy*__ (<https://numpy.org/>), __*pandas*__
-(<https://pandas.pydata.org/>), __*Matplotlib*__ (<https://matplotlib.org/>)
-y __*seaborn*__ (<https://seaborn.pydata.org/>). Las librerías
+paquete `tidyverse` (<https://www.tidyverse.org/packages/>), y para
+Python se usarán las librerías `numpy` (<https://numpy.org/>), `pandas` (<https://pandas.pydata.org/>), `matplotlib` (<https://matplotlib.org/>)
+y `seaborn` (<https://seaborn.pydata.org/>). Las librerías
 especializadas en estadística y econometría se verán en aplicaciones
 posteriores.
-
 :::
 
 ## Código R {.unnumbered}

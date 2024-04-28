@@ -1,16 +1,6 @@
 ---
+format: html
 engine: knitr
-excerpt: ""
-draft: false
-format: 
-  html:
-    theme: simplex
-    self-contained: true
-    max-width: 1920px
-    code-fold: show
-    code-tools: true
-    highlight-style: atom-one-dark
-    code-block-bg: "#282c34"
 ---
 
 ```{css, echo = FALSE}
@@ -22,25 +12,19 @@ format:
 
 ## Función de demanda con varianza no constante {.unnumbered}
 
-Empleando datos de corte transversal, en este ejemplo se va a estimar un modelo de demanda para un determinado producto:
+Empleando datos de corte transversal, en este ejemplo se va a estimar un modelo de demanda para un determinado producto A:
 
 $$log(Q_{A,i}) = \beta_1 + \beta_2 log(P_{A,i}) + \beta_3 log(P_{B,i}) + \beta_4 log(P_{C,i}) + \beta_5 log(Y_{i}) + e_{i}$$
 
 donde $Q_{A}$ es la cantidad demandada del bien A analizado por el individuo i-ésimo, $P_{A}$, $P_{B}$ y $P_{C}$ son, respectivamente, los precios de los bienes A, B y C en el mercado, e $Y$ es el nivel de renta.
 
-Una vez chequeada la hipótesis de varianza constante (homoscedasticidad), se plantea la estimación por mínimos cuadrados ponderados (MCP) de la función de demanda bajo la hipótesis de un modelo heteroscedasticidad asociada al logaritmo de la renta del tipo siguiente:
+Una vez chequeada la hipótesis de varianza constante (homoscedasticidad), se plantea la estimación por mínimos cuadrados ponderados (MCP) de la función de demanda bajo la hipótesis de un modelo heteroscedástico asociad al logaritmo de la renta del tipo siguiente:
 
 $${σ_i}^2 = e^{α_0 + α_1 log⁡(Y_i)}$$
 
-Esta especificación para la varianza residual equivale a suponer que
+Esta especificación para la varianza residual equivale a suponer que ${σ_i}^2 = σ^2 (Y_i)^{α_1}$, donde $σ^2 = e^{α_0}$, y de ahí que este tipo de especificación reciba el nombre de *heteroscedasticidad multiplicativa*.
 
-$${σ_i}^2 = σ^2 (Y_i)^{α_1}$$
-
-donde $$σ^2 = e^{α_0}$$
-
-y de ahí que este tipo de especificación reciba el nombre de **heteroscedasticidad multiplicativa**.
-
-De forma complementaria, compararemos los resultados de MCP con los que se obtienen al estimar la función de demanda por MCO, pero corrigiendo la matriz de covarianzas usando el método de White (MCO-HC).
+De forma complementaria, compararemos los resultados obtenidos por MCP con los que se consiguen al estimar la función de demanda por MCO, pero corrigiendo la matriz de covarianzas usando el método de White (MCO-HC).
 :::
 
 ## Código R {.unnumbered}
@@ -98,7 +82,7 @@ BP ; pval
 bptest(modelo_MCO, varformula = ~ log(Y), data=DEM_HET) 
 # Test de Breusch-Pagan robusto (variante de Koenker)
 bptest(modelo_MCO, varformula = ~ log(Y), data=DEM_HET, studentize = FALSE)
-# Corrección básica de la heteroscedasticidad: matriz de covarianzas robusta (MCO-HC)
+# Corrección básica de la heteroscedasticidad: matriz de covarianzas robusta
 # Corrección de White (librería sandwich)
 coeftest(modelo_MCO, vcov. = vcovHC(modelo_MCO,type="HC1"))
 # Otra versión, con idéntico resultado (librería car)

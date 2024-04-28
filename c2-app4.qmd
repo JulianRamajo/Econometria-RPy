@@ -1,16 +1,6 @@
 ---
+format: html
 engine: knitr
-excerpt: ""
-draft: false
-format: 
-  html:
-    theme: simplex
-    self-contained: true
-    max-width: 1920px
-    code-fold: show
-    code-tools: true
-    highlight-style: atom-one-dark
-    code-block-bg: "#282c34"
 ---
 
 ```{css, echo = FALSE}
@@ -22,12 +12,9 @@ format:
 
 ## Curva de Engel para el gasto en alimentos {.unnumbered}
 
-En esta aplicación se estimará una curva de Engel que relaciona el gasto familiar en alimentación con la renta disponible, 
-usando una muestra de 235 familias americanas:
+En esta aplicación se estimará una [curva de Engel](https://es.wikipedia.org/wiki/Curva_de_Engel) que relaciona el gasto familiar en alimentación ($GALIM$) con la renta disponible ($RENTA$), usando una muestra de 235 familias americanas:
 
-$$
-GALIM_{i} = f(RENTA_{i}) + e_{i}
-$$
+$$GALIM_{i} = \beta_1 + \beta_2  RENTA_{i} + e_{i}$$
 
 Una vez estimado el modelo, se usa la ecuación estimada para predecir el valor esperado del gasto en alimentos de distintos tipos de familia en función de su renta familiar.
 :::
@@ -57,18 +44,18 @@ ggplot(ENGEL_ALIM, aes(x = RENTA, y = GALIM)) +
   theme_bw() + 
   labs(x = "Renta", y = "Gasto en alimentos")
 # Estimación de una curva de Engel lineal por MCO
-CURVA_ENGEL_LINEAL <- lm(GALIM ~ RENTA, data = ENGEL_ALIM)
-summary(CURVA_ENGEL_LINEAL)
+lin_model <- lm(GALIM ~ RENTA, data = ENGEL_ALIM)
+summary(lin_model)
 # Predicción
 # Vector que contiene los nuevos valores de las variables explicativas
 new_RENTA <- data.frame(RENTA=c(400, 2000, 4500))
 new_RENTA
 # Predicción puntual
-pred_GALIM <- predict(CURVA_ENGEL_LINEAL, new_RENTA)
+pred_GALIM <- predict(lin_model, new_RENTA)
 names(pred_GALIM) <-c("Renta = 400", "2000", "4500")
 pred_GALIM
 # Predicción del valor esperado con intervalo de confianza
-pred_GALIM_IC <- predict(CURVA_ENGEL_LINEAL, new_RENTA, interval="confidence", level=0.95)
+pred_GALIM_IC <- predict(lin_model, new_RENTA, interval="confidence", level=0.95)
 pred_GALIM_IC
 ```
 
@@ -87,17 +74,17 @@ import statsmodels.formula.api as smf
 # Lectura de datos
 ENGEL_ALIM = pd.read_csv('data/ENGEL_ALIM_USA.csv', delimiter=';')
 # Estimación del modelo
-CURVA_ENGEL_LINEAL = smf.ols('GALIM ~ RENTA', data=ENGEL_ALIM)
-results=CURVA_ENGEL_LINEAL.fit()
-print(results.summary())
+model = smf.ols('GALIM ~ RENTA', data=ENGEL_ALIM)
+lin_model=model.fit()
+print(lin_model.summary())
 # Predicción
 # Generar un vector que contiene los nuevos valores de las variables explicativas
 new_RENTA = pd.DataFrame({'RENTA': [400, 2000, 4500]}, index=['newRENTA1', 'newRENTA2', 'newRENTA3'])
 print(f'new_RENTA: \n{new_RENTA}\n')
 # Predicción puntual
-pred_GALIM = results.predict(new_RENTA)
+pred_GALIM = lin_model.predict(new_RENTA)
 print(f'pred_GALIM: \n{pred_GALIM}\n')
 # Predicción con intervalo de confianza
-pred_GALIM_IC = results.get_prediction(new_RENTA).summary_frame(alpha=0.05)
+pred_GALIM_IC = lin_model.get_prediction(new_RENTA).summary_frame(alpha=0.05)
 print(f'pred_GALIM_IC: \n{pred_GALIM_IC}\n')
 ```

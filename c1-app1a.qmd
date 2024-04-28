@@ -1,16 +1,6 @@
 ---
+format: html
 engine: knitr
-excerpt: ""
-draft: false
-format: 
-  html:
-    theme: simplex
-    self-contained: true
-    max-width: 1920px
-    code-fold: show
-    code-tools: true
-    highlight-style: atom-one-dark
-    code-block-bg: "#282c34"
 ---
 
 ```{css, echo = FALSE}
@@ -18,9 +8,9 @@ format:
 ```
 
 ::: justify
-# Aplicación 1.1.a: Gestión y representación gráfica de datos: datos ordenados ('*tidy data*') {.unnumbered}
+# Aplicación 1.1.a: Gestión y representación gráfica de datos  {.unnumbered}
 
-## Gramática básica del *tidyverse* {.unnumbered}
+## Datos ordenados ('*tidy data*'): Gramática básica del *tidyverse* {.unnumbered}
 
 En esta aplicación se pondrán ejemplos básicos en R y Python usando la "filosofía *tidyverse*", una forma de trabajar dentro de cada lenguaje con el objetivo de estructurar los datos originales para un tratamiento estadístico posterior:
 
@@ -362,4 +352,3 @@ flights_planes = flights.merge(planes, on = 'tailnum', how = 'left')
 flights_planes_selected = flights_planes[['month', 'day', 'dep_time', 'arr_time', 'carrier', 'flight', 'tailnum', 'model']]
 flights_planes_selected
 ```
-

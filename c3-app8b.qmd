@@ -1,16 +1,6 @@
 ---
+format: html
 engine: knitr
-excerpt: ""
-draft: false
-format: 
-  html:
-    theme: simplex
-    self-contained: true
-    max-width: 1920px
-    code-fold: show
-    code-tools: true
-    highlight-style: atom-one-dark
-    code-block-bg: "#282c34"
 ---
 
 ```{css, echo = FALSE}
@@ -23,6 +13,12 @@ format:
 ## Precio de la vivienda en el condado de Lucas (Ohio, Estados Unidos) {.unnumbered}
 
 En esta aplicación se realiza un análisis de tipo espacial de la base de datos utilizada, que contiene información sobre los precios de venta y características de las viviendas del [condado de Lucas](https://en.wikipedia.org/wiki/Lucas_County,_Ohio), en el estado de Ohio, Estados Unidos. Concretamente, se proponen modelos de regresión en los que las variables de dicho modelo y/o los errores del mismo presentan autocorrelación espacial.
+
+La especificación econométrica que servirá de referencia es la siguiente:
+
+$$log(PRICE_{i}) = \beta_1 + \beta_2  AGE_{i}  + \beta_3  log(LOTSIZE_{i}) + \beta_4  ROOMS_{i} + e_{i}$$
+
+donde $PRICE$ es el precio de venta de la vivienda, $AGE$ es la antigüedad de la misma, $LOTSIZE$ es la superficie construida y $ROOMS$ el número habitaciones que posee.
 :::
 
 ## Código R {.unnumbered}

@@ -1,16 +1,6 @@
 ---
+format: html
 engine: knitr
-excerpt: ""
-draft: false
-format: 
-  html:
-    theme: simplex
-    self-contained: true
-    max-width: 1920px
-    code-fold: show
-    code-tools: true
-    highlight-style: atom-one-dark
-    code-block-bg: "#282c34"
 ---
 
 ```{css, echo = FALSE}
@@ -23,7 +13,7 @@ format:
 En esta aplicación se estimarán varias regresiones que, tras el correspondiente contraste de estabilidad estructural, permiten que los parámetros varíen a lo largo de la muestra.
 :::
 
-## Diferenciación salarial por sexo {.unnumbered}
+## Diferenciación salarial por sexo (corte transversal) {.unnumbered}
 
 ::: justify
 En este ejemplo, al igual que en la aplicación 2.5, se usará como especificación econométrica de partida el siguiente modelo log-lineal, que se corresponde con la [ecuación de salarios de Mincer](https://es.wikipedia.org/wiki/Funci%C3%B3n_de_ingresos_de_Mincer):
@@ -145,7 +135,7 @@ print(lm_SAL_int.summary())
 sm.stats.anova_lm(lm_SAL,lm_SAL_int) 
 ```
 
-## Exportaciones antes y después de la entrada de España en la Unión Europea  {.unnumbered}
+## Exportaciones antes y después de la entrada de España en la Unión Europea (series temporales)  {.unnumbered}
 
 ::: justify
 Tanto la teoría económica como la experiencia econométrica internacional nos señalan que las exportaciones de bienes y servicios de un país dependen de dos variables básicas, un indicador de actividad económica mundial y un indicador de precios relativos. Para estimar una ecuación de exportaciones para el caso español, se han tomado series de datos históricos para el período 1970-1997 de las siguientes variables: las exportaciones reales de bienes y servicios, excluido el turismo ($XGS$); el índice anual del producto interior bruto real mundial ($WGDP$); y el tipo de cambio efectivo real respecto al conjunto de las diez monedas principales, corregido por la relación de precios de exportación de España respecto a la media ponderada de los precios de exportación de los principales países ($REER$).
