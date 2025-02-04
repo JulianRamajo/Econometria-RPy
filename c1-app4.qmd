@@ -1,0 +1,516 @@
+---
+editor: visual
+engine: knitr
+excerpt: ""
+draft: false
+format: 
+  html:
+    self-contained: true
+    max-width: 1920px
+    code-fold: show
+    code-tools: true
+---
+
+```{css, echo = FALSE}
+.justify { text-align: justify !important }
+```
+
+::: justify
+# Aplicación 1.4: Datos georreferenciados {.unnumbered}
+
+## Datos espacio-temporales: Emisiones de CO2 al nivel mundial {.unnumbered}
+
+En esta aplicación se analizarán los datos de la publicación de 2022 del [*Global Carbon Project*](https://www.globalcarbonproject.org/) sobre emisiones de gases de efecto invernadero al nivel mundial y nacional, con el objetivo de encontrar los países más contaminantes, tanto en términos de emisiones de CO2 totales como en forma per capita. Pueden encontrarse los datos e información sobre los mismos en la siguiente dirección: <https://zenodo.org/record/7215364>.
+
+Igual que en la aplicación anterior, previamente al análisis estadístico deseado se usarán varias técnicas de *data wrangling* para "preparar" los datos para dicho estudio antes de su representación gráfica.
+:::
+
+### Código R {.unnumbered}
+
+```{r}
+#| include: true
+#| warning: false
+#| message: false
+
+# Lectura de librerías
+library(tidyverse)
+library(plotly)
+library(sf)
+library(geojsonsf)
+library(leaflet)
+library(viridis)
+library(RColorBrewer)
+# Lectura de datos
+df <- read_csv("data/GCPdbase.csv")
+# Reemplazar "USA" por "United States of America"
+df$Country <-
+  ifelse(df$Country == "USA", "United States of America",
+         df$Country)
+# Eliminar los registros "Global" y "International Transport" 
+# de la lista de países (variable Country)
+df <- df[!(df$Country %in% c("Global", "International Transport")),]
+# Restringir período temporal al conjunto 1970-2021
+df1 <-
+  df %>% filter(Year >= 1970 & Year <= 2021)
+# Top 10 de emisiones totales medias 1970-2021
+top_10_emisiones_total <-
+  df1 %>%
+  group_by(Country) %>%
+  summarise(mean_total = mean(Total)) %>%
+  top_n(10, mean_total)
+arrange(top_10_emisiones_total, desc(mean_total))
+# Gráfico de áreas
+datos_top_10_emisiones_total <- df1 %>%
+  filter(Country %in% top_10_emisiones_total$Country)
+ggplot(datos_top_10_emisiones_total, aes(x=Year, y=Total, fill=Country)) +
+    geom_area()
+# Restringir período temporal al año 2021
+df2 <- df %>% filter(Year == 2021)
+# Top 5 de emisiones totales en 2021 y % sobre el total
+top5_emisiones_2021 <- df2 %>% 
+  select(Country, Total) %>% 
+  mutate(Percent = round(Total/sum(Total), digits = 3)) %>% 
+  top_n(5, Percent)%>% 
+  arrange(desc(Percent)) %>%
+  mutate(Lab_percent = scales::percent(Percent))
+top5_emisiones_2021
+# Diagrama de sectores
+ggplot(top5_emisiones_2021, aes(x = "", y = Percent, fill = Country)) +
+    geom_col() + 
+    geom_text(aes(label = Lab_percent),
+              position = position_stack(vjust = 0.5)) +
+    coord_polar(theta = "y")
+# Top 10 de emisiones per capita medias 1970-2021
+top_10_emisiones_per_capita <- df1 %>%
+  group_by(Country) %>%
+  summarise(mean_per_capita = mean(`Per Capita`)) %>%
+  top_n(10, mean_per_capita)
+arrange(top_10_emisiones_per_capita, desc(mean_per_capita))
+# Gráfico de líneas
+datos_top_10_emisiones_per_capita <- df1 %>% 
+  filter(Country %in% top_10_emisiones_per_capita$Country)
+ggplot(datos_top_10_emisiones_per_capita,
+       aes(x=Year, y=`Per Capita`, group=Country, color=Country)) + 
+    geom_line()
+# Mapa de distribución mundial de emisiones per capita medias
+datos_emisiones_per_capita_medias <- df1 %>%
+  group_by(`Country`) %>%
+  summarize(CO2pc = mean(`Per Capita`))
+map <- geojson_sf("data/GCPmap.geojson")
+class(map)
+str(map)
+datos_map <- datos_emisiones_per_capita_medias %>% 
+    rename(name = Country)
+datos_geo <- inner_join(map, datos_map, by = "name")
+ggplot(datos_geo) +
+  geom_sf(aes(fill=CO2pc)) +
+  theme_bw() +
+  labs(title = "Emisiones de CO2 per capita medias") +
+  scale_fill_viridis(option="magma")
+# Mapa interactivo
+# Librería leaflet de R: 
+# https://rstudio.github.io/leaflet/
+# Paletas de colores según el tipo de variables:
+# palNumeric <- colorNumeric("viridis", domain = shape$vcontinua)
+# palBin <- colorBin("magma", domain = shape$vdiscreta, bins = 4)
+# palQuantile <- colorQuantile("Spectral", domain = shape$numerica, n=4)
+# palFactor <- colorFactor("RdBu", domain = shape$vcategorica)
+palNumeric <- colorNumeric("YlGnBu", domain = datos_geo$CO2pc)
+leaflet(datos_geo) %>% setView(0, 0, zoom = 2) %>% addTiles() %>%
+    addProviderTiles("CartoDB.Positron") %>%
+    addPolygons(color = "#444444" ,
+                weight = 1, 
+                smoothFactor = 0.5,
+                opacity = 1.0,
+                fillOpacity = 0.7,
+                fillColor = ~palNumeric(datos_geo$CO2pc),   
+                layerId = ~datos_geo$name,                  
+                highlightOptions = highlightOptions(
+                  color = "white", weight = 1,
+                  bringToFront = TRUE))
+```
+
+### Código Python {.unnumbered}
+
+```{python}
+#| include: true
+#| warning: false
+#| message: false
+
+# Lectura de librerías
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+plt.style.use('ggplot')
+import plotly.graph_objects as go
+import geopandas as gpd
+import folium
+# Lectura de datos
+df = pd.read_csv("data/GCPdbase.csv")
+# Reemplazar "USA" por "United States of America"
+df["Country"] = df["Country"].replace("USA", "United States of America")
+# Eliminar los registros "Global" y "International Transport" 
+# de la lista de países (variable Country)
+df = df[~df["Country"].isin(["Global", "International Transport"])]
+# Restringir período temporal al conjunto 1970-2021
+df1 = df[(df["Year"] >= 1970) & (df["Year"] <= 2021)]
+# Top 10 de emisiones totales medias por país
+top_10_emisiones_total = df1.groupby("Country")["Total"].mean().nlargest(10).index
+top_10_emisiones_total
+datos_top_10_emisiones_total = df1[df1["Country"].isin(top_10_emisiones_total)]
+pivot_data_total =datos_top_10_emisiones_total.pivot_table(
+  values="Total",
+  index="Year",
+  columns="Country",
+  aggfunc="sum",
+  fill_value=0)
+# Gráfica de áreas
+fig_area = go.Figure(layout=go.Layout(
+  title="Top 10 por emisiones de CO2 totales (1970-2021)",
+  xaxis_title="Años",
+  yaxis_title="CO2"))
+# Se insertan los datos
+for country in pivot_data_total.columns:
+    fig_area.add_trace(go.Scatter(x=pivot_data_total.index,
+    y=pivot_data_total[country],
+    name=country,
+    mode="none",
+    stackgroup="one"))
+# Restringir período temporal al año 2021
+df2 = df[(df["Year"] == 2021)]
+# Top 10 de emisiones totales medias por país
+df2 = df2[["Country", "Total"]]
+# Calculating Percentage
+df2["Percent"] = (df2["Total"] / df2["Total"].sum())
+top5_emisiones_2021 = df2.nlargest(5, "Percent")
+top5_emisiones_2021
+# Diagrama de sectores
+fig, ax = plt.subplots()
+ax.pie(top5_emisiones_2021["Percent"], labels = top5_emisiones_2021["Country"], autopct = '%1.1f%%', normalize=False)
+plt.show()
+# Top 10 de emisiones per capita medias por país
+emisiones_per_capita_medias = df1.groupby("Country").agg({"Per Capita": "mean"})
+top_10_emisiones_per_capita = emisiones_per_capita_medias.nlargest(
+  10, "Per Capita").index
+top_10_emisiones_per_capita
+# Gráfica de líneas
+datos_top_10_emisiones_per_capita = df1[df1["Country"].isin(top_10_emisiones_per_capita)]
+pivot_data_per_capita = datos_top_10_emisiones_per_capita.pivot_table(
+  values="Per Capita",
+  index="Year",
+  columns="Country",
+  aggfunc="mean",
+  fill_value=0)
+fig_line = go.Figure(
+  layout=go.Layout(
+    title="Top 10 por emisiones de CO2 per capita (1970-2021)",
+    xaxis_title="Años",
+    yaxis_title="CO2pc"))
+for country in pivot_data_per_capita.columns:
+    fig_line.add_trace(
+      go.Scatter(x=pivot_data_per_capita.index,
+      y=pivot_data_per_capita[country],
+      name=country, mode="lines"))
+# Mapa de distribución mundial de emisiones per capita medias
+datos_map = df1.groupby("Country")["Per Capita"].mean().reset_index()
+map = gpd.read_file("data/GCPmap.geojson")
+map.info()
+datos_map_2 = datos_map.copy()   
+datos_map_2 = datos_map_2.rename(columns = {"Country": "name"})
+datos_map_2 = datos_map_2.rename(columns = {"Per Capita": "CO2pc"})
+datos_geo  = map.merge(datos_map_2, on = 'name', how = 'left')
+fig, ax = plt.subplots(1,1)
+datos_geo.plot(column="CO2pc",
+           legend=True,
+           cmap='magma',
+           ax=ax)
+plt.title('Emisiones de CO2 per capita medias')
+plt.tight_layout()
+plt.show()
+# Mapa interactivo
+# Libreria folium de Python: 
+# https://python-visualization.github.io/folium/
+world_geo = r'data/GCPmap.geojson'
+datos_emisiones_per_capita_medias = df1.groupby(
+  "ISO 3166-1 alpha-3")["Per Capita"].mean().reset_index()
+mapa_emisiones = folium.Map(location=[0, 0], zoom_start=2)
+folium.Choropleth(
+    geo_data=world_geo,
+    name="choropleth",
+    data=datos_emisiones_per_capita_medias,
+    columns=["ISO 3166-1 alpha-3", "Per Capita"],
+    key_on="feature.id",
+    fill_color="YlGnBu",
+    fill_opacity=0.7,
+    line_opacity=0.2,
+    legend_name="Emisiones per capita medias"
+).add_to(mapa_emisiones)
+folium.LayerControl().add_to(mapa_emisiones)
+mapa_emisiones
+```
+
+::: justify
+## Datos espaciales: Desarrollo humano al nivel mundial {.unnumbered}
+
+En esta aplicación se analizarán los datos de la publicación del [*Global Data Lab*](https://globaldatalab.org/) sobre las variaciones habidas en el desarrollo humano, la salud, la educación y la renta dentro de más de 160 países ('*within*') y entre ellos ('*between*') desde 1990 hasta 2021.
+
+Puede encontrarse toda la información detallada sobre el índice de desarrollo humano al nivel subnacional (SHDI en sus siglas en inglés) en la siguiente dirección: <https://www.nature.com/articles/sdata201938>; también se puede acceder a los datos originales desde esta otra página: <https://globaldatalab.org/shdi/download_files/>.
+
+Respecto a las librerías especializadas en gráficas dinámicas (`plotly`) y en análisis exploratorio de datos espaciales (`sf` y `geopandas`), su información se encuentra en las siguientes páginas web:
+
+-   Librerías gráficas `plotly`: <https://plotly.com/graphing-libraries/>
+
+-   Librerías para el análisis gráfico de datos espaciales:
+
+    -   R -\> `sf`: <https://r-spatial.github.io/sf/>
+
+    -   Python -\> `geopandas`: <https://geopandas.org/>
+
+De nuevo se usarán varias técnicas de *data wrangling* para "preparar" los datos antes del análisis gráfico y estadístico.
+:::
+
+### Código R {.unnumbered}
+
+```{r}
+#| include: true
+#| warning: false
+#| message: false
+
+# Lectura de librerías
+library(tidyverse)
+library(plotly)
+library(viridis)
+library(sf)
+library(geojsonsf)
+# Lectura de datos
+df <- read_csv("data/GDLdbase.csv")
+str(df)
+print(df)
+map <- geojson_sf("data/GDLmap.geojson")
+class(map)
+str(map)
+print(map)
+# Preparación de datos
+# Eliminación de observaciones nacionales (variable level -> National)
+df1 <- filter(df, level != 'National')
+df1
+colnames(df1)
+# Selección del año de análisis, 2021
+df1$year <- as.character(df1$year)
+df2021 <- filter(df1, year == '2021')
+print(df2021)
+unique(df2021$continent)
+unique(df2021$country)
+# Análisis exploratorio básico (EDA)
+# Estadísticos para todo el período
+df1 %>% 
+  select(-c(...1,iso_code, year, country, GDLCODE, level, region,continent)) %>%
+  summary()
+# Estadísticos para el año 2021
+df2021 %>%
+  select(-c(...1,iso_code, year, country, GDLCODE, level, region,continent)) %>%
+  summary()
+# Estadísticos para España en el año 2021
+df2021 %>%
+  select(-c(...1,iso_code, year, GDLCODE, level, region,continent)) %>%
+  filter(country == 'Spain') %>% 
+  summary()
+# Diferencias regionales durante el período (box plots)
+# Comparación entre continentes
+df1 %>%
+  plot_ly(x = ~shdi, y = ~continent, frame = ~year, color = ~continent, 
+          type = 'box') %>%
+    layout(xaxis = list(title = "SHDI"),
+           yaxis = list(title = "Continente"))
+# Comparación entre varios países
+subset(df1, country %in% c("Spain", "Portugal", "France")) %>%
+  plot_ly(x = ~shdi, y = ~country, frame = ~year, color = ~country, 
+          type = 'box') %>%
+    layout(xaxis = list(title = "SHDI"),
+           yaxis = list(title = "País"))
+# Evolución regional dentro de un país (series temporales)
+plot_ly(df1[df1$country == "Spain",], x = ~year, y = ~shdi, 
+        color = ~region, type = "scatter", mode = "lines") %>%
+    layout(xaxis = list(title = "Año"),
+           yaxis = list(title = "SHDI", type = "log"))
+# Correlación desarrollo humano-renta per cápita (scatter plots)
+plot_ly(df1, 
+        y = ~shdi, 
+        x = ~lgnic,
+        frame = ~year,
+        type = 'scatter', 
+        mode = 'markers', 
+        color = ~continent, 
+        colors = 'Set1') %>%
+    layout(xaxis = list(title = "Renta nacional bruta per capita (log)"),
+           yaxis = list(title = "SHDI"))
+# Análisis exploratorio espacial (ESDA)
+# Mapa de distribución espacial del SHDI en 2021
+df2021_2 <- df2021 %>% 
+  rename(GDLcode = GDLCODE)
+gdf2021 <- inner_join(map, df2021_2, by = "GDLcode")
+colnames(gdf2021)
+print(gdf2021)
+ggplot(gdf2021) +
+  geom_sf(aes(fill=shdi)) +
+  theme_bw() +
+  labs(title = "Distribución espacial del SHDI en 2021") +
+  scale_fill_viridis(option="OrRd")
+# El SHDI español en 2021
+gdf2021Spain <- gdf2021[gdf2021$country.x == "Spain",]
+ggplot(gdf2021Spain) + geom_sf(aes(fill=shdi)) +
+  theme_bw() +
+  labs(title = "Distribución espacial del SHDI español en 2021") +
+  scale_fill_viridis(option="OrRd")
+# Gráfica sólo con las regiones peninsulares
+ggplot(gdf2021Spain_2 <- gdf2021Spain[-c(14,17),]) + geom_sf(aes(fill=shdi)) +
+  theme_bw() +
+  labs(title = "Distribución espacial del SHDI peninsular español en 2021") +
+  scale_fill_viridis(option="OrRd")
+```
+
+### Código Python {.unnumbered}
+
+```{python}
+#| include: true
+#| warning: false
+#| message: false
+
+# Lectura de librerías
+import numpy as np
+import pandas as pd
+pd.set_option('display.max_columns', None)
+import matplotlib.pyplot as plt
+plt.style.use('ggplot')
+from matplotlib.ticker import FormatStrFormatter
+from matplotlib_scalebar.scalebar import ScaleBar
+from pylab import rcParams
+import matplotlib as mpl
+mpl.rcParams['figure.dpi'] = 72
+import seaborn as sns
+import plotly.express as px
+import plotly.graph_objects as go
+import chart_studio
+import chart_studio.plotly as save2cs
+import geopandas as gpd
+import warnings
+warnings.filterwarnings('ignore')
+# Lectura de datos
+df = pd.read_csv('data/GDLdbase.csv', index_col=0)
+df.info()
+df
+map = gpd.read_file("data/GDLmap.geojson")
+map.info()
+map
+# Preparación de datos
+# Eliminación de observaciones nacionales (variable level -> National)
+df1 = df[df.level != 'National']
+df1
+df1.columns
+# Selección del año de análisis, 2021
+df1["year"]= df1["year"].astype(str)
+df2021 = df1[df1['year'] == '2021']
+df2021
+df2021['continent'].unique()
+df2021['country'].unique()
+# Análisis exploratorio básico (EDA)
+# Estadísticos para todo el período
+df1.loc[:, (df1.columns != 'iso_code') & (df1.columns != 'year') & (df1.columns != 'country') & (df1.columns != 'GDLCODE') & (df1.columns != 'level') & (df1.columns != 'region') & (df1.columns != 'continent')].describe().round(3)
+# Estadísticos para el año 2021
+df2021.describe().round(3)
+# Estadísticos para España en el año 2021
+df2021.query("country == 'Spain'").describe().round(3)
+# Diferencias regionales durante el período (box plots)
+# Comparación entre continentes
+px.box(df1,
+         x = 'shdi',
+         y = 'continent',
+         range_x= [0, 1], 
+         color = 'continent', 
+         hover_name= 'region',  
+         hover_data = ['country'],
+         animation_frame= 'year',
+         labels=dict(continent = "Continente",
+                     shdi ="SHDI")
+         )
+# Comparación entre países
+px.box(df1[df1['country'].isin(['Spain', 'Portugal', 'France'])],
+         x = 'shdi',
+         y = 'country',
+         range_x= [0.70, 1],
+         color = 'country', 
+         hover_name= 'region',  
+         hover_data = ['country'],
+         animation_frame= 'year',
+         labels=dict(country = "País",
+                     shdi ="SHDI")
+         )
+# Evolución regional dentro de un país (series temporales)
+fig = px.line(
+    df1[df1['country'].isin(['Spain'])],
+    x="year",
+    y="shdi",
+    log_y= True,
+    color="region",
+    hover_name="country",
+    hover_data= ['country'],
+    labels=dict(shdi="SHDI",
+                year = "Año"),
+    facet_col="country",
+    facet_col_wrap = 2,
+    facet_row_spacing = 0.01,
+    height= 500
+    )
+fig.update_layout(showlegend=False)
+# Correlación desarrollo humano-renta per cápita (scatter plots)
+px.scatter(df1,
+            y = "shdi", 
+            x = "lgnic",
+            range_y= [0, 1],
+            range_x= [5, 13],  
+            hover_name = "region",
+            hover_data= ['country'], 
+            color = "continent", 
+            #size = "pop", size_max = 60,
+            trendline= 'ols',
+            animation_frame= 'year',
+            labels=dict(country = "País",
+                        continent = "Continente",
+                        lgnic ="Renta nacional bruta per capita (log)",
+                        shdi="SHDI")
+            )
+# Análisis exploratorio espacial (ESDA)
+# Mapa de distribución espacial del SHDI en 2021
+df2021_2 = df2021.copy()   
+df2021_2 = df2021_2.rename(columns = {"GDLCODE": "GDLcode"})
+gdf2021 = map.merge(df2021_2, on = 'GDLcode', how = 'left')
+gdf2021.columns
+gdf2021
+fig, ax = plt.subplots(1,1)
+gdf2021.plot(column="shdi",
+           legend=True,
+           ax=ax)
+plt.title('Distribución espacial del SHDI en 2021')
+plt.tight_layout()
+plt.show()
+# El SHDI español en 2021
+gdf2021Spain = gdf2021.query("country_x =='Spain'").reset_index(drop=True)
+gdf2021Spain
+fig, ax = plt.subplots(1,1)
+gdf2021Spain.plot(column="shdi",
+           legend=True,
+           ax=ax)
+plt.title('Distribución del SHDI español en 2021')
+plt.tight_layout()
+plt.show()
+# Gráfica sólo con las regiones peninsulares
+gdf2021Spain_2 = gdf2021Spain.drop(labels=[13,16])
+gdf2021Spain_2
+fig, ax = plt.subplots(1,1)
+gdf2021Spain_2.plot(column="shdi",
+           legend=True,
+           ax=ax)
+plt.title('Distribución del SHDI peninsular español en 2021')
+plt.tight_layout()
+plt.show()
+```

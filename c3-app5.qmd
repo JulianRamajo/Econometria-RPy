@@ -1,16 +1,14 @@
 ---
+editor: visual
 engine: knitr
 excerpt: ""
 draft: false
 format: 
   html:
-    theme: simplex
     self-contained: true
     max-width: 1920px
     code-fold: show
     code-tools: true
-    highlight-style: atom-one-dark
-    code-block-bg: "#282c34"
 ---
 
 ```{css, echo = FALSE}
@@ -18,23 +16,26 @@ format:
 ```
 
 ::: justify
-# Aplicación 3.5: Regresiones heteroscedásticas {.unnumbered}
+# Aplicación 3.5: Volatilidad variable en el tiempo {.unnumbered}
 
-## Función de demanda con varianza no constante {.unnumbered}
+## Relación entre los precios de los carburantes y el precio del petroleo {.unnumbered}
 
-Empleando datos de corte transversal, en este ejemplo se va a estimar un modelo de demanda para un determinado producto A:
+En esta aplicación se estimará un modelo econométrico con dinámica en el tiempo para explicar el precio semanal de la gasolina en el mercado minorista de Canadá. En la regresión planteada los residuos MCO muestran clústeres de volatilidad, por lo que se generalizará la especificación inicial permitiedo heteroscedasticidad autorregresiva condicional (efectos ARCH) en los errores del modelo.
 
-$$log(Q_{A,i}) = \beta_1 + \beta_2 log(P_{A,i}) + \beta_3 log(P_{B,i}) + \beta_4 log(P_{C,i}) + \beta_5 log(Y_{i}) + e_{i}$$
+La regresión que sirve como soporte de partida para la aplicación viene dada por la siguiente especificación $ARDL(2,2)$ en las variables precio del modelo:
 
-donde $Q_{A}$ es la cantidad demandada del bien A analizado por el individuo i-ésimo, $P_{A}$, $P_{B}$ y $P_{C}$ son, respectivamente, los precios de los bienes A, B y C en el mercado, e $Y$ es el nivel de renta.
+$$log(PGASOL_{t}) = \beta_1 + \beta_2 D2008JD_{t} + \beta_3 time_{t}   + $$
 
-Una vez chequeada la hipótesis de varianza constante (homoscedasticidad), se plantea la estimación por mínimos cuadrados ponderados (MCP) de la función de demanda bajo la hipótesis de un modelo heteroscedástico asociad al logaritmo de la renta del tipo siguiente:
+$$+ \beta_4 log(PGASOL_{t-1}) + \beta_5 log(PGASOL_{t-2})  + $$
 
-$${σ_i}^2 = e^{α_0 + α_1 log⁡(Y_i)}$$
+$$ +\beta_6 log(PCRUDO_{t}) + \beta_7 log(PCRUDO_{t-1}) + \beta_8 log(PCRUDO_{t-2}) + e_{t}$$
 
-Esta especificación para la varianza residual equivale a suponer que ${σ_i}^2 = σ^2 (Y_i)^{α_1}$, donde $σ^2 = e^{α_0}$, y de ahí que este tipo de especificación reciba el nombre de *heteroscedasticidad multiplicativa*.
+donde $PGASOL$ es el precio de la gasolina, $PCRUDO$ es el precio del petróleo en los mercados internacionales, $D2008JD$ es una variable ficticia que diferencia el período que abarca desde julio hasta diciembre de 2008 de resto de semanas, y $time$ es una tendencia temporal determinista.
 
-De forma complementaria, compararemos los resultados obtenidos por MCP con los que se consiguen al estimar la función de demanda por MCO, pero corrigiendo la matriz de covarianzas usando el método de White (MCO-HC).
+En cuanto a la modelización de los efectos ARCH, se utilizará una especifación $ARCH(2)$ para la varianza condicional, $h_{t}$, dada por la expresión:
+
+$${h_{t} = \alpha_{0} + \alpha_{1}e_{t - 1}^{2} + \alpha_{2}e_{t - 2}^{2} }$$
+
 :::
 
 ## Código R {.unnumbered}
@@ -46,127 +47,149 @@ De forma complementaria, compararemos los resultados obtenidos por MCP con los q
 
 # Lectura de librerías
 library(tidyverse)
-library(car)
-library(skedastic)
-library(lmtest)
-library(sandwich)
+library(zoo)
+library(dynlm)
+library(nlWaldTest)
+library(FinTS)
+library(tseries)
+library(rugarch)
 # Lectura de datos
-DEM_HET <- read_csv("data/DEM_HET.csv")
-dim(DEM_HET)
-summary(DEM_HET)
-# Estimación MCO
-modelo_MCO <- lm(log(QA) ~ log(PA) + log(PB) + log(PC)+ log(Y), 
-                 data = DEM_HET)
-summary(modelo_MCO)
-# Chequeo de la hipótesis de homoscedasticidad
-# Contrastes estándar (automáticos): Z's -> variables explicativas del modelo
-# Test de White
-white(modelo_MCO)
-white(modelo_MCO, interactions=TRUE)
-# Test de Glejser
-glejser(modelo_MCO)
-# Test de Breusch-Pagan
-breusch_pagan(modelo_MCO)
-# Contrastes específicos: Z's seleccionadas
-# Test de Breusch-Pagan (manual)
-DEM_HET$resid2 = resid(modelo_MCO)^2
-# Análisis gráfico
-ggplot(DEM_HET, aes(x = log(Y), y = resid2)) +
-    geom_point(color = "blue") +
-    geom_smooth(method='lm', formula = y~x, se = TRUE, 
-                color = "blue", linetype = "dashed") +
-    xlab("log(Y)") + 
-    ylab("resid2") +
-    theme_minimal()
-# Regresión auxiliar
-summary(modelo_resid2 <- lm(resid2 ~ log(Y), data=DEM_HET))
-N <- nobs(modelo_resid2)
-p <- 1 # Número Z's de la regresión auxiliar, sin incluir la constante
-sm_resid2 <- summary(modelo_resid2)
-R2_m_resid2 <- sm_resid2$r.squared
-BP <- N*R2_m_resid2
-# Contraste Chi-cuadrado
-pval <- 1-pchisq(BP, p)
-BP ; pval 
-# Test de Breusch-Pagan (automático)
-bptest(modelo_MCO, varformula = ~ log(Y), data=DEM_HET) 
-# Test de Breusch-Pagan robusto (variante de Koenker)
-bptest(modelo_MCO, varformula = ~ log(Y), data=DEM_HET, studentize = FALSE)
-# Corrección básica de la heteroscedasticidad: matriz de covarianzas robusta
-# Corrección de White (librería sandwich)
-coeftest(modelo_MCO, vcov. = vcovHC(modelo_MCO,type="HC1"))
-# Otra versión, con idéntico resultado (librería car)
-coeftest(modelo_MCO, vcov.=hccm(modelo_MCO, type = "hc1")) 
-# Corrección avanzada: mínimos cuadrados ponderados (MCP <-> FGLS)
-# Regresión auxiliar para el logaritmo de la varianza estimada
-summary(modelo_l_resid2 <- lm(log(resid2) ~ log(Y), data=DEM_HET))
-# Estimación de la varianza residual (no constante)
-sigma2 <- exp(fitted(modelo_l_resid2))
-# MCO con ponderaciones
-summary(modelo_MCP <- lm(log(QA) ~ log(PA) + log(PB) + log(PC)+ log(Y), 
-                         weights = 1/sigma2, data = DEM_HET))
+GASOL_CRUDO <- read_csv("data/GASOL_CRUDO.csv")
+GASOL_CRUDO_ts <- read.zoo(GASOL_CRUDO)
+# Gráfica de las series temporales
+plot(GASOL_CRUDO_ts)
+# Modelo dinámico para el precio de la gasolina
+# Librería dynlm (https://cran.r-project.org/web/packages/dynlm/)
+dyn_model <- dynlm (log(PGASOL) ~ D2008JD + time + 
+                      L(log(PGASOL), 1:2) + L(log(PCRUDO),0:2), 
+                    data=GASOL_CRUDO_ts)
+summary(dyn_model)
+# Estimación de efectos parciales a corto y largo plazo
+# Librería nlWaldTest (https://cran.r-project.org/web/packages/nlWaldTest/)
+nlConfint(dyn_model, c("b[6]","(b[6]+b[7]+b[8])/(1-b[4]-b[5])"))
+# Significación estadística de los multiplicadores
+nlWaldtest(dyn_model, "b[6]")
+nlWaldtest(dyn_model, "(b[6]+b[7]+b[8])/(1-b[4]-b[5])")
+# Contraste de heteroscedasticidad autoregresiva condicional (efectos ARCH)
+resid <- as.zoo(dyn_model$residuals)
+# Gráficas de los residuos MCO y sus cuadrados
+plot(resid)
+plot(resid^2)
+# Regresión auxiliar y contraste de Engle
+# ARCH(1)
+summary(dynlm(I(dyn_model$residuals^2) ~ L(I(dyn_model$residuals^2), 1:1)))
+ArchTest(dyn_model$residuals, lag = 1)
+# ARCH(2)
+summary(dynlm(I(dyn_model$residuals^2) ~ L(I(dyn_model$residuals^2), 1:2)))
+ArchTest(dyn_model$residuals, lag = 2)
+# Modelo GARCH para los errores del modelo
+# Librería tseries (https://cran.r-project.org/web/packages/tseries/)
+resid.ARCH <- garch(resid,c(0,2), trace=FALSE)
+summary(resid.ARCH)
+# Varianza condicional estimada
+hhat_1 <- as.zoo(resid.ARCH$fitted.values[,1]^2)
+plot(hhat_1)
+# Librería rugarch (https://cran.r-project.org/web/packages/rugarch/)
+# [nueva versión: https://www.nopredict.com/packages/tsgarch]
+resid_GARCH_spec <-  ugarchspec(
+  mean.model = list(armaOrder=c(0,0), include.mean = FALSE),
+  variance.model = list(model="sGARCH", garchOrder=c(2,0)),
+  distribution.model ="norm")
+resid_GARCH_fit <- ugarchfit(spec = resid_GARCH_spec, data = resid)
+show(resid_GARCH_fit)
+# Varianza condicional estimada
+hhat_2 <- as.zoo(resid_GARCH_fit@fit$sigma^2)
+plot.ts(hhat_2)     # ts.plot(resid_GARCH_fit@fit$sigma^2)
+# Gráficas asociadas al modelo GARCH estimado
+# Modo interactivo: permite seleccionar el tipo de gráfica
+# plot(resid_GARCH_fit)
+# Gráficas seleccionadas
+plot(resid_GARCH_fit, which=1)
+plot(resid_GARCH_fit, which=3)
 ```
 
 ## Código Python {.unnumbered}
 
 ```{python}
+#| eval: true
 #| include: true
 #| warning: false
 #| message: false
 
 # Lectura de librerías
-import pandas as pd
 import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 import statsmodels.api as sm
 import statsmodels.formula.api as smf
 import statsmodels.stats.api as sms
-import statsmodels.stats as smstats
 import statsmodels.stats.diagnostic as smsdiag
-import matplotlib.pyplot as plt
-import seaborn as sns
-# Lectura de datos
-DEM_HET = pd.read_csv('data/DEM_HET.csv')
-DEM_HET.describe()
-# Estimación MCO
-modelo1 = smf.ols(formula = 
-"np.log(QA) ~ np.log(PA) + np.log(PB) + np.log(PC) + np.log(Y)", 
-data = DEM_HET)
-modelo_MCO = modelo1.fit()
-print(modelo_MCO.summary())
-# Contrastes de heteroscedasticidad
-name = ['LM statistic', 'Chi^2 p-val', 'F statistic', 'F p-val']
-# Test de White
-W_test = smsdiag.het_white(modelo_MCO.resid, modelo_MCO.model.exog)
-print(pd.DataFrame([np.round(W_test, 8)], columns=name))
-# Test de Breusch-Pagan
-BP_test = smsdiag.het_breuschpagan(modelo_MCO.resid, modelo_MCO.model.exog)
-print(pd.DataFrame([np.round(BP_test, 8)], columns=name))
-# Estimación MCO-HC
-modelo1 = smf.ols(formula = 
-"np.log(QA) ~ np.log(PA) + np.log(PB) + np.log(PC) + np.log(Y)", 
-data = DEM_HET)
-# HC1 -> corrige la fórmula de White por grados de libertad
-modelo_MCO_HC1 = modelo1.fit(cov_type='HC1')
-print(modelo_MCO_HC1.summary())
-# HC2 -> corrige la fórmula de White por grados de libertad y tamaño muestral pequeño
-modelo_MCO_HC2 = modelo1.fit(cov_type='HC2') 
-print(modelo_MCO_HC2.summary())
-# Estimación MCP (FGLS)
-# Análisis gráfico
-DEM_HET['resid2'] = (modelo_MCO.resid)**2
-sns.regplot(x=np.log(DEM_HET['Y']), y = DEM_HET['resid2'])
+from statsmodels.compat import lzip
+from arch import arch_model
+# Lectura de datos y asignación del índice temporal
+GASOL_CRUDO_ts = pd.read_csv("data/GASOL_CRUDO.csv", 
+parse_dates=['date'], index_col='date')
+GASOL_CRUDO_ts.info()
+GASOL_CRUDO_ts.index
+# Asignación del formato semanal (opcional)
+date_w = pd.date_range(start = '2000', 
+periods = len(GASOL_CRUDO_ts.index), freq = 'W')
+GASOL_CRUDO_ts.index = date_w
+GASOL_CRUDO_ts.index
+# Gráfica de las series temporales
+plt.figure(1)
+fig, ax = plt.subplots(4, 1, sharex = True)
+ax[0].plot(GASOL_CRUDO_ts.D2008JD)
+ax[0].set_ylabel('D2008JD')
+ax[1].plot(GASOL_CRUDO_ts.PCRUDO)
+ax[1].set_ylabel('PCRUDO')
+ax[2].plot(GASOL_CRUDO_ts.PGASOL)
+ax[2].set_ylabel('PGASOL')
+ax[3].plot(GASOL_CRUDO_ts.time)
+ax[3].set_ylabel('time')
 plt.show()
-# Regresión auxiliar para el logaritmo de la varianza estimada
-reg_aux_resid2 = smf.ols(formula = "np.log(resid2) ~ np.log(Y)", data = DEM_HET)
-modelo_l_resid2 = reg_aux_resid2.fit()
-print(modelo_l_resid2.summary())
-# Estimación de la varianza residual (no constante)
-sigma2 = np.exp(modelo_l_resid2.fittedvalues)
-w=list(1/sigma2)
-# MCO con ponderaciones
-modelo2 = smf.wls(formula = 
-"np.log(QA) ~ np.log(PA) + np.log(PB) + np.log(PC) + np.log(Y)", 
-weights = w , data = DEM_HET)
-modelo_MCP = modelo2.fit()
-print(modelo_MCP.summary())
+# Modelo dinámico para el precio de la gasolina 
+GASOL_CRUDO_ts['l_PGASOL'] = np.log(GASOL_CRUDO_ts['PGASOL'])
+GASOL_CRUDO_ts['l_PCRUDO'] = np.log(GASOL_CRUDO_ts['PCRUDO'])
+form = 'l_PGASOL ~ D2008JD + time + l_PGASOL.shift(1) + l_PGASOL.shift(2) + l_PCRUDO + l_PCRUDO.shift(1) + l_PCRUDO.shift(2)'
+dyn_model = smf.ols(form, data = GASOL_CRUDO_ts)
+lm_dyn_model = dyn_model.fit()
+print(lm_dyn_model.summary())
+# Estimación de efectos parciales a corto y largo plazo
+b = lm_dyn_model.params[0:]
+# Multiplicador de corto plazo
+b[5].round(3)
+# Multiplicador de largo plazo
+((b[5]+b[6]+b[7])/(1-b[3]-b[4])).round(3)
+# Contraste de heteroscedasticidad autoregresiva condicional (efectos ARCH)
+# Gráficas de los residuos MCO y sus cuadrados
+residuals = lm_dyn_model.resid
+plt.figure(5)
+plt.plot(residuals, label='Residuos')
+plt.xlabel('Semana')
+plt.grid(True)
+plt.legend()
+plt.show()
+plt.figure(6)
+plt.plot(residuals**2, label='Residuos al cuadrado')
+plt.xlabel('Semana')
+plt.grid(True)
+plt.legend()
+plt.show()
+# Test de Engle
+name = ['LM statistic', 'Chi^2 p-val', 'F statistic', 'F p-val']
+E_test_1 = smsdiag.het_arch(residuals, nlags=1)
+lzip(name,E_test_1)
+print(pd.DataFrame([np.round(E_test_1, 3)], columns=name))
+E_test_2 = smsdiag.het_arch(residuals, nlags=2)
+lzip(name,E_test_2)
+print(pd.DataFrame([np.round(E_test_2, 3)], columns=name))
+# Modelo GARCH para los errores del modelo
+garch_model = arch_model(residuals, mean='Zero', vol='GARCH', p=2, q=0, 
+dist='normal')
+mv_garch_model = garch_model.fit()
+print(mv_garch_model)
+fig = mv_garch_model.plot()
+plt.show()
 ```

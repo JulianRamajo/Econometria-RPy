@@ -1,0 +1,381 @@
+---
+editor: visual
+engine: knitr
+excerpt: ""
+draft: false
+format: 
+  html:
+    self-contained: true
+    max-width: 1920px
+    code-fold: show
+    code-tools: true
+---
+
+```{css, echo = FALSE}
+.justify { text-align: justify !important }
+```
+
+::: justify
+# Aplicación 1.1: Gestión y visualización de datos {.unnumbered}
+
+## Gramática básica del *tidyverse* en R y Python {.unnumbered}
+
+En esta aplicación se pondrán ejemplos básicos de gestión y visualización de datos en R y Python usando la "filosofía *tidyverse*", una forma de trabajar dentro de cada lenguaje con el objetivo de estructurar los datos originales para un tratamiento estadístico posterior:
+
+*"A grandes rasgos, el tidyverse es un lenguaje para resolver los retos de la ciencia de datos \[...\]. Su objetivo principal es facilitar una conversación entre un humano y un ordenador acerca de los datos. De forma menos abstracta, el tidyverse es una colección de \[...\] librerías que comparten una filosofía de diseño de alto nivel y unas estructuras gramatical y de datos de bajo nivel, de modo que aprender una librería facilita el aprendizaje de la siguiente."* (Traducido al español de Wickham et al., 2019)
+:::
+
+## Código R {.unnumbered}
+
+::: justify
+En las siguientes páginas web se pueden encontrar los detalles sobre la gestión (limpieza y preparación) '*a la tidyverse'* de bases de datos y realización de gráficos en R:
+:::
+
+1.  Datos ordenados: <https://tidyr.tidyverse.org/articles/tidy-data.html>
+
+2.  La macro-librería `tidyverse` en R:
+
+    <https://www.tidyverse.org/>
+
+    <https://tidyverse.tidyverse.org/articles/paper.html>
+
+3.  Varias lecciones para entender cómo funciona el tidyverse en R:
+
+    <https://education.rstudio.com/blog/2020/07/teaching-the-tidyverse-in-2020-part-1-getting-started/>
+
+    <https://education.rstudio.com/blog/2020/07/teaching-the-tidyverse-in-2020-part-2-data-visualisation/>
+
+    <https://education.rstudio.com/blog/2020/07/teaching-the-tidyverse-in-2020-part-3-data-wrangling-and-tidying/>
+
+    <https://education.rstudio.com/blog/2020/07/teaching-the-tidyverse-in-2020-part-4-when-to-purrr/>
+
+::: justify
+En términos generales, para aprender cómo hacer "ciencia de datos" con R se puede consultar el libro de de Wickham, Çetinkaya-Rundel y Grolemund: <https://r4ds.hadley.nz/> (la versión en español del libro está disponible en <https://es.r4ds.hadley.nz/>).
+
+Sobre los datos utilizados en esta aplicación:
+
+1.  *Gapminder* (<https://www.gapminder.org/fw/world-health-chart/>): los datos por países se han extraído de la base de datos del Banco Mundial (<https://data.worldbank.org/>), usando la librería `WDI` (<https://vincentarelbundock.github.io/WDI/index.html>).
+
+2.  *NYC_Flights_2013* (<https://github.com/tidyverse/nycflights13>): vuelos con salida en Nueva York y destino Estados Unidos, Puerto Rico y las Islas Vírgenes.
+:::
+
+```{r}
+#| include: true
+#| warning: false
+#| message: false
+
+# Lectura de librerías
+library(tidyverse)
+tidyverse_packages()
+```
+
+![](images/tidyverse.png){fig-align="center" width="500"}
+
+```{r}
+#| include: true
+#| warning: false
+#| message: false
+
+# Lectura de datos
+# (https://es.r4ds.hadley.nz/10-tibble.html)
+# (https://es.r4ds.hadley.nz/11-import.html)
+gapminder <- read_csv("data/GAPMINDER.csv")
+dim(gapminder)
+class(gapminder)
+# Manejo y transformación de datos
+# (https://es.r4ds.hadley.nz/05-transform.html)
+#
+# Cambio de nombres de variables
+gapminder <- gapminder %>% 
+  rename(year = date, 
+         gdpPercap = NY.GDP.PCAP.CD, 
+         lifeExp = SP.DYN.LE00.IN, 
+         pop = SP.POP.TOTL)
+# Datos iniciales y finales
+head(gapminder)
+tail(gapminder)
+# Librería dplyr (https://dplyr.tidyverse.org/) 
+# y 'tuberías' (https://es.r4ds.hadley.nz/18-pipes.html)
+#
+# "Verbos" de dplyr 
+# select
+gapminder_selected <- select(gapminder, year, country, pop, gdpPercap)
+# filter
+gapminder_filtered <- filter(gapminder_selected, year >= 1980)
+# mutate
+gapminder_mutated <- mutate(gapminder_filtered, GDP = gdpPercap*pop)
+# group_by
+gapminder_grouped <- group_by(gapminder_mutated, country)
+# summarise
+gapminder_summarised <- summarise(gapminder_grouped, 
+                                  GDP_avg = mean(GDP, na.rm = TRUE))
+# arrange
+gapminder_arranged_ascending <- arrange(gapminder_summarised, GDP_avg)
+gapminder_arranged_ascending
+gapminder_arranged_descending <- arrange(gapminder_summarised, -GDP_avg)
+gapminder_arranged_descending
+# Operador tubería del tidyverse: encadenamientos con '%>%'
+# (tubería nativa de R: |> )
+AVG_GDP <- 
+  gapminder %>% 
+  select(year, country, pop, gdpPercap) %>% 
+  filter(year>=1980) %>% 
+  mutate(GDP=gdpPercap*pop) %>% 
+  group_by(country) %>% 
+  summarise(GDP_avg=mean(GDP, na.rm = TRUE)) %>% 
+  arrange(-GDP_avg) %>% 
+  na.omit()
+head(AVG_GDP,10)
+tail(AVG_GDP,10)
+
+COUNT_cntr <- 
+  gapminder %>%
+  select(year, region, country) %>% 
+  filter(year>=1980) %>% 
+  group_by(region) %>%
+  summarise(cntr_distinct = n_distinct(country))
+COUNT_cntr
+
+AVG_lifeExp <- 
+  gapminder %>%
+  select(year, lifeExp) %>% 
+  filter(year>=1980) %>% 
+  group_by(year) %>%
+  summarise(lifeExp_avg=mean(lifeExp, , na.rm = TRUE)) 
+AVG_lifeExp
+
+AVG_lifeExp_gdpPercap <- 
+  gapminder %>% 
+   select(year, region, lifeExp, gdpPercap) %>% 
+  filter(year>=1980) %>% 
+  group_by(year,region) %>%
+  summarise(lifeExp_avg=mean(lifeExp, , na.rm = TRUE),
+            gdpPercap_avg=mean(gdpPercap, , na.rm = TRUE)) 
+AVG_lifeExp_gdpPercap
+```
+
+```{r}
+#| include: true
+#| warning: false
+#| message: false
+
+# Unir, combinar y remodelar ficheros de datos 
+# (<https://es.r4ds.hadley.nz/13-relational-data.html>)
+# Familia de operaciones join:
+# inner_join(df1, df2), left_join(df1, df2), right_join(df1, df2)
+# full_join(df1, df2), semi_join(df1, df2), anti_join(df1, df2)
+```
+
+![](images/dplyr-joins.png){width="500"}
+
+```{r}
+#| include: true
+#| warning: false
+#| message: false
+
+# Lectura de datos
+library(nycflights13)
+flights 
+planes
+# Ejemplo de unión (por la izquierda): left_join
+# Debe usarse el argumento 'by =' para evitar errores o malas
+# asignaciones automáticas. 
+# Ejemplos de otras operaciones en pueden encontrarse en:
+# https://cran.r-project.org/web/packages/dplyr/vignettes/two-table.html
+flights_planes <- left_join(flights, planes, by = "tailnum") %>%
+  select(month, day, dep_time, arr_time, 
+         carrier, flight, tailnum, model)
+flights_planes
+```
+
+```{r}
+#| include: true
+#| warning: false
+#| message: false
+
+# Gramática de gráficas (ggplot2) [https://ggplot2.tidyverse.org/]
+# (https://es.r4ds.hadley.nz/03-visualize.html)
+gapminder <- gapminder %>% 
+   filter(year>=1980) %>% 
+   select(year, region, country, pop, lifeExp, gdpPercap)
+gapminder <- gapminder %>% na.omit()
+gapminder <- arrange(gapminder, year)
+# Gráfica 1: diagrama de puntos básico
+ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point(alpha = 0.7)
+# Gráfica 2: con ajuste no paramétrico
+ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point(alpha = 0.2) + geom_smooth(method = "loess")
+# Gráfica 3: colores por regiones
+ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point(aes(col = region), alpha = 0.3)
+# Gráfica 4: colores por regiones y tamaño por población
+ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) + 
+  geom_point(aes(size = pop, col = region), alpha = 0.3)
+# Gráfica 5: colores por regiones y tamaño por población (escala: log)
+gapminder <-  gapminder %>% mutate(l_gdpPercap=log(gdpPercap))
+ggplot(data = gapminder, aes(x = l_gdpPercap, y = lifeExp)) +
+    geom_point(aes(size = pop, col = region), alpha = 0.3) +
+    labs(x = "PIB per capita (log)", y = "Experanza de vida al nacer") + 
+    theme_minimal() # Tema b&w
+# Gráfica 6 (interactiva): burbujas de Hans-Rosling 
+# (https://www.gapminder.org/fw/world-health-chart/)
+# Escalas de color: https://cran.r-project.org/web/packages/viridis/index.html
+# Librería gganimate: https://gganimate.com/
+# Librería plotly en R: https://plotly.com/r/
+library(viridis)
+library(gganimate)
+library(plotly)
+plot_ly(gapminder, 
+        y = ~lifeExp, 
+        x = ~l_gdpPercap,
+        frame = ~year,
+        type = 'scatter', 
+        mode = 'markers',
+        size = ~pop,
+        color = ~region, 
+        colors = 'Set1') %>%
+    layout(xaxis = list(title = "PIB per capita (log)"),
+           yaxis = list(title = "Experanza de vida al nacer"))
+```
+
+## Código Python {.unnumbered}
+
+::: justify
+En las siguientes páginas web se pueden encontrar los detalles sobre la gestión '*a la tidyverse'* de datos y la realización de gráficos en Python:
+:::
+
+1.  librería `pandas`:
+
+    <https://pandas.pydata.org/docs/user_guide/index.html>
+
+    <https://wesmckinney.com/book/accessing-data>
+
+    <https://wesmckinney.com/book/data-cleaning>
+
+    <https://wesmckinney.com/book/data-wrangling>
+
+2.  librería `plotnine`: <https://plotnine.readthedocs.io/en/stable/>
+
+::: justify
+En términos generales, para aprender cómo hacer "ciencia de datos" con Python se puede consultar el libro de McKinney: <https://wesmckinney.com/book/>.
+:::
+
+```{r}
+library(reticulate)
+```
+
+```{python}
+#| include: true
+#| warning: false
+#| message: false
+
+# Lectura de librerías
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from plotnine import *
+# Lectura de datos
+gapminder = pd.read_csv('data/GAPMINDER.csv')
+gapminder.shape
+gapminder.columns
+gapminder.info()
+# Cambio de nombres de variables
+gapminder.rename(columns={'date': 'year'}, inplace=True)
+gapminder.rename(columns={'NY.GDP.PCAP.CD': 'gdpPercap'}, inplace=True)
+gapminder.rename(columns={'SP.DYN.LE00.IN': 'lifeExp'}, inplace=True)
+gapminder.rename(columns={'SP.POP.TOTL': 'pop'}, inplace=True)
+# Datos iniciales y finales
+gapminder.head()
+gapminder.tail()
+# Operaciones del tidyverse con Pandas
+# select
+gapminder_selected = gapminder[['year','country', 'pop', 'gdpPercap']]
+# filter
+gapminder_filtered = gapminder_selected[(gapminder_selected["year"] >= 1980)]
+# mutate
+gapminder_filtered['GDP'] = gapminder_filtered['gdpPercap'] * gapminder_filtered['pop']
+# groupby
+gapminder_grouped = gapminder_filtered.groupby('country')
+# summarise
+gapminder_summarised = gapminder_grouped['GDP'].mean()
+gapminder_summarised = gapminder_summarised.dropna()
+# arrange (sort)
+gapminder_summarised.sort_values(ascending=False).head(10)
+gapminder_summarised.sort_values(ascending=True).head(10)
+# Se obtiene el mismo resultado con nlargest y nsmallest
+gapminder_summarised.nlargest(10)
+gapminder_summarised.nsmallest(10)
+# Tuberías en pandas: operaciones encadenadas con '.'
+gapminder[(gapminder["year"] >= 1980)].groupby('region')['country'].nunique()
+gapminder[(gapminder["year"] >= 1980)].groupby('year')['lifeExp'].mean()
+gapminder[(gapminder["year"] >= 1980)].groupby(['year', 'region'])[['lifeExp', 'gdpPercap']].mean()
+```
+
+```{python}
+#| include: true
+#| warning: false
+#| message: false
+
+# Unir, combinar y remodelar ficheros de datos
+# (https://wesmckinney.com/book/data-wrangling)
+flights = r.flights 
+planes = r.planes
+flights_planes = flights.merge(planes, on = 'tailnum', how = 'left')
+flights_planes_selected = flights_planes[['month', 'day', 'dep_time', 'arr_time', 'carrier', 'flight', 'tailnum', 'model']]
+flights_planes_selected
+```
+
+```{python}
+#| include: true
+#| warning: false
+#| message: false
+
+# Operaciones gráficas del tidyverse con `plotnine`
+gapminder = gapminder[(gapminder["year"] >= 1980)][['year', 'region', 'country', 'pop', 'lifeExp', 'gdpPercap']]
+gapminder = gapminder.dropna()
+gapminder['l_gdpPercap']=gapminder['gdpPercap'].map(lambda x:np.log(x))
+gapminder = gapminder = gapminder.sort_values(by=['year'])
+# Gráfica 1: diagrama de puntos básico
+(
+    ggplot(gapminder, aes(x='gdpPercap', y='lifeExp'))
+    + geom_point(alpha=0.7)
+    + labs(x='gdpPercap', y='lifeExp')
+)
+# Gráfica 2: con ajuste no paramétrico
+(
+    ggplot(gapminder, aes(x='gdpPercap', y='lifeExp'))
+    + geom_point(alpha=0.2) + geom_smooth(method = "loess")
+    + labs(x='gdpPercap', y='lifeExp')
+)
+# Gráfica 3: colores por regiones
+(
+    ggplot(gapminder, aes(x='gdpPercap', y='lifeExp', color='factor(region)'))
+    + geom_point(alpha=0.3)
+    +  labs(x='gdpPercap', y='lifeExp')
+)
+# Gráfica 4: colores por regiones y tamaño por población
+(
+    ggplot(gapminder, aes(x='gdpPercap', y='lifeExp', color='region', size='pop'))
+    + geom_point(alpha=0.3)
+    +  labs(x='gdpPercap', y='lifeExp')
+)
+# Gráfica 5: colores por regiones y tamaño por población (esc. log.)
+(
+    ggplot(gapminder, aes(x='l_gdpPercap', y='lifeExp', color='region', size='pop'))
+    + geom_point(alpha=0.3)
+    +  labs(x='PIB per capita (log)', y='Experanza de vida al nacer')
+)
+# Gráfica 6 (interactiva): burbujas de Hans-Rosling
+# Librería plotly en Python: https://plotly.com/python/
+import plotly.express as px
+px.scatter(gapminder,
+            y = "lifeExp", 
+            x = "l_gdpPercap",
+            hover_name = "country",
+            hover_data= ['country'], 
+            color = "region", 
+            size = "pop", size_max = 45,
+            animation_frame= 'year'
+)
+```

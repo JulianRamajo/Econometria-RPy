@@ -1,0 +1,326 @@
+---
+editor: visual
+engine: knitr
+excerpt: ""
+draft: false
+format: 
+  html:
+    self-contained: true
+    max-width: 1920px
+    code-fold: show
+    code-tools: true
+---
+
+```{css, echo = FALSE}
+.justify { text-align: justify !important }
+```
+
+::: justify
+# Aplicación 1.3: Datos financieros {.unnumbered}
+
+## Propiedades estadísticas básicas de los activos bursátiles {.unnumbered}
+
+El objetivo de esta aplicación es familiarizarse con la descarga, manejo y visualización de datos bursátiles procedentes de la plataforma [Yahoo!Finanzas](https://es.finance.yahoo.com/), así como entender las propiedades estadísticas básicas de las series temporales asociadas.
+
+Se usará el enfoque *tidyverse* para este tipo de datos, por lo que esta aplicación puede entenderse como un "análisis financiero ordenado" (*tidy finance*). Para una exposición completa de todos los métodos y modelos empíricos recientes de economía financiera puede consultarse la página <https://www.tidy-finance.org/> y los libros online (usando R o Python) asociados a la misma.
+:::
+
+### Código R {.unnumbered}
+
+```{r}
+#| include: true
+#| warning: false
+#| message: false
+
+# Lectura de librerías
+library(tidyverse)
+library(tidyquant)
+library(scales)
+#
+# Descarga de los datos de un activo bursátil desde Yahoo!Finanzas
+#
+# Para acceder a los datos diarios del precio de las acciones 
+# se usa el comando tq_get de la librería tidyquant.
+# Solicitaremos los datos del Banco Santander, S.A. (ticker: SAN.MC)
+# desde el año 2000:
+# https://es.finance.yahoo.com/quote/SAN.MC?p=SAN.MC&.tsrc=fin-srch
+#
+pSAN <- tq_get("SAN.MC",
+  get = "stock.prices",
+  from = "2000-01-01",
+  to = "2023-12-31"
+)
+head(pSAN)
+tail(pSAN)
+# Gráfica de serie temporal: evolución temporal de los precios
+pSAN %>%
+  ggplot(aes(x = date, y = adjusted)) +
+  geom_line() +
+  labs(
+    x = NULL,
+    y = NULL,
+    title = "Precio de las acciones del Banco Santander (EUR)"
+  )
+# Cálculo de los rendimientos netos diarios (returns)
+rSAN <- pSAN %>%
+  arrange(date) %>%
+  mutate(ret = 100*(adjusted / lag(adjusted) - 1)) %>%
+  select(symbol, date, ret)
+head(rSAN)
+tail(rSAN)
+# Eliminación de datos perdidos (missing data)
+rSAN <- rSAN %>%
+  drop_na(ret)
+# Evolución temporal de las rentabilidades diarias
+rSAN %>%
+  ggplot(aes(x = date, y = ret)) +
+  geom_line() +
+  labs(
+    x = NULL,
+    y = NULL,
+    title = "Rendimiento de las acciones del Banco Santander (%)"
+  )
+# Distribución de los rendimientos diarios 
+# (detección de asimetrías y exceso de curtosis)
+q5 <- quantile(rSAN %>% pull(ret), probs = 0.05)
+q95 <- quantile(rSAN %>% pull(ret), probs = 0.95)
+rSAN %>%
+  ggplot(aes(x = ret)) +
+  geom_histogram(bins = 100) +
+  geom_vline(aes(xintercept = q5), linetype = "dashed") +
+  geom_vline(aes(xintercept = q95), linetype = "dashed") +
+  labs(
+    x = NULL,
+    y = NULL,
+    title = "Distribución de los rendimientos del Banco Santander"
+  ) +
+  scale_x_continuous(labels = percent)
+# Estadística resumen global
+rSAN %>%
+  summarize(across(
+    ret,
+    list(
+      media = mean,
+      desv_típica = sd,
+      mínimo = min,
+      máximo = max
+    )
+  ))
+# Estadística resumen por años
+rSAN %>%
+  group_by(year = year(date)) %>%
+  summarize(across(
+    ret,
+    list(
+      media = mean,
+      desv_típica = sd,
+      mínimo = min,
+      máximo = max
+    ),
+    .names = "{.fn}"
+  )) %>%
+  print(n = Inf)
+```
+
+### Código Python {.unnumbered}
+
+```{python}
+#| include: true
+#| warning: false
+#| message: false
+
+# Lectura de librerías
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from plotnine import *
+from datetime import datetime
+from mizani.formatters import percent_format
+import yfinance as yf
+import warnings
+warnings.filterwarnings("ignore")
+#
+# Descarga de los datos diarios del precio de las acciones del Santander
+#
+# Creación del ticker del Banco Santander
+SAN = yf.Ticker("SAN.MC")
+# Lectura de los datos para el período seleccionado
+pSAN = yf.download("SAN.MC", start="2000-01-01", end="2023-12-31")
+print(pSAN)
+pSAN = (pSAN.reset_index())
+pSAN.head()
+pSAN.tail()
+# Gráfica de serie temporal: evolución temporal de los precios
+(
+  ggplot(pSAN, aes(y="Adj Close", x="Date")) 
+  + geom_line() 
+  + labs(x="Día", y="", title="Precio de las acciones del Banco Santander (EUR)")
+)
+# Cálculo de los rendimientos netos diarios
+def ret(x):
+    x_change = 100*(x/x.shift(1)-1)
+    return x_change
+pSAN['ret'] = ret(pSAN['Adj Close'])
+pSAN['ret']
+# Eliminación de datos perdidos (missing data)
+pSAN = pSAN.dropna()
+# Evolución temporal de las rentabilidades diarias
+(
+  ggplot(pSAN, aes(y="ret", x="Date"))
+ + geom_line()
+ + labs(x="Día", y="", 
+ title="Rendimiento de las acciones del Banco Santander (%)")
+)
+# Distribución de los rendimientos diarios 
+# (detección de asimetrías y exceso de curtosis)
+q5 = pSAN["ret"].quantile(0.05)
+q95 = pSAN["ret"].quantile(0.95)
+(
+  ggplot(pSAN, aes(x="ret"))
+ + geom_histogram(bins=100)
+ + geom_vline(aes(xintercept=q5), linetype="dashed")
+ + geom_vline(aes(xintercept=q95), linetype="dashed")
+ + labs(x=None, y=None, 
+ title="Distribución de los rendimientos del Banco Santander")
+ + scale_x_continuous(labels=percent_format())
+)
+# Estadística resumen global
+est_res = pSAN['ret'].agg({
+    'media': 'mean',
+    'desv_típica': 'std',
+    'mínimo': 'min',
+    'máximo': 'max'
+})
+est_res.round(3)
+# Estadística resumen por años
+pSAN['year'] = pSAN["Date"].dt.year
+est_anual = pSAN.groupby('year').agg({'ret': ['mean', 'std', 'min', 'max']})
+est_anual.round(3)
+```
+
+::: justify
+## Comportamiento temporal de los activos bursátiles {.unnumbered}
+
+En esta aplicación se analizará gráficamente la relación existente entre las variables financieras $rSAN_t$ y $rIBEX_t$, donde $rSAN$ es el rendimiento (no el precio) de las acciones del Banco Santander y $rIBEX$ es el rendimiento del índice bursátil Ibex 35 (<https://en.wikipedia.org/wiki/IBEX_35>).
+
+Durante la aplicación, se tendrán que ejecutar comandos específicos de filtrado, selección, transformación, fusión de ficheros, agrupación, ordenación y resumen, todas ellos asociados a operaciones básicas en la gestión de datos.
+:::
+
+### Código R {.unnumbered}
+
+```{r}
+#| include: true
+#| warning: false
+#| message: false
+
+# Comportamiento Banco Santander/Ibex 35
+# Lectura de librerías
+library(tidyverse)
+library(lubridate)
+library(scales)
+# Lectura de datos de las 30 mayores empresas del Ibex 35
+datos_acciones <- read_csv("data/IBEX_top30.csv")
+head(datos_acciones)
+tail(datos_acciones)
+# filter
+SAN <- datos_acciones %>% filter(symbol == "SAN.MC")
+# select
+pSAN <- SAN %>% select(date, adjusted)
+head(pSAN)
+tail(pSAN)
+# Lectura de datos del índice Ibex 35 
+IBEX <- read_csv("data/IBEX.csv")
+# select
+pIBEX <- IBEX %>% select(date,adjusted)
+head(pIBEX)
+tail(pIBEX)
+# join
+IBEX_SAN <- inner_join(pIBEX, pSAN, by = "date") %>% 
+  rename(pIBEX = adjusted.x, pSAN = adjusted.y)
+# mutate
+IBEX_SAN <- IBEX_SAN %>% 
+  mutate(year = year(date), month = month(date))
+IBEX_SAN  <- IBEX_SAN %>% 
+  mutate(rSAN = 100*(pSAN / lag(pSAN) - 1), 
+         rIBEX = 100*(pIBEX / lag(pIBEX) - 1))
+head(IBEX_SAN)
+tail(IBEX_SAN)
+# Eliminación de datos perdidos (missing data)
+IBEX_SAN <- IBEX_SAN |> drop_na()
+# ggplot
+p1 <- ggplot(data = IBEX_SAN, aes(x = date)) +
+  geom_line(aes(y = rSAN), linewidth = 0.5) +
+  labs(y = "Rendimiento de las acciones de Banco Santander", 
+       x = "Fecha (día)")
+p1
+p2 <- ggplot(data = IBEX_SAN, aes(x = date)) +
+  geom_line(aes(y = rIBEX), linewidth = 0.5) +
+  labs(y = "Rendimiento del Ibex 35", 
+       x = "Fecha (día)")
+p2
+p3 <- ggplot(IBEX_SAN, aes(x = rIBEX, y = rSAN)) + 
+               geom_point() +  
+               stat_smooth(method = lm, se = FALSE) +  
+               labs(x = "Rendimiento Ibex 35",
+                    y = "Rendimiento acciones Banco Santander")
+p3
+```
+
+### Código Python {.unnumbered}
+
+```{python}
+#| include: true
+#| warning: false
+#| message: false
+
+# Comportamiento Banco Santander/Ibex 35
+# Lectura de librerías
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from plotnine import *
+from datetime import datetime
+# Lectura de datos 30 mayores empresas del Ibex 35
+datos_acciones = pd.read_csv('data/IBEX_top30.csv')
+datos_acciones.head()
+datos_acciones.tail()
+# filter
+SAN = datos_acciones[datos_acciones['symbol']=='SAN.MC']
+# select
+pSAN = SAN[['date','adjusted']]
+pSAN['date'] = pd.to_datetime(pSAN['date'])
+pSAN.head()
+pSAN.tail()
+# Lectura de datos del índice Ibex 35
+IBEX = pd.read_csv('data/IBEX.csv')
+# select
+pIBEX = IBEX[['date','adjusted']]
+# mutate
+pIBEX['date'] = pd.to_datetime(pIBEX['date'])
+pIBEX.head()
+pIBEX.tail()
+# merge (join)
+IBEX_SAN = pd.merge(pIBEX, pSAN, how='inner', on='date').\
+    rename(columns={'adjusted_x':'pIBEX','adjusted_y':'pSAN'})
+# time
+IBEX_SAN['year'] = IBEX_SAN['date'].dt.year
+IBEX_SAN['month'] = IBEX_SAN['date'].dt.month
+# Cálculo de los rendimientos netos diarios
+IBEX_SAN['rSAN'] = 100*(IBEX_SAN['pSAN']/IBEX_SAN['pSAN'].shift(1)-1)
+IBEX_SAN['rIBEX'] = 100*(IBEX_SAN['pIBEX']/IBEX_SAN['pIBEX'].shift(1)-1)
+IBEX_SAN.head()
+IBEX_SAN.tail()
+# Eliminación de datos perdidos (missing data)
+IBEX_SAN = IBEX_SAN.dropna()
+# ggplot (plotnine)
+(ggplot(IBEX_SAN) + geom_line(aes('date','rSAN'), size = 0.5) + 
+labs(y = "Rendimiento de las acciones de Banco Santander", x = "Fecha (día)") + 
+theme_bw())
+(ggplot(IBEX_SAN) + geom_line(aes('date','rIBEX'), size = 0.5) + 
+labs(y = "Rendimiento del Ibex 35", x = "Fecha (día)") + 
+theme_bw())
+(ggplot(IBEX_SAN, aes('rIBEX','rSAN')) + geom_point() + 
+geom_smooth(method = 'lm', se = False, color = "blue") + 
+labs(x="Rendimiento Ibex 35", y="Rendimiento acciones Banco Santander") + 
+theme_bw())
+```

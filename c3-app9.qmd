@@ -1,16 +1,14 @@
 ---
+editor: visual
 engine: knitr
 excerpt: ""
 draft: false
 format: 
   html:
-    theme: simplex
     self-contained: true
     max-width: 1920px
     code-fold: show
     code-tools: true
-    highlight-style: atom-one-dark
-    code-block-bg: "#282c34"
 ---
 
 ```{css, echo = FALSE}
@@ -18,16 +16,15 @@ format:
 ```
 
 ::: justify
-# Aplicación 3.9: Información muestral (falta de observaciones) {.unnumbered}
+# Aplicación 3.9: Multicolinealidad {.unnumbered}
 
-## Exclusión social en el comportamiento de las aseguradoras de Chicago {.unnumbered}
+## Análisis de la rentabilidad empresarial {.unnumbered}
 
-En esta aplicación se usarán los datos de un estudio de la década de 1970 sobre la relación entre la exclusión social por parte de las compañías de seguros (variable $INVOLACT$) y la composición racial ($RACE$), los índices de incendios ($FIRE$) y robos ($THEFT$), la antigüedad de las viviendas ($AGE$) y el logaritmo de la renta disponible ($INCOME$) en 47 distritos postales de Chicago:
+En este ejercicio se intentará explicar la rentabilidad anual (RENTAB) obtenida por 80 empresas, utilizando para ello diferente información contable interna en forma de ratios económico-financieros (R1, R2,..., R10), así como datos sobre el volumen de ventas totales (VT), usándose esta última variable como medida del tamaño de cada empresa:
 
-$$INVOLACT_{i} = \beta_1 + \beta_2  RACE_{i} + \beta_3  FIRE_{i} + \beta_4  THEFT_{i} + \beta_5  AGE_{i}  + \beta_4  log(INCOME_{i}) + e_{i}$$
+$$RENTAB_{i} = \beta_1 + \beta_2  log(VT_{i}) + \beta_3  R1_{i} + ... + \beta_{12}  R10_{i}+ e_{i}$$
 
-Dado que la base muestral contiene datos perdidos (_missing data_), se mostrarán distintas técnicas de localización de los mismos, y se propondrán diferentes soluciones para tratar el problema de la falta de observaciones.
-
+Desde un punto de vista metodológico, en este ejemplo se usarán distintas técnicas estadísticas para detectar y corregir el problema de colinealidad elevada entre las variables explicativas de la regresión propuesta.
 :::
 
 ## Código R {.unnumbered}
@@ -39,155 +36,148 @@ Dado que la base muestral contiene datos perdidos (_missing data_), se mostrará
 
 # Lectura de librerías
 library(tidyverse)
+library(car)
+library(corrplot)
+library(broom)
+library(cowplot)
+library(mctest)
 # Lectura de datos
-# library(faraway)
-# help(chredlin, package="faraway")
-chmiss <- read.csv("data/SEGUROS_CHICAGO.csv", header=TRUE, row.names="zip") 
-# Usando tidyverse: read_csv("data/SEGUROS_CHICAGO.csv") 
-# %>%  column_to_rownames(., var = "zip")
-chmiss
-# Detección de datos perdidos
-# Por filas (casos)
-rowSums(is.na(chmiss))
-image(is.na(chmiss),axes=FALSE)
-axis(2, at=0:5/5, labels=colnames(chmiss),las=2)
-axis(1, at=0:46/46, labels=row.names(chmiss),las=2)
-# Por columnas (variables)
-colSums(is.na(chmiss))
-library(mi)
-md <- missing_data.frame(chmiss)
-image(md)
-summary(md@patterns)
-# Tratamiento de datos perdidos
-# Omisión de observaciones con NAs (opción por defecto en R):
-# resultados con los datos completos
-mod_1 <- lm(involact ~ race+fire+theft+age+log(income), chmiss)
-summary(mod_1)
-# Imputación simple:
-# Uso de la media para predecir los datos que faltan de los regresores
-(cmeans <- colMeans(chmiss,na.rm=TRUE))
-imput_1 <- chmiss
-for(i in c(1:4,6)) imput_1[is.na(chmiss[,i]),i] <- cmeans[i] # Sólo var. expl.
-mod_2 <- lm(involact ~ race+fire+theft+age+log(income), imput_1)
-summary(mod_2)
-# Uso de regresiones auxiliares para predecir los datos que faltan 
-# de las variables explicativas
-mod_race <- lm(race ~ fire+theft+age+income,chmiss)
-chmiss[is.na(chmiss$race),]
-predict(mod_race,chmiss[is.na(chmiss$race),])
-# Como la predicción para la zona 60646 es negativa, 
-# se puede usar la transformación logit ( log(y/(1-y)) ) 
-# para evitar que las predicciones se salgan del intervalo [0,1] 
-# y luego aplicar la transformación inversa a la predicción
-library(faraway)
-mod_race_2 <- lm(logit(race/100) ~ fire+theft+age+income,chmiss)
-ilogit(predict(mod_race_2,chmiss[is.na(chmiss$race),]))*100
-mod_fire <- lm(fire ~ race+theft+age+income,chmiss)
-chmiss[is.na(chmiss$fire),]
-predict(mod_fire,chmiss[is.na(chmiss$fire),])
-mod_theft <- lm(theft ~ race+fire+age+income,chmiss)
-chmiss[is.na(chmiss$theft),]
-predict(mod_theft,chmiss[is.na(chmiss$theft),])
-mod_age <- lm(age ~ race+fire+theft+income,chmiss)
-chmiss[is.na(chmiss$age),]
-predict(mod_age,chmiss[is.na(chmiss$age),])
-mod_income <- lm(income ~ race+fire+theft+age,chmiss)
-chmiss[is.na(chmiss$income),]
-predict(mod_income,chmiss[is.na(chmiss$income),])
-# Generación de valores para los datos perdidos por variable
-imput_2  <- chmiss
-imput_2$race[is.na(chmiss$race)] <- 
-  ilogit(predict(mod_race_2,chmiss[is.na(chmiss$race),]))*100
-imput_2$fire[is.na(chmiss$fire)] <- 
-  predict(mod_fire,chmiss[is.na(chmiss$fire),])
-imput_2$theft[is.na(chmiss$theft)] <-  
-  predict(mod_theft,chmiss[is.na(chmiss$theft),])
-imput_2$age[is.na(chmiss$age)] <-  
-  predict(mod_age,chmiss[is.na(chmiss$age),])
-imput_2$income[is.na(chmiss$income)] <-  
-  predict(mod_income,chmiss[is.na(chmiss$income),])
+RENTAB_EMP <- read_delim("data/RENTAB_EMP.csv", ";", 
+                         escape_double = FALSE, trim_ws = TRUE)
+summary(RENTAB_EMP)
+# Regresión MCO para explicar las variaciones en la rentabilidad
+lm_1 <- lm(RENTAB ~ log(VT) + R1 + R2 + R3 + R4 + R5 + R6 + R7 + R8 + R9 + R10, 
+           data=RENTAB_EMP)
+S(lm_1)
+# Detección de la multicolinealidad
+# Análisis global
+# Librería mctest: https://cran.r-project.org/web/packages/mctest/
+mctest::omcdiag(lm_1)
+# Matríz de correlaciones de las variables explicativas (sin constante)
+attach(RENTAB_EMP)
+X <- data.frame(log(VT), R1, R2, R3, R4, R5, R6, R7, R8, R9, R10)
+cor(X)
+# Mapa de calor asociado
+corrplot(cor(X))
+# Factores de inflación de la varianza (VIF)
+vif(lm_1)
+vif(lm_1) > 10 # multicolinealidad alta: VIF>10, es decir, Rj^2>0.90
+sqrt(vif(lm_1))
+sqrt(vif(lm_1)) > 2 # cota alternativa: VIF>4, es decir, Rj^2>0.75
+mctest::imcdiag(lm_1, method = "VIF", vif=10)
+mctest::imcdiag(lm_1, method = "VIF", vif=4)
+# Corrección del problema de la multicolinealidad
+# Método de componentes principales (PCA) (librería stats)
+PCA_X <- prcomp(X, scale. = TRUE)
+summary(PCA_X)
+dim(PCA_X$rotation)
+PCA_X$rotation
+dim(PCA_X$x)
+PCA_X %>% tidy(matrix = "eigenvalues")
+PCA_X %>% tidy(matrix = "rotation")
+PCA_X %>%
+  tidy(matrix = "eigenvalues") %>%
+  ggplot(aes(PC, percent)) +
+  geom_col(fill = "#56B4E9", alpha = 0.8) +
+  scale_x_continuous(breaks = 1:11) +
+  scale_y_continuous(labels = scales::percent_format(), expand = expansion(mult = c(0, 0.01))) +
+  theme_minimal_hgrid(12)
+PCA_X %>%
+  augment(RENTAB_EMP) %>% 
+  ggplot(aes(.fittedPC1, .fittedPC2)) + geom_point(size = 1.5) +
+  theme_half_open(12) + background_grid()
+arrow_style <- arrow(angle = 20, ends = "first", type = "closed", length = grid::unit(8, "pt"))
+PCA_X %>%
+  tidy(matrix = "rotation") %>%
+  pivot_wider(names_from = "PC", names_prefix = "PC", values_from = "value") %>%
+  ggplot(aes(PC1, PC2)) +
+  geom_segment(xend = 0, yend = 0, arrow = arrow_style) +
+  geom_text(aes(label = column),hjust = 1, nudge_x = -0.02, color = "#904C2F") +
+  xlim(-1.25, .5) + ylim(-.5, 1) +
+  coord_fixed() + 
+  theme_minimal_grid(12)
+# Significado de la variables explicativas (factores)
+round(PCA_X$rotation[,1],2)
+round(PCA_X$rotation[,2],2)
+round(PCA_X$rotation[,3],2)
+round(PCA_X$rotation[,4],2)
+# Regresión con los cuatros primeros factores (explicatividad > 80%)
+lm_2 <- lm(RENTAB ~ PCA_X$x[,1:4])
+S(lm_2)
+# Método de mínimos cuadrados parciales (PLS)
+# Librería pls: https://cran.r-project.org/web/packages/pls/
+library(pls)
+lm_3 <- plsr(RENTAB ~ log(VT) + R1 + R2 + R3 + R4 + R5 + R6 + R7 + R8 + R9 + R10, 
+             data=RENTAB_EMP, ncomp=11, validation="CV")
+summary(lm_3)
+explvar(lm_3)
+plsCV <- RMSEP(lm_3, estimate="CV")
+plot(plsCV,main="")
 #
-mod_3 <- lm(involact ~ race+fire+theft+age+log(income), imput_2)
-summary(mod_3)
-# Imputación múltiple:
-# Enfoque AMELIA (https://cran.r-project.org/web/packages/Amelia/index.html)
-library(Amelia)
-imput_3 <- amelia(chmiss, m=10)
-summary(imput_3)
-betas <- NULL
-se_betas <- NULL
-for(i in 1:imput_3$m){
-  lmod <- lm(involact ~ race+fire+theft+age+log(income), imput_3$imputations[[i]])
-  betas <- rbind(betas ,coef(lmod))
-  se_betas <- rbind(se_betas ,coef(summary(lmod))[,2])
-}
-# Estimaciones, desviaciones estándar estimadas y estadísticos t 
-# (individuales y combinadas)
-betas; se_betas
-(cr <- mi.meld(q=betas,se=se_betas))
-(cr$q.mi/cr$se.mi)
-# Enfoque MICE (https://cran.r-project.org/web/packages/mice/)
-library(mice)
-# Patrón de datos perdidos
-md.pattern(chmiss)
-# Imputación simple con la media de los datos completos
-imp_4_0 <- mice(chmiss, method = "mean", m = 1, maxit = 1)
-imput_1_2 <- complete(imp_4_0) # Se obtiene el mismo resultado que 
-# en el fichero imput_1, pera también se imputan
-summary(with(imput_1_2, lm(involact ~ race+fire+theft+age+log(income))))
-# Imputación por el método de regresión (1):
-# Predicción simple
-imp_4_1 <- mice(chmiss, method = "norm.predict", m = 1, maxit = 1) 
-imput_2_1 <- complete(imp_4_1) # Comparar con el fichero imput_2
-# Imputación por el método de regresión (2):
-# Predicción estocástica (se añade un error aleatorio)
-imp_4_2 <- mice(chmiss, method = "norm.nob", m = 1, maxit = 1) 
-imput_2_2 <- complete(imp_4_2) # Comparar con el fichero imput_2
-# Imputación por el método de regresión (3):
-# Predicción usando booostrap
-imp_4_3 <- mice(chmiss, method = "norm.boot", m = 1, maxit = 1) 
-imput_2_3 <- complete(imp_4_3) # Comparar con el fichero imput_2
-# MICE: Multiple Imputation Chained Equation
-imp_4 <- mice(chmiss, m = 10, print=F)
-summary(imp_4)
-class(imp_4) # mids: multiply imputed data set
-attributes(imp_4)
-# Para ver los datos imputados de una variable
-imp_4$imp # Todas las imputaciones
-# Imputaciones para una variable: 
-# cambiar race por otra variable para ver el resultado
-imp_4$imp$race 
-# Para guardar los datos completos de una imputación
-imp_4_m_1 <- complete(imp_4,1) # cambiar 1 por cualquier valor entre 1 y 10
-#
-# Inspección de la calidad de las imputaciones
-# Convergencia del algoritmo (iterative Markov Chain Monte Carlo)
-plot(imp_4)
-# Gráfica conjunta
-stripplot(imp_4)
-# Gráfica individual
-stripplot(imp_4, involact, pch = 20, xlab = "Imputation number")
-stripplot(imp_4, race, pch = 20, xlab = "Imputation number")
-stripplot(imp_4, fire, pch = 20, xlab = "Imputation number")
-stripplot(imp_4, theft, pch = 20, xlab = "Imputation number")
-stripplot(imp_4, age, pch = 20, xlab = "Imputation number")
-stripplot(imp_4, income, pch = 20, xlab = "Imputation number")
-# Distribución de los datos completos y los completados
-xyplot(imp_4,involact ~ race+fire+theft+age+income)
-densityplot(imp_4)
-# Ajuste de los modelos con los datos completados (m modelos)
-fit <- with(imp_4, lm(involact ~ race+fire+theft+age+log(income)))
-# Pool y resumen de resultados
-fit # Resultado de la regresión para cada conjunto de datos imputados 
-# (m=10 en el ejemplo)
-# Para ver el resultado de una regresión concreta (la primera por ejemplo)
-summary(fit$analyses[[1]])
-# Pool de resultados de regresión
-summary(pool(fit))
-# Comparación de los resultados a posteriori, con la muestra con datos completos
-data(chredlin, package="faraway")
-mod_full <- lm(involact ~ race+fire+theft+age+log(income), chredlin)
-summary(mod_full)
+plot(lm_3, ncomp = 3, asp = 1, line = TRUE)
+plot(lm_3, plottype = "scores", comps = 1:3)
+plot(lm_3, plottype = "correlation")
+plot(lm_3, plottype = "coef", comps = 1:3, legendpos = "bottomright")
+# Método Ridge
+# Librería MASS: https://cran.r-project.org/web/packages/MASS/
+library(MASS)
+lm_4_1 <- lm.ridge(RENTAB ~ log(VT) + R1 + R2 + R3 + R4 + R5 + R6 + R7 + R8 + R9 + R10, 
+                   data=RENTAB_EMP) # lambda por defecto
+lm_4_1
+lm_4_2 <- lm.ridge(RENTAB ~ log(VT) + R1 + R2 + R3 + R4 + R5 + R6 + R7 + R8 + R9 + R10, 
+                   data=RENTAB_EMP, lambda = 0.05)
+lm_4_2
+# Librería glmnet: https://cran.r-project.org/web/packages/glmnet/
+library(glmnet)
+# Variables dependiente e independientes del modelo
+data <- data.frame(cbind(log(RENTAB_EMP$VT),RENTAB_EMP$R1,RENTAB_EMP$R2,RENTAB_EMP$R3,
+                         RENTAB_EMP$R4, RENTAB_EMP$R5, RENTAB_EMP$R6, RENTAB_EMP$R7, 
+                         RENTAB_EMP$R8,RENTAB_EMP$R9,RENTAB_EMP$R10, RENTAB_EMP$RENTAB))
+names(data)=c("l_VT","R1","R2","R3","R4","R5","R6","R7","R8","R9","R10","RENTAB")
+x_vars <- data.matrix(data[, 1:11])
+y_var <- data[, "RENTAB"]
+# Ajuste del modelo estimado
+fit_ridge <- glmnet(x_vars,y_var,alpha=0)
+plot(fit_ridge, label=TRUE)
+plot(fit_ridge, label=TRUE, xvar="lambda")
+plot(fit_ridge, label=TRUE, xvar="dev")
+# print(fit_ridge)
+coef(fit_ridge,s=0.05) # Parámetros estimados para un lambda s=X concreto
+# Selección del lambda óptimo (criterio CV)
+cvfit_ridge = cv.glmnet(x_vars, y_var, alpha=0)
+plot(cvfit_ridge)
+cvfit_ridge$lambda.min
+coef(cvfit_ridge, s = "lambda.min")
+# Método LASSO
+# Librería lars: https://cran.r-project.org/web/packages/lars/
+library(lars)
+lm_5 <- lars(as.matrix(data[,-12]),data$RENTAB)
+plot(lm_5)
+cv_lars_mod <- cv.lars(as.matrix(data[,-12]),data$RENTAB)
+# El valor min se utiliza en el paso siguiente
+min <- cv_lars_mod$index[which.min(cv_lars_mod$cv)]  
+predict(lm_5,s=min,type="coef",mode="fraction")$coef  # Estimaciones LASSO
+# Librería glmnet
+# Ajuste del modelo
+fit_lasso <- glmnet(x_vars,y_var,alpha=1)
+plot(fit_lasso, label=TRUE)
+plot(fit_lasso, label=TRUE, xvar="lambda")
+plot(fit_lasso, label=TRUE, xvar="dev")
+# print(fit_lasso)
+coef(fit_lasso,s=0.0006) # Parámetros estimados para un lambda s concreto
+# Selección del lambda óptimo (criterio CV)
+cvfit_lasso = cv.glmnet(x_vars, y_var, alpha=1)
+plot(cvfit_lasso)
+cvfit_lasso$lambda.min
+coef(cvfit_lasso, s = "lambda.min")
+# NOTA FINAL: Hay que estandarizar las variables antes de aplicar 
+# los modelos lm.ridge y lars (glmnet estandariza las variables 
+# X e y por defecto para la familia de modelos Gausianos)
+library(caret)
+preProcValues <- preProcess(data[,-12], method = c("center", "scale"))
+dataTransformed <- predict(preProcValues, data)
+x_vars <- data.matrix(dataTransformed[, 1:11])
+y_var <- dataTransformed[, "RENTAB"]
 ```
 
 ## Código Python {.unnumbered}
@@ -198,50 +188,158 @@ summary(mod_full)
 #| message: false
 
 # Lectura de librerías
-import numpy as np
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import statsmodels.api as sm
 import statsmodels.formula.api as smf
+import statsmodels.stats as smstats
 # Lectura de datos
-chmiss = pd.read_csv("data/SEGUROS_CHICAGO.csv", index_col=0)
-chmiss.describe().round(2)
-# Detección de datos perdidos
-# Por filas (casos)
-chmiss.isna().sum(axis=1)
-plt.imshow(~chmiss.isna(), aspect='auto')
-plt.xlabel("variables")
-plt.ylabel("cases")
-plt.gray()
+RENTAB_EMP = pd.read_csv("data/RENTAB_EMP.csv", sep=";")
+RENTAB_EMP.describe().round(2)
+# Regresión MCO para explicar las variaciones en la rentabilidad de las empresas
+formula = 'RENTAB ~ np.log(RENTAB_EMP.VT) + R1 + R2 + R3 + R4 + R5 + R6 + R7 + R8 + R9 + R10'
+lm_1 = smf.ols(formula, RENTAB_EMP).fit()
+print(lm_1.summary())
+# Detección de la multicolinealidad
+RENTAB_EMP['l_VT'] = np.log(RENTAB_EMP['VT'])
+X = RENTAB_EMP.iloc[:,3:]
+X.head()
+X = X[['l_VT', 'R1', 'R2', 'R3', 'R4', 'R5', 'R6', 'R7', 'R8', 'R9', 'R10']]
+X.head()
+# Matriz de correlaciones de las variables explicativas (sin incluir la constante)
+X.corr().round(2)
+# Mapa de calor asociado
+sns.heatmap(X.corr(), vmin=-0.25, vmax=0.25, center=0, annot=True, fmt='.2f', mask=~np.tri(X.corr().shape[1], k=-1, dtype=bool), cbar=False)
 plt.show()
-# Por columnas (variables)
-chmiss.isna().sum(axis=0)
-# Tratamiento de datos perdidos
-# Omisión de los datos perdidos: resultados con los datos completos
-mod_1 = smf.ols(formula='involact ~ race + fire + theft + age + np.log(income)', 
-data=chmiss).fit()
-print(mod_1.summary())
-# Imputación simple:
-# Uso de la media para predecir los datos que faltan de los regresores
-cmeans = chmiss.mean(axis=0)
-cmeans
-imput_1 = chmiss.copy()
-imput_1.race.fillna(cmeans['race'],inplace=True)
-imput_1.fire.fillna(cmeans['fire'],inplace=True)
-imput_1.theft.fillna(cmeans['theft'],inplace=True)
-imput_1.age.fillna(cmeans['age'],inplace=True)
-imput_1.income.fillna(cmeans['income'],inplace=True)
-mod_2 = smf.ols(formula='involact ~ race + fire + theft + age + np.log(income)', data=imput_1).fit()
-print(mod_2.summary())
-# Imputación múltiple: enfoque MICE 
-# (https://www.statsmodels.org/stable/imputation.html)
-# NOTA: la librería statsmodels incluye el método MICE, pero no es 
-# exactamente el mismo que el usado en R
-import statsmodels.imputation.mice as smimice
-imp = smimice.MICEData(chmiss)
-formula = 'involact ~ race + fire + theft + age + np.log(income)'
-mod_3 = smimice.MICE(formula, sm.OLS, imp)
-results = mod_3.fit(10, 10)
-print(results.summary())
+# Factores de inflación de la varianza (VIF)
+from statsmodels.stats.outliers_influence import variance_inflation_factor
+for i in range(1, lm_1.model.exog.shape[1]): print(variance_inflation_factor(lm_1.model.exog, i))
+# Corrección del problema de la multicolinealidad
+# Librería scikit-learn: https://scikit-learn.org/stable/
+# Método de componentes principales (PCA)
+# Reescalamiento de la matriz de datos
+from sklearn.preprocessing import scale
+Xs = pd.DataFrame(scale(X))
+Xs.head().round(2)
+# Método PCA 
+from sklearn.decomposition import PCA
+pca = PCA()
+pca.fit(Xs)
+# Importancia de componentes
+# Desviaciones estándar de los componentes principales
+(np.sqrt(pca.explained_variance_)).round(2)
+# Proporción de varianza explicada
+((pca.explained_variance_ratio_)*100).round(2)
+# Proporción de varianza explicada acumulada
+np.cumsum(np.round(pca.explained_variance_ratio_, decimals=4)*100)
+# Matriz de rotación de los factores
+rotmat = pca.components_
+rotmat.shape
+# Regresión con los cuatros primeros factores (explicatividad > 80%)
+# Interpretación de los factores en base al peso de las variables explicativas
+# NOTA: ¡ojo!, la dirección de los factores es diferente en Python y R
+rotmat[:4,:].round(2)
+# Factores estimados 
+pcscores = pca.fit_transform(scale(X))
+pcscores.shape
+# Significado de la variables explicativas (factores)
+pcscores[:10,:4] # 10 primeras filas
+# Regresión con los factores estimados
+Xfact = sm.add_constant(pcscores[:,:4])
+lm_2 = sm.OLS(RENTAB_EMP.RENTAB, Xfact).fit()
+print(lm_2.summary())
+# Método Ridge
+from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import Ridge
+from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import mean_squared_error
+y = np.asarray(RENTAB_EMP.RENTAB)  # y = RENTAB_EMP['RENTAB'] 
+# Modelo baselina (sin regularización)
+regression = LinearRegression()
+regression.fit(X,y)
+MSE_lm_3_0 = (mean_squared_error(y_true=y,y_pred=regression.predict(X)))
+print(MSE_lm_3_0)
+coef_dict_regression = {}
+for coef, feat in zip(regression.coef_, X.columns):
+  coef_dict_regression[feat] = coef
+coef_dict_regression
+# Regularización ridge
+# ridge = Ridge(normalize=True)
+ridge = Ridge()
+search = GridSearchCV(estimator=ridge, param_grid={'alpha':np.logspace(-4,4,50)}, 
+scoring='neg_mean_squared_error', n_jobs=1, refit=True, cv=10)
+search.fit(X,y)
+print(search.best_params_)
+print(abs(search.best_score_))
+# ridge = Ridge(normalize=True, alpha=1.207)
+ridge = Ridge(alpha=1.20679)
+ridge.fit(X,y)
+MSE_lm_3 = (mean_squared_error(y_true=y,y_pred=ridge.predict(X)))
+print(MSE_lm_3)
+coef_dict_ridge = {}
+for coef, feat in zip(ridge.coef_, X.columns):
+  coef_dict_ridge[feat] = coef
+coef_dict_ridge
+# Gráfica
+n_alphas = 50
+alphas = np.logspace(-4, 4, n_alphas)
+coefs = []
+for a in alphas:
+    # ridge = Ridge(alpha=a, fit_intercept=False, normalize=True)
+    ridge = Ridge(alpha=a, fit_intercept=False)
+    ridge.fit(X, y)
+    coefs.append(ridge.coef_)
+ax = plt.gca()
+ax.plot(alphas, coefs)
+ax.set_xscale('log')
+ax.set_xlim(ax.get_xlim()[::-1])  # eje invertido
+plt.xlabel('alpha')
+plt.ylabel('weights')
+plt.title('Coeficientes ridge en función del parámetro de regularización')
+plt.axis('tight')
+plt.show()
+# Regresión LASSO
+from sklearn.metrics import mean_squared_error
+from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LassoCV
+from sklearn.linear_model import Lasso
+from sklearn.model_selection import KFold
+from sklearn.model_selection import GridSearchCV
+lasso = Lasso()
+search = GridSearchCV(estimator=lasso, param_grid={'alpha':np.logspace(-4,4,50)}, 
+scoring='neg_mean_squared_error', n_jobs=1, refit=True, cv=10)
+search.fit(X,y)
+print(search.best_params_)
+print(abs(search.best_score_))
+lasso = Lasso(alpha=0.00095)
+lasso.fit(X,y)
+MSE_lm_4 = (mean_squared_error(y_true=y,y_pred=lasso.predict(X)))
+print(MSE_lm_4)
+coef_dict_lasso = {}
+for coef, feat in zip(lasso.coef_, X.columns):
+  coef_dict_lasso[feat] = coef
+coef_dict_lasso
+# Gráfica
+lasso = Lasso(random_state=0, max_iter=10000, tol=0.01)
+alphas = np.logspace(-4, 4, 50)
+tuned_parameters = [{'alpha': alphas}]
+n_folds = 3
+clf = GridSearchCV(lasso, tuned_parameters, cv=n_folds, refit=False)
+clf.fit(X, y)
+scores = clf.cv_results_['mean_test_score']
+scores_std = clf.cv_results_['std_test_score']
+plt.semilogx(alphas, scores)
+# se muestran los errores (+/- una desv. típica de las puntuaciones)
+std_error = scores_std / np.sqrt(n_folds)
+plt.semilogx(alphas, scores + std_error, 'b--')
+plt.semilogx(alphas, scores - std_error, 'b--')
+# alpha=0.2 controla la translucidez del color de relleno
+plt.fill_between(alphas, scores + std_error, scores - std_error, alpha=0.2)
+plt.ylabel('CV score +/- std error')
+plt.xlabel('alpha')
+plt.axhline(np.max(scores), linestyle='--', color='.5')
+plt.xlim([alphas[0], alphas[-1]])
+plt.show()
 ```

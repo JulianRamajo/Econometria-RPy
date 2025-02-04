@@ -1,16 +1,14 @@
 ---
+editor: visual
 engine: knitr
 excerpt: ""
 draft: false
 format: 
   html:
-    theme: simplex
     self-contained: true
     max-width: 1920px
     code-fold: show
     code-tools: true
-    highlight-style: atom-one-dark
-    code-block-bg: "#282c34"
 ---
 
 ```{css, echo = FALSE}
@@ -151,78 +149,4 @@ print("Efectos marginales: \n", lin_model_2.coef_)
 model = smf.ols(formula = "np.log(Q) ~ np.log(P) + np.log(Y)", data = DEM_CARNE)
 log_model = model.fit()
 print(log_model.summary())
-```
-
-## Anexo: Regresiones Bayesianas {.unnumbered}
-
-::: justify
-Aunque en este libro sólo se utilizará el método frecuentista para la modelización econométrica, a continuación se estimará el modelo de demanda propuesto en esta aplicación usando métodos de estadística Bayesiana.
-
-El objetivo no es mostrar los detalles teóricos de dicho enfoque (que se pueden encontrar, por ejemplo, en el manual de Geweke J. et al. (eds.) (2012): "*The Oxford Handbook of Bayesian Econometrics*", Oxford University Press: <https://academic.oup.com/edited-volume/38595>), sino sólo presentar dos de las principales librerías de R y Python que usan el método de estimación Bayesiano.
-
-Para una exposición reciente de los métodos estadísticos frecuentista y Bayesiano puede consultarse el libro de Inchausti, P. (2023): "*Statistical Modeling with R. A dual frequentist and Bayesian approach for life scientists*", Oxford University Press: <https://sites.google.com/view/statistical-modeling-with-r/home>. Y para un análisis detallado de la modelización estadística Bayesiana en R y Python usando el lenguaje de programación probabilística Stan se puede consultar el libro de Matsuura, K. (2022): "*Bayesian Statistical Modeling with Stan, R and Python*", Springer: <https://link.springer.com/book/10.1007/978-981-19-4755-1>.
-:::
-
-### Código R {.unnumbered}
-
-```{r}
-#| include: true
-#| warning: false
-#| message: false
-
-# Lectura de librerías
-library(tidyverse)
-# Lectura de datos
-DEM_CARNE <- read_csv("data/DEM_CARNE.csv")
-# Regresión frecuentista
-linFrec_model <- lm(formula = Q ~ P + Y, data = DEM_CARNE)
-summary(linFrec_model)
-# Regresión Bayesiana
-# Enfoque STAN: https://mc-stan.org/
-# Librería brms: https://paul-buerkner.github.io/brms/
-library(brms)
-get_prior(formula=Q ~ P + Y, data=DEM_CARNE, family=gaussian)
-linBayes_model <- brm(Q ~ P + Y,
-            data = DEM_CARNE, family = gaussian, iter = 2000, chains = 4)
-summary(linBayes_model)
-bayes_R2(linBayes_model)
-plot(linBayes_model)
-```
-
-### Código Python {.unnumbered}
-
-```{python}
-#| include: true
-#| warning: false
-#| message: false
-
-# Lectura de librerías
-import numpy as np
-import pandas as pd
-import statsmodels.api as sm
-import statsmodels.formula.api as smf
-import arviz as az
-import bambi as bmb
-import matplotlib.pyplot as plt
-# Config
-az.style.use("arviz-darkgrid")
-plt.rcParams["figure.dpi"] = 300
-# Lectura de datos
-DEM_CARNE = pd.read_csv("data/DEM_CARNE.csv")
-# Regresión frecuentista
-model = smf.ols(formula = "Q ~ P + Y", data = DEM_CARNE)
-linFrec = model.fit()
-print(linFrec.summary())
-# Regresión Bayesiana
-# Librería Bambi: https://bambinos.github.io/bambi/
-# Inicialización y ajuste del modelo
-model = bmb.Model("Q ~ P + Y", DEM_CARNE)
-linBayes = model.fit(draws=2000, chains=4)
-# Inspección del modelo y priors
-model
-model.plot_priors(figsize = (14, 10))
-plt.show()
-az.summary(linBayes)
-az.plot_trace(linBayes, compact=False)
-plt.show()
 ```
