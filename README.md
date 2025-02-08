@@ -1,1 +1,2 @@
+ECONOMETRÍA - CON APLICACIONES EN R Y PYTHON
 ![ ](Apps-Web.png)
