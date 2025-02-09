@@ -1,5 +1,5 @@
 ---
-editor: visual
+title: "Aplicación 3.7: Autocorrelación espacial"
 engine: knitr
 excerpt: ""
 draft: false
@@ -16,9 +16,7 @@ format:
 ```
 
 ::: justify
-# Aplicación 3.7: Autocorrelación espacial {.unnumbered}
-
-## Geometría de polígonos: Estadísticas 'morales' en Francia en 1830 {.unnumbered}
+# Geometría de polígonos: Estadísticas 'morales' en Francia en 1830 {.unnumbered}
 
 En esta aplicación se analizarán con técnicas modernas de análisis estadístico espacial algunas de las cuestiones abordadas en el estudio fundacional de las ciencias sociales de André-Michel Guerry sobre la delincuencia, el suicidio, la alfabetización y otras "estadísticas morales" en la Francia de 1830.
 
@@ -33,7 +31,8 @@ Para una introducción asequible al análisis de datos espaciales puede consulta
 Para una revisión completa sobre los principales métodos y técnicas utilizados en ciencia de datos espaciales en R y Python las referencias básicas son los libros de Pebesma, E. y Bivand, R. (2023): "*Spatial Data Science: With Applications in R*", Chapman & Hall/CRC: <https://r-spatial.org/book/>, y Rey, S., Arribas-Bel, D. y Wolf, L. (2023): "*Geographic Data Science with Python*", Chapman & Hall/CRC: <https://geographicdata.science/book/>.
 :::
 
-### Código R {.unnumbered}
+::: {.panel-tabset group="language"}
+# Código R {.unnumbered}
 
 ```{r}
 #| include: true
@@ -197,7 +196,7 @@ Crm_SAC_2 <- sacsarlm(Crm_prs ~ Region + Litercy + Donatns + Infants + Suicids,
 summary(Crm_SAC_2)
 ```
 
-### Código Python {.unnumbered}
+# Código Python {.unnumbered}
 
 ```{python}
 #| include: true
@@ -354,9 +353,10 @@ spreg_SEM_2 = spreg.ML_Error(
 )
 print(spreg_SEM_2.summary)
 ```
+:::
 
 ::: justify
-## Geometría de puntos: Precio de la vivienda en el condado de Lucas  {.unnumbered}
+# Geometría de puntos: Precio de la vivienda en el condado de Lucas {.unnumbered}
 
 En esta aplicación se realiza un análisis de tipo espacial de la base de datos utilizada, que contiene información sobre los precios de venta y características de las viviendas del [condado de Lucas](https://en.wikipedia.org/wiki/Lucas_County,_Ohio), en el estado de Ohio, Estados Unidos. Concretamente, se proponen modelos de regresión en los que las variables de dicho modelo y/o los errores del mismo presentan autocorrelación espacial.
 
@@ -367,7 +367,8 @@ $$log(PRICE_{i}) = \beta_1 + \beta_2  AGE_{i}  + \beta_3  log(LOTSIZE_{i}) + \be
 donde $PRICE$ es el precio de venta de la vivienda, $AGE$ es la antigüedad de la misma, $LOTSIZE$ es la superficie construida y $ROOMS$ el número habitaciones que posee.
 :::
 
-### Código R {.unnumbered}
+::: {.panel-tabset group="language"}
+# Código R {.unnumbered}
 
 ```{r}
 #| include: true
@@ -436,7 +437,7 @@ m4_SAC <- gstsls(formula=form, data=house, listw=Wnb6nn)
 summary(m4_SAC)
 ```
 
-### Código Python {.unnumbered}
+# Código Python {.unnumbered}
 
 ```{python}
 #| eval: true
@@ -549,3 +550,4 @@ m4_SAC = spreg.GM_Combo(
 )
 print(m4_SAC.summary)
 ```
+:::

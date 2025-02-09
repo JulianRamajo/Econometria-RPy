@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>c3-app5</title>
+<title>Aplicación 3.5: Volatilidad variable en el tiempo</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -3222,9 +3222,25 @@ window.Quarto = {
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
 
-<main class="content" id="quarto-document-content"><div class="quarto-title-block"><div class="quarto-title-tools-only"><h1></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Aplicación 3.5: Volatilidad variable en el tiempo</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
 
 
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
 
 
 <div class="cell">
@@ -3232,10 +3248,8 @@ window.Quarto = {
 .justify { text-align: justify !important }
 </style>
 </div>
-<section id="aplicación-3.5-volatilidad-variable-en-el-tiempo" class="level1 unnumbered justify">
-<h1 class="unnumbered">Aplicación 3.5: Volatilidad variable en el tiempo</h1>
-<section id="relación-entre-los-precios-de-los-carburantes-y-el-precio-del-petroleo" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="relación-entre-los-precios-de-los-carburantes-y-el-precio-del-petroleo">Relación entre los precios de los carburantes y el precio del petroleo</h2>
+<section id="relación-entre-los-precios-de-los-carburantes-y-el-precio-del-petroleo" class="level1 unnumbered justify">
+<h1 class="unnumbered">Relación entre los precios de los carburantes y el precio del petroleo</h1>
 <p>En esta aplicación se estimará un modelo econométrico con dinámica en el tiempo para explicar el precio semanal de la gasolina en el mercado minorista de Canadá. En la regresión planteada los residuos MCO muestran clústeres de volatilidad, por lo que se generalizará la especificación inicial permitiedo heteroscedasticidad autorregresiva condicional (efectos ARCH) en los errores del modelo.</p>
 <p>La regresión que sirve como soporte de partida para la aplicación viene dada por la siguiente especificación <span class="math inline">\(ARDL(2,2)\)</span> en las variables precio del modelo:</p>
 <p><span class="math display">\[log(PGASOL_{t}) = \beta_1 + \beta_2 D2008JD_{t} + \beta_3 time_{t}   + \]</span></p>
@@ -3245,9 +3259,10 @@ window.Quarto = {
 <p>En cuanto a la modelización de los efectos ARCH, se utilizará una especifación <span class="math inline">\(ARCH(2)\)</span> para la varianza condicional, <span class="math inline">\(h_{t}\)</span>, dada por la expresión:</p>
 <p><span class="math display">\[{h_{t} = \alpha_{0} + \alpha_{1}e_{t - 1}^{2} + \alpha_{2}e_{t - 2}^{2} }\]</span></p>
 </section>
-</section>
-<section id="código-r" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="código-r">Código R</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href>Código R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href>Código Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
 <details open class="code-fold">
 <summary>Code</summary>
@@ -3604,7 +3619,7 @@ Adjusted Pearson Goodness-of-Fit Test:
 4    50     92.38    1.774e-04
 
 
-Elapsed time : 0.08898306 </code></pre>
+Elapsed time : 0.08838415 </code></pre>
 </div>
 <details open class="code-fold">
 <summary>Code</summary>
@@ -3646,9 +3661,8 @@ Elapsed time : 0.08898306 </code></pre>
 </div>
 </div>
 </div>
-</section>
-<section id="código-python" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="código-python">Código Python</h2>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
 <details open class="code-fold">
 <summary>Code</summary>
@@ -3751,8 +3765,8 @@ memory usage: 27.6 KB</code></pre>
 Dep. Variable:               l_PGASOL   R-squared:                       0.966
 Model:                            OLS   Adj. R-squared:                  0.966
 Method:                 Least Squares   F-statistic:                     2858.
-Date:                Tue, 04 Feb 2025   Prob (F-statistic):               0.00
-Time:                        19:49:09   Log-Likelihood:                 959.11
+Date:                Sun, 09 Feb 2025   Prob (F-statistic):               0.00
+Time:                        14:15:25   Log-Likelihood:                 959.11
 No. Observations:                 705   AIC:                            -1902.
 Df Residuals:                     697   BIC:                            -1866.
 Df Model:                           7                                         
@@ -3906,8 +3920,8 @@ Vol Model:                       ARCH   Log-Likelihood:                1009.93
 Distribution:                  Normal   AIC:                          -2013.86
 Method:            Maximum Likelihood   BIC:                          -2000.19
                                         No. Observations:                  705
-Date:                Tue, Feb 04 2025   Df Residuals:                      705
-Time:                        19:49:10   Df Model:                            0
+Date:                Sun, Feb 09 2025   Df Residuals:                      705
+Time:                        14:15:25   Df Model:                            0
                               Volatility Model                              
 ============================================================================
                  coef    std err          t      P&gt;|t|      95.0% Conf. Int.
@@ -3939,9 +3953,11 @@ Covariance estimator: robust</code></pre>
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
 <!-- -->
 
-</section>
 
 </main>
 <!-- /main column -->
@@ -4414,7 +4430,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class>
 <div class="sourceCode" id="cb56" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="an">editor:</span><span class="co"> visual</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;Aplicación 3.5: Volatilidad variable en el tiempo&quot;</span></span>
 <span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="an">engine:</span><span class="co"> knitr</span></span>
 <span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="an">excerpt:</span><span class="co"> &quot;&quot;</span></span>
 <span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="an">draft:</span><span class="co"> false</span></span>
@@ -4431,183 +4447,182 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb56-17"><a href="#cb56-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb56-18"><a href="#cb56-18" aria-hidden="true" tabindex="-1"></a>::: justify</span>
-<span id="cb56-19"><a href="#cb56-19" aria-hidden="true" tabindex="-1"></a><span class="fu"># Aplicación 3.5: Volatilidad variable en el tiempo {.unnumbered}</span></span>
+<span id="cb56-19"><a href="#cb56-19" aria-hidden="true" tabindex="-1"></a><span class="fu"># Relación entre los precios de los carburantes y el precio del petroleo {.unnumbered}</span></span>
 <span id="cb56-20"><a href="#cb56-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-21"><a href="#cb56-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## Relación entre los precios de los carburantes y el precio del petroleo {.unnumbered}</span></span>
+<span id="cb56-21"><a href="#cb56-21" aria-hidden="true" tabindex="-1"></a>En esta aplicación se estimará un modelo econométrico con dinámica en el tiempo para explicar el precio semanal de la gasolina en el mercado minorista de Canadá. En la regresión planteada los residuos MCO muestran clústeres de volatilidad, por lo que se generalizará la especificación inicial permitiedo heteroscedasticidad autorregresiva condicional (efectos ARCH) en los errores del modelo.</span>
 <span id="cb56-22"><a href="#cb56-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-23"><a href="#cb56-23" aria-hidden="true" tabindex="-1"></a>En esta aplicación se estimará un modelo econométrico con dinámica en el tiempo para explicar el precio semanal de la gasolina en el mercado minorista de Canadá. En la regresión planteada los residuos MCO muestran clústeres de volatilidad, por lo que se generalizará la especificación inicial permitiedo heteroscedasticidad autorregresiva condicional (efectos ARCH) en los errores del modelo.</span>
+<span id="cb56-23"><a href="#cb56-23" aria-hidden="true" tabindex="-1"></a>La regresión que sirve como soporte de partida para la aplicación viene dada por la siguiente especificación $ARDL(2,2)$ en las variables precio del modelo:</span>
 <span id="cb56-24"><a href="#cb56-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-25"><a href="#cb56-25" aria-hidden="true" tabindex="-1"></a>La regresión que sirve como soporte de partida para la aplicación viene dada por la siguiente especificación $ARDL(2,2)$ en las variables precio del modelo:</span>
+<span id="cb56-25"><a href="#cb56-25" aria-hidden="true" tabindex="-1"></a>$$log(PGASOL_{t}) = \beta_1 + \beta_2 D2008JD_{t} + \beta_3 time_{t}   + $$</span>
 <span id="cb56-26"><a href="#cb56-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-27"><a href="#cb56-27" aria-hidden="true" tabindex="-1"></a>$$log(PGASOL_{t}) = \beta_1 + \beta_2 D2008JD_{t} + \beta_3 time_{t}   + $$</span>
+<span id="cb56-27"><a href="#cb56-27" aria-hidden="true" tabindex="-1"></a>$$+ \beta_4 log(PGASOL_{t-1}) + \beta_5 log(PGASOL_{t-2})  + $$</span>
 <span id="cb56-28"><a href="#cb56-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-29"><a href="#cb56-29" aria-hidden="true" tabindex="-1"></a>$$+ \beta_4 log(PGASOL_{t-1}) + \beta_5 log(PGASOL_{t-2})  + $$</span>
+<span id="cb56-29"><a href="#cb56-29" aria-hidden="true" tabindex="-1"></a>$$ +\beta_6 log(PCRUDO_{t}) + \beta_7 log(PCRUDO_{t-1}) + \beta_8 log(PCRUDO_{t-2}) + e_{t}$$</span>
 <span id="cb56-30"><a href="#cb56-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-31"><a href="#cb56-31" aria-hidden="true" tabindex="-1"></a>$$ +\beta_6 log(PCRUDO_{t}) + \beta_7 log(PCRUDO_{t-1}) + \beta_8 log(PCRUDO_{t-2}) + e_{t}$$</span>
+<span id="cb56-31"><a href="#cb56-31" aria-hidden="true" tabindex="-1"></a>donde $PGASOL$ es el precio de la gasolina, $PCRUDO$ es el precio del petróleo en los mercados internacionales, $D2008JD$ es una variable ficticia que diferencia el período que abarca desde julio hasta diciembre de 2008 de resto de semanas, y $time$ es una tendencia temporal determinista.</span>
 <span id="cb56-32"><a href="#cb56-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-33"><a href="#cb56-33" aria-hidden="true" tabindex="-1"></a>donde $PGASOL$ es el precio de la gasolina, $PCRUDO$ es el precio del petróleo en los mercados internacionales, $D2008JD$ es una variable ficticia que diferencia el período que abarca desde julio hasta diciembre de 2008 de resto de semanas, y $time$ es una tendencia temporal determinista.</span>
+<span id="cb56-33"><a href="#cb56-33" aria-hidden="true" tabindex="-1"></a>En cuanto a la modelización de los efectos ARCH, se utilizará una especifación $ARCH(2)$ para la varianza condicional, $h_{t}$, dada por la expresión:</span>
 <span id="cb56-34"><a href="#cb56-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-35"><a href="#cb56-35" aria-hidden="true" tabindex="-1"></a>En cuanto a la modelización de los efectos ARCH, se utilizará una especifación $ARCH(2)$ para la varianza condicional, $h_{t}$, dada por la expresión:</span>
-<span id="cb56-36"><a href="#cb56-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-37"><a href="#cb56-37" aria-hidden="true" tabindex="-1"></a>$${h_{t} = \alpha_{0} + \alpha_{1}e_{t - 1}^{2} + \alpha_{2}e_{t - 2}^{2} }$$</span>
-<span id="cb56-38"><a href="#cb56-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-39"><a href="#cb56-39" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb56-35"><a href="#cb56-35" aria-hidden="true" tabindex="-1"></a>$${h_{t} = \alpha_{0} + \alpha_{1}e_{t - 1}^{2} + \alpha_{2}e_{t - 2}^{2} }$$</span>
+<span id="cb56-36"><a href="#cb56-36" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb56-37"><a href="#cb56-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-38"><a href="#cb56-38" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group=&quot;language&quot;}</span>
+<span id="cb56-39"><a href="#cb56-39" aria-hidden="true" tabindex="-1"></a><span class="fu"># Código R {.unnumbered}</span></span>
 <span id="cb56-40"><a href="#cb56-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-41"><a href="#cb56-41" aria-hidden="true" tabindex="-1"></a><span class="fu">## Código R {.unnumbered}</span></span>
-<span id="cb56-42"><a href="#cb56-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-45"><a href="#cb56-45" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb56-46"><a href="#cb56-46" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: true</span></span>
-<span id="cb56-47"><a href="#cb56-47" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb56-48"><a href="#cb56-48" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb56-49"><a href="#cb56-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-50"><a href="#cb56-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de librerías</span></span>
-<span id="cb56-51"><a href="#cb56-51" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb56-52"><a href="#cb56-52" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(zoo)</span>
-<span id="cb56-53"><a href="#cb56-53" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dynlm)</span>
-<span id="cb56-54"><a href="#cb56-54" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nlWaldTest)</span>
-<span id="cb56-55"><a href="#cb56-55" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(FinTS)</span>
-<span id="cb56-56"><a href="#cb56-56" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tseries)</span>
-<span id="cb56-57"><a href="#cb56-57" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rugarch)</span>
-<span id="cb56-58"><a href="#cb56-58" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de datos</span></span>
-<span id="cb56-59"><a href="#cb56-59" aria-hidden="true" tabindex="-1"></a>GASOL_CRUDO <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/GASOL_CRUDO.csv&quot;</span>)</span>
-<span id="cb56-60"><a href="#cb56-60" aria-hidden="true" tabindex="-1"></a>GASOL_CRUDO_ts <span class="ot">&lt;-</span> <span class="fu">read.zoo</span>(GASOL_CRUDO)</span>
-<span id="cb56-61"><a href="#cb56-61" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfica de las series temporales</span></span>
-<span id="cb56-62"><a href="#cb56-62" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(GASOL_CRUDO_ts)</span>
-<span id="cb56-63"><a href="#cb56-63" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo dinámico para el precio de la gasolina</span></span>
-<span id="cb56-64"><a href="#cb56-64" aria-hidden="true" tabindex="-1"></a><span class="co"># Librería dynlm (https://cran.r-project.org/web/packages/dynlm/)</span></span>
-<span id="cb56-65"><a href="#cb56-65" aria-hidden="true" tabindex="-1"></a>dyn_model <span class="ot">&lt;-</span> <span class="fu">dynlm</span> (<span class="fu">log</span>(PGASOL) <span class="sc">~</span> D2008JD <span class="sc">+</span> time <span class="sc">+</span> </span>
-<span id="cb56-66"><a href="#cb56-66" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">L</span>(<span class="fu">log</span>(PGASOL), <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>) <span class="sc">+</span> <span class="fu">L</span>(<span class="fu">log</span>(PCRUDO),<span class="dv">0</span><span class="sc">:</span><span class="dv">2</span>), </span>
-<span id="cb56-67"><a href="#cb56-67" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data=</span>GASOL_CRUDO_ts)</span>
-<span id="cb56-68"><a href="#cb56-68" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(dyn_model)</span>
-<span id="cb56-69"><a href="#cb56-69" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimación de efectos parciales a corto y largo plazo</span></span>
-<span id="cb56-70"><a href="#cb56-70" aria-hidden="true" tabindex="-1"></a><span class="co"># Librería nlWaldTest (https://cran.r-project.org/web/packages/nlWaldTest/)</span></span>
-<span id="cb56-71"><a href="#cb56-71" aria-hidden="true" tabindex="-1"></a><span class="fu">nlConfint</span>(dyn_model, <span class="fu">c</span>(<span class="st">&quot;b[6]&quot;</span>,<span class="st">&quot;(b[6]+b[7]+b[8])/(1-b[4]-b[5])&quot;</span>))</span>
-<span id="cb56-72"><a href="#cb56-72" aria-hidden="true" tabindex="-1"></a><span class="co"># Significación estadística de los multiplicadores</span></span>
-<span id="cb56-73"><a href="#cb56-73" aria-hidden="true" tabindex="-1"></a><span class="fu">nlWaldtest</span>(dyn_model, <span class="st">&quot;b[6]&quot;</span>)</span>
-<span id="cb56-74"><a href="#cb56-74" aria-hidden="true" tabindex="-1"></a><span class="fu">nlWaldtest</span>(dyn_model, <span class="st">&quot;(b[6]+b[7]+b[8])/(1-b[4]-b[5])&quot;</span>)</span>
-<span id="cb56-75"><a href="#cb56-75" aria-hidden="true" tabindex="-1"></a><span class="co"># Contraste de heteroscedasticidad autoregresiva condicional (efectos ARCH)</span></span>
-<span id="cb56-76"><a href="#cb56-76" aria-hidden="true" tabindex="-1"></a>resid <span class="ot">&lt;-</span> <span class="fu">as.zoo</span>(dyn_model<span class="sc">$</span>residuals)</span>
-<span id="cb56-77"><a href="#cb56-77" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráficas de los residuos MCO y sus cuadrados</span></span>
-<span id="cb56-78"><a href="#cb56-78" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(resid)</span>
-<span id="cb56-79"><a href="#cb56-79" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(resid<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb56-80"><a href="#cb56-80" aria-hidden="true" tabindex="-1"></a><span class="co"># Regresión auxiliar y contraste de Engle</span></span>
-<span id="cb56-81"><a href="#cb56-81" aria-hidden="true" tabindex="-1"></a><span class="co"># ARCH(1)</span></span>
-<span id="cb56-82"><a href="#cb56-82" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">dynlm</span>(<span class="fu">I</span>(dyn_model<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>) <span class="sc">~</span> <span class="fu">L</span>(<span class="fu">I</span>(dyn_model<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>), <span class="dv">1</span><span class="sc">:</span><span class="dv">1</span>)))</span>
-<span id="cb56-83"><a href="#cb56-83" aria-hidden="true" tabindex="-1"></a><span class="fu">ArchTest</span>(dyn_model<span class="sc">$</span>residuals, <span class="at">lag =</span> <span class="dv">1</span>)</span>
-<span id="cb56-84"><a href="#cb56-84" aria-hidden="true" tabindex="-1"></a><span class="co"># ARCH(2)</span></span>
-<span id="cb56-85"><a href="#cb56-85" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">dynlm</span>(<span class="fu">I</span>(dyn_model<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>) <span class="sc">~</span> <span class="fu">L</span>(<span class="fu">I</span>(dyn_model<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>), <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)))</span>
-<span id="cb56-86"><a href="#cb56-86" aria-hidden="true" tabindex="-1"></a><span class="fu">ArchTest</span>(dyn_model<span class="sc">$</span>residuals, <span class="at">lag =</span> <span class="dv">2</span>)</span>
-<span id="cb56-87"><a href="#cb56-87" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo GARCH para los errores del modelo</span></span>
-<span id="cb56-88"><a href="#cb56-88" aria-hidden="true" tabindex="-1"></a><span class="co"># Librería tseries (https://cran.r-project.org/web/packages/tseries/)</span></span>
-<span id="cb56-89"><a href="#cb56-89" aria-hidden="true" tabindex="-1"></a>resid.ARCH <span class="ot">&lt;-</span> <span class="fu">garch</span>(resid,<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2</span>), <span class="at">trace=</span><span class="cn">FALSE</span>)</span>
-<span id="cb56-90"><a href="#cb56-90" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(resid.ARCH)</span>
-<span id="cb56-91"><a href="#cb56-91" aria-hidden="true" tabindex="-1"></a><span class="co"># Varianza condicional estimada</span></span>
-<span id="cb56-92"><a href="#cb56-92" aria-hidden="true" tabindex="-1"></a>hhat_1 <span class="ot">&lt;-</span> <span class="fu">as.zoo</span>(resid.ARCH<span class="sc">$</span>fitted.values[,<span class="dv">1</span>]<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb56-93"><a href="#cb56-93" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hhat_1)</span>
-<span id="cb56-94"><a href="#cb56-94" aria-hidden="true" tabindex="-1"></a><span class="co"># Librería rugarch (https://cran.r-project.org/web/packages/rugarch/)</span></span>
-<span id="cb56-95"><a href="#cb56-95" aria-hidden="true" tabindex="-1"></a><span class="co"># [nueva versión: https://www.nopredict.com/packages/tsgarch]</span></span>
-<span id="cb56-96"><a href="#cb56-96" aria-hidden="true" tabindex="-1"></a>resid_GARCH_spec <span class="ot">&lt;-</span>  <span class="fu">ugarchspec</span>(</span>
-<span id="cb56-97"><a href="#cb56-97" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean.model =</span> <span class="fu">list</span>(<span class="at">armaOrder=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), <span class="at">include.mean =</span> <span class="cn">FALSE</span>),</span>
-<span id="cb56-98"><a href="#cb56-98" aria-hidden="true" tabindex="-1"></a>  <span class="at">variance.model =</span> <span class="fu">list</span>(<span class="at">model=</span><span class="st">&quot;sGARCH&quot;</span>, <span class="at">garchOrder=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">0</span>)),</span>
-<span id="cb56-99"><a href="#cb56-99" aria-hidden="true" tabindex="-1"></a>  <span class="at">distribution.model =</span><span class="st">&quot;norm&quot;</span>)</span>
-<span id="cb56-100"><a href="#cb56-100" aria-hidden="true" tabindex="-1"></a>resid_GARCH_fit <span class="ot">&lt;-</span> <span class="fu">ugarchfit</span>(<span class="at">spec =</span> resid_GARCH_spec, <span class="at">data =</span> resid)</span>
-<span id="cb56-101"><a href="#cb56-101" aria-hidden="true" tabindex="-1"></a><span class="fu">show</span>(resid_GARCH_fit)</span>
-<span id="cb56-102"><a href="#cb56-102" aria-hidden="true" tabindex="-1"></a><span class="co"># Varianza condicional estimada</span></span>
-<span id="cb56-103"><a href="#cb56-103" aria-hidden="true" tabindex="-1"></a>hhat_2 <span class="ot">&lt;-</span> <span class="fu">as.zoo</span>(resid_GARCH_fit<span class="sc">@</span>fit<span class="sc">$</span>sigma<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb56-104"><a href="#cb56-104" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.ts</span>(hhat_2)     <span class="co"># ts.plot(resid_GARCH_fit@fit$sigma^2)</span></span>
-<span id="cb56-105"><a href="#cb56-105" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráficas asociadas al modelo GARCH estimado</span></span>
-<span id="cb56-106"><a href="#cb56-106" aria-hidden="true" tabindex="-1"></a><span class="co"># Modo interactivo: permite seleccionar el tipo de gráfica</span></span>
-<span id="cb56-107"><a href="#cb56-107" aria-hidden="true" tabindex="-1"></a><span class="co"># plot(resid_GARCH_fit)</span></span>
-<span id="cb56-108"><a href="#cb56-108" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráficas seleccionadas</span></span>
-<span id="cb56-109"><a href="#cb56-109" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(resid_GARCH_fit, <span class="at">which=</span><span class="dv">1</span>)</span>
-<span id="cb56-110"><a href="#cb56-110" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(resid_GARCH_fit, <span class="at">which=</span><span class="dv">3</span>)</span>
-<span id="cb56-111"><a href="#cb56-111" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb56-43"><a href="#cb56-43" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb56-44"><a href="#cb56-44" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: true</span></span>
+<span id="cb56-45"><a href="#cb56-45" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb56-46"><a href="#cb56-46" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb56-47"><a href="#cb56-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-48"><a href="#cb56-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de librerías</span></span>
+<span id="cb56-49"><a href="#cb56-49" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb56-50"><a href="#cb56-50" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(zoo)</span>
+<span id="cb56-51"><a href="#cb56-51" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dynlm)</span>
+<span id="cb56-52"><a href="#cb56-52" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nlWaldTest)</span>
+<span id="cb56-53"><a href="#cb56-53" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(FinTS)</span>
+<span id="cb56-54"><a href="#cb56-54" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tseries)</span>
+<span id="cb56-55"><a href="#cb56-55" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rugarch)</span>
+<span id="cb56-56"><a href="#cb56-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de datos</span></span>
+<span id="cb56-57"><a href="#cb56-57" aria-hidden="true" tabindex="-1"></a>GASOL_CRUDO <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/GASOL_CRUDO.csv&quot;</span>)</span>
+<span id="cb56-58"><a href="#cb56-58" aria-hidden="true" tabindex="-1"></a>GASOL_CRUDO_ts <span class="ot">&lt;-</span> <span class="fu">read.zoo</span>(GASOL_CRUDO)</span>
+<span id="cb56-59"><a href="#cb56-59" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfica de las series temporales</span></span>
+<span id="cb56-60"><a href="#cb56-60" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(GASOL_CRUDO_ts)</span>
+<span id="cb56-61"><a href="#cb56-61" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo dinámico para el precio de la gasolina</span></span>
+<span id="cb56-62"><a href="#cb56-62" aria-hidden="true" tabindex="-1"></a><span class="co"># Librería dynlm (https://cran.r-project.org/web/packages/dynlm/)</span></span>
+<span id="cb56-63"><a href="#cb56-63" aria-hidden="true" tabindex="-1"></a>dyn_model <span class="ot">&lt;-</span> <span class="fu">dynlm</span> (<span class="fu">log</span>(PGASOL) <span class="sc">~</span> D2008JD <span class="sc">+</span> time <span class="sc">+</span> </span>
+<span id="cb56-64"><a href="#cb56-64" aria-hidden="true" tabindex="-1"></a>                      <span class="fu">L</span>(<span class="fu">log</span>(PGASOL), <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>) <span class="sc">+</span> <span class="fu">L</span>(<span class="fu">log</span>(PCRUDO),<span class="dv">0</span><span class="sc">:</span><span class="dv">2</span>), </span>
+<span id="cb56-65"><a href="#cb56-65" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data=</span>GASOL_CRUDO_ts)</span>
+<span id="cb56-66"><a href="#cb56-66" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(dyn_model)</span>
+<span id="cb56-67"><a href="#cb56-67" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimación de efectos parciales a corto y largo plazo</span></span>
+<span id="cb56-68"><a href="#cb56-68" aria-hidden="true" tabindex="-1"></a><span class="co"># Librería nlWaldTest (https://cran.r-project.org/web/packages/nlWaldTest/)</span></span>
+<span id="cb56-69"><a href="#cb56-69" aria-hidden="true" tabindex="-1"></a><span class="fu">nlConfint</span>(dyn_model, <span class="fu">c</span>(<span class="st">&quot;b[6]&quot;</span>,<span class="st">&quot;(b[6]+b[7]+b[8])/(1-b[4]-b[5])&quot;</span>))</span>
+<span id="cb56-70"><a href="#cb56-70" aria-hidden="true" tabindex="-1"></a><span class="co"># Significación estadística de los multiplicadores</span></span>
+<span id="cb56-71"><a href="#cb56-71" aria-hidden="true" tabindex="-1"></a><span class="fu">nlWaldtest</span>(dyn_model, <span class="st">&quot;b[6]&quot;</span>)</span>
+<span id="cb56-72"><a href="#cb56-72" aria-hidden="true" tabindex="-1"></a><span class="fu">nlWaldtest</span>(dyn_model, <span class="st">&quot;(b[6]+b[7]+b[8])/(1-b[4]-b[5])&quot;</span>)</span>
+<span id="cb56-73"><a href="#cb56-73" aria-hidden="true" tabindex="-1"></a><span class="co"># Contraste de heteroscedasticidad autoregresiva condicional (efectos ARCH)</span></span>
+<span id="cb56-74"><a href="#cb56-74" aria-hidden="true" tabindex="-1"></a>resid <span class="ot">&lt;-</span> <span class="fu">as.zoo</span>(dyn_model<span class="sc">$</span>residuals)</span>
+<span id="cb56-75"><a href="#cb56-75" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráficas de los residuos MCO y sus cuadrados</span></span>
+<span id="cb56-76"><a href="#cb56-76" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(resid)</span>
+<span id="cb56-77"><a href="#cb56-77" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(resid<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb56-78"><a href="#cb56-78" aria-hidden="true" tabindex="-1"></a><span class="co"># Regresión auxiliar y contraste de Engle</span></span>
+<span id="cb56-79"><a href="#cb56-79" aria-hidden="true" tabindex="-1"></a><span class="co"># ARCH(1)</span></span>
+<span id="cb56-80"><a href="#cb56-80" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">dynlm</span>(<span class="fu">I</span>(dyn_model<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>) <span class="sc">~</span> <span class="fu">L</span>(<span class="fu">I</span>(dyn_model<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>), <span class="dv">1</span><span class="sc">:</span><span class="dv">1</span>)))</span>
+<span id="cb56-81"><a href="#cb56-81" aria-hidden="true" tabindex="-1"></a><span class="fu">ArchTest</span>(dyn_model<span class="sc">$</span>residuals, <span class="at">lag =</span> <span class="dv">1</span>)</span>
+<span id="cb56-82"><a href="#cb56-82" aria-hidden="true" tabindex="-1"></a><span class="co"># ARCH(2)</span></span>
+<span id="cb56-83"><a href="#cb56-83" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">dynlm</span>(<span class="fu">I</span>(dyn_model<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>) <span class="sc">~</span> <span class="fu">L</span>(<span class="fu">I</span>(dyn_model<span class="sc">$</span>residuals<span class="sc">^</span><span class="dv">2</span>), <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)))</span>
+<span id="cb56-84"><a href="#cb56-84" aria-hidden="true" tabindex="-1"></a><span class="fu">ArchTest</span>(dyn_model<span class="sc">$</span>residuals, <span class="at">lag =</span> <span class="dv">2</span>)</span>
+<span id="cb56-85"><a href="#cb56-85" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo GARCH para los errores del modelo</span></span>
+<span id="cb56-86"><a href="#cb56-86" aria-hidden="true" tabindex="-1"></a><span class="co"># Librería tseries (https://cran.r-project.org/web/packages/tseries/)</span></span>
+<span id="cb56-87"><a href="#cb56-87" aria-hidden="true" tabindex="-1"></a>resid.ARCH <span class="ot">&lt;-</span> <span class="fu">garch</span>(resid,<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">2</span>), <span class="at">trace=</span><span class="cn">FALSE</span>)</span>
+<span id="cb56-88"><a href="#cb56-88" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(resid.ARCH)</span>
+<span id="cb56-89"><a href="#cb56-89" aria-hidden="true" tabindex="-1"></a><span class="co"># Varianza condicional estimada</span></span>
+<span id="cb56-90"><a href="#cb56-90" aria-hidden="true" tabindex="-1"></a>hhat_1 <span class="ot">&lt;-</span> <span class="fu">as.zoo</span>(resid.ARCH<span class="sc">$</span>fitted.values[,<span class="dv">1</span>]<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb56-91"><a href="#cb56-91" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hhat_1)</span>
+<span id="cb56-92"><a href="#cb56-92" aria-hidden="true" tabindex="-1"></a><span class="co"># Librería rugarch (https://cran.r-project.org/web/packages/rugarch/)</span></span>
+<span id="cb56-93"><a href="#cb56-93" aria-hidden="true" tabindex="-1"></a><span class="co"># [nueva versión: https://www.nopredict.com/packages/tsgarch]</span></span>
+<span id="cb56-94"><a href="#cb56-94" aria-hidden="true" tabindex="-1"></a>resid_GARCH_spec <span class="ot">&lt;-</span>  <span class="fu">ugarchspec</span>(</span>
+<span id="cb56-95"><a href="#cb56-95" aria-hidden="true" tabindex="-1"></a>  <span class="at">mean.model =</span> <span class="fu">list</span>(<span class="at">armaOrder=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>), <span class="at">include.mean =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb56-96"><a href="#cb56-96" aria-hidden="true" tabindex="-1"></a>  <span class="at">variance.model =</span> <span class="fu">list</span>(<span class="at">model=</span><span class="st">&quot;sGARCH&quot;</span>, <span class="at">garchOrder=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">0</span>)),</span>
+<span id="cb56-97"><a href="#cb56-97" aria-hidden="true" tabindex="-1"></a>  <span class="at">distribution.model =</span><span class="st">&quot;norm&quot;</span>)</span>
+<span id="cb56-98"><a href="#cb56-98" aria-hidden="true" tabindex="-1"></a>resid_GARCH_fit <span class="ot">&lt;-</span> <span class="fu">ugarchfit</span>(<span class="at">spec =</span> resid_GARCH_spec, <span class="at">data =</span> resid)</span>
+<span id="cb56-99"><a href="#cb56-99" aria-hidden="true" tabindex="-1"></a><span class="fu">show</span>(resid_GARCH_fit)</span>
+<span id="cb56-100"><a href="#cb56-100" aria-hidden="true" tabindex="-1"></a><span class="co"># Varianza condicional estimada</span></span>
+<span id="cb56-101"><a href="#cb56-101" aria-hidden="true" tabindex="-1"></a>hhat_2 <span class="ot">&lt;-</span> <span class="fu">as.zoo</span>(resid_GARCH_fit<span class="sc">@</span>fit<span class="sc">$</span>sigma<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb56-102"><a href="#cb56-102" aria-hidden="true" tabindex="-1"></a><span class="fu">plot.ts</span>(hhat_2)     <span class="co"># ts.plot(resid_GARCH_fit@fit$sigma^2)</span></span>
+<span id="cb56-103"><a href="#cb56-103" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráficas asociadas al modelo GARCH estimado</span></span>
+<span id="cb56-104"><a href="#cb56-104" aria-hidden="true" tabindex="-1"></a><span class="co"># Modo interactivo: permite seleccionar el tipo de gráfica</span></span>
+<span id="cb56-105"><a href="#cb56-105" aria-hidden="true" tabindex="-1"></a><span class="co"># plot(resid_GARCH_fit)</span></span>
+<span id="cb56-106"><a href="#cb56-106" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráficas seleccionadas</span></span>
+<span id="cb56-107"><a href="#cb56-107" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(resid_GARCH_fit, <span class="at">which=</span><span class="dv">1</span>)</span>
+<span id="cb56-108"><a href="#cb56-108" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(resid_GARCH_fit, <span class="at">which=</span><span class="dv">3</span>)</span>
+<span id="cb56-109"><a href="#cb56-109" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb56-110"><a href="#cb56-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-111"><a href="#cb56-111" aria-hidden="true" tabindex="-1"></a><span class="fu"># Código Python {.unnumbered}</span></span>
 <span id="cb56-112"><a href="#cb56-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-113"><a href="#cb56-113" aria-hidden="true" tabindex="-1"></a><span class="fu">## Código Python {.unnumbered}</span></span>
-<span id="cb56-114"><a href="#cb56-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-117"><a href="#cb56-117" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb56-118"><a href="#cb56-118" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: true</span></span>
-<span id="cb56-119"><a href="#cb56-119" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: true</span></span>
-<span id="cb56-120"><a href="#cb56-120" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb56-121"><a href="#cb56-121" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb56-122"><a href="#cb56-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-123"><a href="#cb56-123" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de librerías</span></span>
-<span id="cb56-124"><a href="#cb56-124" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb56-125"><a href="#cb56-125" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb56-126"><a href="#cb56-126" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb56-127"><a href="#cb56-127" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb56-128"><a href="#cb56-128" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb56-129"><a href="#cb56-129" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
-<span id="cb56-130"><a href="#cb56-130" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.stats.api <span class="im">as</span> sms</span>
-<span id="cb56-131"><a href="#cb56-131" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.stats.diagnostic <span class="im">as</span> smsdiag</span>
-<span id="cb56-132"><a href="#cb56-132" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.compat <span class="im">import</span> lzip</span>
-<span id="cb56-133"><a href="#cb56-133" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> arch <span class="im">import</span> arch_model</span>
-<span id="cb56-134"><a href="#cb56-134" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de datos y asignación del índice temporal</span></span>
-<span id="cb56-135"><a href="#cb56-135" aria-hidden="true" tabindex="-1"></a>GASOL_CRUDO_ts <span class="op">=</span> pd.read_csv(<span class="st">&quot;data/GASOL_CRUDO.csv&quot;</span>, </span>
-<span id="cb56-136"><a href="#cb56-136" aria-hidden="true" tabindex="-1"></a>parse_dates<span class="op">=</span>[<span class="st">&#39;date&#39;</span>], index_col<span class="op">=</span><span class="st">&#39;date&#39;</span>)</span>
-<span id="cb56-137"><a href="#cb56-137" aria-hidden="true" tabindex="-1"></a>GASOL_CRUDO_ts.info()</span>
-<span id="cb56-138"><a href="#cb56-138" aria-hidden="true" tabindex="-1"></a>GASOL_CRUDO_ts.index</span>
-<span id="cb56-139"><a href="#cb56-139" aria-hidden="true" tabindex="-1"></a><span class="co"># Asignación del formato semanal (opcional)</span></span>
-<span id="cb56-140"><a href="#cb56-140" aria-hidden="true" tabindex="-1"></a>date_w <span class="op">=</span> pd.date_range(start <span class="op">=</span> <span class="st">&#39;2000&#39;</span>, </span>
-<span id="cb56-141"><a href="#cb56-141" aria-hidden="true" tabindex="-1"></a>periods <span class="op">=</span> <span class="bu">len</span>(GASOL_CRUDO_ts.index), freq <span class="op">=</span> <span class="st">&#39;W&#39;</span>)</span>
-<span id="cb56-142"><a href="#cb56-142" aria-hidden="true" tabindex="-1"></a>GASOL_CRUDO_ts.index <span class="op">=</span> date_w</span>
-<span id="cb56-143"><a href="#cb56-143" aria-hidden="true" tabindex="-1"></a>GASOL_CRUDO_ts.index</span>
-<span id="cb56-144"><a href="#cb56-144" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfica de las series temporales</span></span>
-<span id="cb56-145"><a href="#cb56-145" aria-hidden="true" tabindex="-1"></a>plt.figure(<span class="dv">1</span>)</span>
-<span id="cb56-146"><a href="#cb56-146" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">4</span>, <span class="dv">1</span>, sharex <span class="op">=</span> <span class="va">True</span>)</span>
-<span id="cb56-147"><a href="#cb56-147" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(GASOL_CRUDO_ts.D2008JD)</span>
-<span id="cb56-148"><a href="#cb56-148" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_ylabel(<span class="st">&#39;D2008JD&#39;</span>)</span>
-<span id="cb56-149"><a href="#cb56-149" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(GASOL_CRUDO_ts.PCRUDO)</span>
-<span id="cb56-150"><a href="#cb56-150" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_ylabel(<span class="st">&#39;PCRUDO&#39;</span>)</span>
-<span id="cb56-151"><a href="#cb56-151" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].plot(GASOL_CRUDO_ts.PGASOL)</span>
-<span id="cb56-152"><a href="#cb56-152" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].set_ylabel(<span class="st">&#39;PGASOL&#39;</span>)</span>
-<span id="cb56-153"><a href="#cb56-153" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">3</span>].plot(GASOL_CRUDO_ts.time)</span>
-<span id="cb56-154"><a href="#cb56-154" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">3</span>].set_ylabel(<span class="st">&#39;time&#39;</span>)</span>
-<span id="cb56-155"><a href="#cb56-155" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb56-156"><a href="#cb56-156" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo dinámico para el precio de la gasolina </span></span>
-<span id="cb56-157"><a href="#cb56-157" aria-hidden="true" tabindex="-1"></a>GASOL_CRUDO_ts[<span class="st">&#39;l_PGASOL&#39;</span>] <span class="op">=</span> np.log(GASOL_CRUDO_ts[<span class="st">&#39;PGASOL&#39;</span>])</span>
-<span id="cb56-158"><a href="#cb56-158" aria-hidden="true" tabindex="-1"></a>GASOL_CRUDO_ts[<span class="st">&#39;l_PCRUDO&#39;</span>] <span class="op">=</span> np.log(GASOL_CRUDO_ts[<span class="st">&#39;PCRUDO&#39;</span>])</span>
-<span id="cb56-159"><a href="#cb56-159" aria-hidden="true" tabindex="-1"></a>form <span class="op">=</span> <span class="st">&#39;l_PGASOL ~ D2008JD + time + l_PGASOL.shift(1) + l_PGASOL.shift(2) + l_PCRUDO + l_PCRUDO.shift(1) + l_PCRUDO.shift(2)&#39;</span></span>
-<span id="cb56-160"><a href="#cb56-160" aria-hidden="true" tabindex="-1"></a>dyn_model <span class="op">=</span> smf.ols(form, data <span class="op">=</span> GASOL_CRUDO_ts)</span>
-<span id="cb56-161"><a href="#cb56-161" aria-hidden="true" tabindex="-1"></a>lm_dyn_model <span class="op">=</span> dyn_model.fit()</span>
-<span id="cb56-162"><a href="#cb56-162" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lm_dyn_model.summary())</span>
-<span id="cb56-163"><a href="#cb56-163" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimación de efectos parciales a corto y largo plazo</span></span>
-<span id="cb56-164"><a href="#cb56-164" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> lm_dyn_model.params[<span class="dv">0</span>:]</span>
-<span id="cb56-165"><a href="#cb56-165" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiplicador de corto plazo</span></span>
-<span id="cb56-166"><a href="#cb56-166" aria-hidden="true" tabindex="-1"></a>b[<span class="dv">5</span>].<span class="bu">round</span>(<span class="dv">3</span>)</span>
-<span id="cb56-167"><a href="#cb56-167" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiplicador de largo plazo</span></span>
-<span id="cb56-168"><a href="#cb56-168" aria-hidden="true" tabindex="-1"></a>((b[<span class="dv">5</span>]<span class="op">+</span>b[<span class="dv">6</span>]<span class="op">+</span>b[<span class="dv">7</span>])<span class="op">/</span>(<span class="dv">1</span><span class="op">-</span>b[<span class="dv">3</span>]<span class="op">-</span>b[<span class="dv">4</span>])).<span class="bu">round</span>(<span class="dv">3</span>)</span>
-<span id="cb56-169"><a href="#cb56-169" aria-hidden="true" tabindex="-1"></a><span class="co"># Contraste de heteroscedasticidad autoregresiva condicional (efectos ARCH)</span></span>
-<span id="cb56-170"><a href="#cb56-170" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráficas de los residuos MCO y sus cuadrados</span></span>
-<span id="cb56-171"><a href="#cb56-171" aria-hidden="true" tabindex="-1"></a>residuals <span class="op">=</span> lm_dyn_model.resid</span>
-<span id="cb56-172"><a href="#cb56-172" aria-hidden="true" tabindex="-1"></a>plt.figure(<span class="dv">5</span>)</span>
-<span id="cb56-173"><a href="#cb56-173" aria-hidden="true" tabindex="-1"></a>plt.plot(residuals, label<span class="op">=</span><span class="st">&#39;Residuos&#39;</span>)</span>
-<span id="cb56-174"><a href="#cb56-174" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Semana&#39;</span>)</span>
-<span id="cb56-175"><a href="#cb56-175" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb56-176"><a href="#cb56-176" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb56-177"><a href="#cb56-177" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb56-178"><a href="#cb56-178" aria-hidden="true" tabindex="-1"></a>plt.figure(<span class="dv">6</span>)</span>
-<span id="cb56-179"><a href="#cb56-179" aria-hidden="true" tabindex="-1"></a>plt.plot(residuals<span class="op">**</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">&#39;Residuos al cuadrado&#39;</span>)</span>
-<span id="cb56-180"><a href="#cb56-180" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Semana&#39;</span>)</span>
-<span id="cb56-181"><a href="#cb56-181" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb56-182"><a href="#cb56-182" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb56-183"><a href="#cb56-183" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb56-184"><a href="#cb56-184" aria-hidden="true" tabindex="-1"></a><span class="co"># Test de Engle</span></span>
-<span id="cb56-185"><a href="#cb56-185" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> [<span class="st">&#39;LM statistic&#39;</span>, <span class="st">&#39;Chi^2 p-val&#39;</span>, <span class="st">&#39;F statistic&#39;</span>, <span class="st">&#39;F p-val&#39;</span>]</span>
-<span id="cb56-186"><a href="#cb56-186" aria-hidden="true" tabindex="-1"></a>E_test_1 <span class="op">=</span> smsdiag.het_arch(residuals, nlags<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb56-187"><a href="#cb56-187" aria-hidden="true" tabindex="-1"></a>lzip(name,E_test_1)</span>
-<span id="cb56-188"><a href="#cb56-188" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.DataFrame([np.<span class="bu">round</span>(E_test_1, <span class="dv">3</span>)], columns<span class="op">=</span>name))</span>
-<span id="cb56-189"><a href="#cb56-189" aria-hidden="true" tabindex="-1"></a>E_test_2 <span class="op">=</span> smsdiag.het_arch(residuals, nlags<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb56-190"><a href="#cb56-190" aria-hidden="true" tabindex="-1"></a>lzip(name,E_test_2)</span>
-<span id="cb56-191"><a href="#cb56-191" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.DataFrame([np.<span class="bu">round</span>(E_test_2, <span class="dv">3</span>)], columns<span class="op">=</span>name))</span>
-<span id="cb56-192"><a href="#cb56-192" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo GARCH para los errores del modelo</span></span>
-<span id="cb56-193"><a href="#cb56-193" aria-hidden="true" tabindex="-1"></a>garch_model <span class="op">=</span> arch_model(residuals, mean<span class="op">=</span><span class="st">&#39;Zero&#39;</span>, vol<span class="op">=</span><span class="st">&#39;GARCH&#39;</span>, p<span class="op">=</span><span class="dv">2</span>, q<span class="op">=</span><span class="dv">0</span>, </span>
-<span id="cb56-194"><a href="#cb56-194" aria-hidden="true" tabindex="-1"></a>dist<span class="op">=</span><span class="st">&#39;normal&#39;</span>)</span>
-<span id="cb56-195"><a href="#cb56-195" aria-hidden="true" tabindex="-1"></a>mv_garch_model <span class="op">=</span> garch_model.fit()</span>
-<span id="cb56-196"><a href="#cb56-196" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mv_garch_model)</span>
-<span id="cb56-197"><a href="#cb56-197" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> mv_garch_model.plot()</span>
-<span id="cb56-198"><a href="#cb56-198" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb56-199"><a href="#cb56-199" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb56-115"><a href="#cb56-115" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb56-116"><a href="#cb56-116" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: true</span></span>
+<span id="cb56-117"><a href="#cb56-117" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: true</span></span>
+<span id="cb56-118"><a href="#cb56-118" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb56-119"><a href="#cb56-119" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb56-120"><a href="#cb56-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-121"><a href="#cb56-121" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de librerías</span></span>
+<span id="cb56-122"><a href="#cb56-122" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb56-123"><a href="#cb56-123" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb56-124"><a href="#cb56-124" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb56-125"><a href="#cb56-125" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb56-126"><a href="#cb56-126" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb56-127"><a href="#cb56-127" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
+<span id="cb56-128"><a href="#cb56-128" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.stats.api <span class="im">as</span> sms</span>
+<span id="cb56-129"><a href="#cb56-129" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.stats.diagnostic <span class="im">as</span> smsdiag</span>
+<span id="cb56-130"><a href="#cb56-130" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels.compat <span class="im">import</span> lzip</span>
+<span id="cb56-131"><a href="#cb56-131" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> arch <span class="im">import</span> arch_model</span>
+<span id="cb56-132"><a href="#cb56-132" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de datos y asignación del índice temporal</span></span>
+<span id="cb56-133"><a href="#cb56-133" aria-hidden="true" tabindex="-1"></a>GASOL_CRUDO_ts <span class="op">=</span> pd.read_csv(<span class="st">&quot;data/GASOL_CRUDO.csv&quot;</span>, </span>
+<span id="cb56-134"><a href="#cb56-134" aria-hidden="true" tabindex="-1"></a>parse_dates<span class="op">=</span>[<span class="st">&#39;date&#39;</span>], index_col<span class="op">=</span><span class="st">&#39;date&#39;</span>)</span>
+<span id="cb56-135"><a href="#cb56-135" aria-hidden="true" tabindex="-1"></a>GASOL_CRUDO_ts.info()</span>
+<span id="cb56-136"><a href="#cb56-136" aria-hidden="true" tabindex="-1"></a>GASOL_CRUDO_ts.index</span>
+<span id="cb56-137"><a href="#cb56-137" aria-hidden="true" tabindex="-1"></a><span class="co"># Asignación del formato semanal (opcional)</span></span>
+<span id="cb56-138"><a href="#cb56-138" aria-hidden="true" tabindex="-1"></a>date_w <span class="op">=</span> pd.date_range(start <span class="op">=</span> <span class="st">&#39;2000&#39;</span>, </span>
+<span id="cb56-139"><a href="#cb56-139" aria-hidden="true" tabindex="-1"></a>periods <span class="op">=</span> <span class="bu">len</span>(GASOL_CRUDO_ts.index), freq <span class="op">=</span> <span class="st">&#39;W&#39;</span>)</span>
+<span id="cb56-140"><a href="#cb56-140" aria-hidden="true" tabindex="-1"></a>GASOL_CRUDO_ts.index <span class="op">=</span> date_w</span>
+<span id="cb56-141"><a href="#cb56-141" aria-hidden="true" tabindex="-1"></a>GASOL_CRUDO_ts.index</span>
+<span id="cb56-142"><a href="#cb56-142" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfica de las series temporales</span></span>
+<span id="cb56-143"><a href="#cb56-143" aria-hidden="true" tabindex="-1"></a>plt.figure(<span class="dv">1</span>)</span>
+<span id="cb56-144"><a href="#cb56-144" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">4</span>, <span class="dv">1</span>, sharex <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb56-145"><a href="#cb56-145" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].plot(GASOL_CRUDO_ts.D2008JD)</span>
+<span id="cb56-146"><a href="#cb56-146" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_ylabel(<span class="st">&#39;D2008JD&#39;</span>)</span>
+<span id="cb56-147"><a href="#cb56-147" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].plot(GASOL_CRUDO_ts.PCRUDO)</span>
+<span id="cb56-148"><a href="#cb56-148" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">1</span>].set_ylabel(<span class="st">&#39;PCRUDO&#39;</span>)</span>
+<span id="cb56-149"><a href="#cb56-149" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].plot(GASOL_CRUDO_ts.PGASOL)</span>
+<span id="cb56-150"><a href="#cb56-150" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].set_ylabel(<span class="st">&#39;PGASOL&#39;</span>)</span>
+<span id="cb56-151"><a href="#cb56-151" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">3</span>].plot(GASOL_CRUDO_ts.time)</span>
+<span id="cb56-152"><a href="#cb56-152" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">3</span>].set_ylabel(<span class="st">&#39;time&#39;</span>)</span>
+<span id="cb56-153"><a href="#cb56-153" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb56-154"><a href="#cb56-154" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo dinámico para el precio de la gasolina </span></span>
+<span id="cb56-155"><a href="#cb56-155" aria-hidden="true" tabindex="-1"></a>GASOL_CRUDO_ts[<span class="st">&#39;l_PGASOL&#39;</span>] <span class="op">=</span> np.log(GASOL_CRUDO_ts[<span class="st">&#39;PGASOL&#39;</span>])</span>
+<span id="cb56-156"><a href="#cb56-156" aria-hidden="true" tabindex="-1"></a>GASOL_CRUDO_ts[<span class="st">&#39;l_PCRUDO&#39;</span>] <span class="op">=</span> np.log(GASOL_CRUDO_ts[<span class="st">&#39;PCRUDO&#39;</span>])</span>
+<span id="cb56-157"><a href="#cb56-157" aria-hidden="true" tabindex="-1"></a>form <span class="op">=</span> <span class="st">&#39;l_PGASOL ~ D2008JD + time + l_PGASOL.shift(1) + l_PGASOL.shift(2) + l_PCRUDO + l_PCRUDO.shift(1) + l_PCRUDO.shift(2)&#39;</span></span>
+<span id="cb56-158"><a href="#cb56-158" aria-hidden="true" tabindex="-1"></a>dyn_model <span class="op">=</span> smf.ols(form, data <span class="op">=</span> GASOL_CRUDO_ts)</span>
+<span id="cb56-159"><a href="#cb56-159" aria-hidden="true" tabindex="-1"></a>lm_dyn_model <span class="op">=</span> dyn_model.fit()</span>
+<span id="cb56-160"><a href="#cb56-160" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lm_dyn_model.summary())</span>
+<span id="cb56-161"><a href="#cb56-161" aria-hidden="true" tabindex="-1"></a><span class="co"># Estimación de efectos parciales a corto y largo plazo</span></span>
+<span id="cb56-162"><a href="#cb56-162" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> lm_dyn_model.params[<span class="dv">0</span>:]</span>
+<span id="cb56-163"><a href="#cb56-163" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiplicador de corto plazo</span></span>
+<span id="cb56-164"><a href="#cb56-164" aria-hidden="true" tabindex="-1"></a>b[<span class="dv">5</span>].<span class="bu">round</span>(<span class="dv">3</span>)</span>
+<span id="cb56-165"><a href="#cb56-165" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiplicador de largo plazo</span></span>
+<span id="cb56-166"><a href="#cb56-166" aria-hidden="true" tabindex="-1"></a>((b[<span class="dv">5</span>]<span class="op">+</span>b[<span class="dv">6</span>]<span class="op">+</span>b[<span class="dv">7</span>])<span class="op">/</span>(<span class="dv">1</span><span class="op">-</span>b[<span class="dv">3</span>]<span class="op">-</span>b[<span class="dv">4</span>])).<span class="bu">round</span>(<span class="dv">3</span>)</span>
+<span id="cb56-167"><a href="#cb56-167" aria-hidden="true" tabindex="-1"></a><span class="co"># Contraste de heteroscedasticidad autoregresiva condicional (efectos ARCH)</span></span>
+<span id="cb56-168"><a href="#cb56-168" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráficas de los residuos MCO y sus cuadrados</span></span>
+<span id="cb56-169"><a href="#cb56-169" aria-hidden="true" tabindex="-1"></a>residuals <span class="op">=</span> lm_dyn_model.resid</span>
+<span id="cb56-170"><a href="#cb56-170" aria-hidden="true" tabindex="-1"></a>plt.figure(<span class="dv">5</span>)</span>
+<span id="cb56-171"><a href="#cb56-171" aria-hidden="true" tabindex="-1"></a>plt.plot(residuals, label<span class="op">=</span><span class="st">&#39;Residuos&#39;</span>)</span>
+<span id="cb56-172"><a href="#cb56-172" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Semana&#39;</span>)</span>
+<span id="cb56-173"><a href="#cb56-173" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb56-174"><a href="#cb56-174" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb56-175"><a href="#cb56-175" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb56-176"><a href="#cb56-176" aria-hidden="true" tabindex="-1"></a>plt.figure(<span class="dv">6</span>)</span>
+<span id="cb56-177"><a href="#cb56-177" aria-hidden="true" tabindex="-1"></a>plt.plot(residuals<span class="op">**</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">&#39;Residuos al cuadrado&#39;</span>)</span>
+<span id="cb56-178"><a href="#cb56-178" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Semana&#39;</span>)</span>
+<span id="cb56-179"><a href="#cb56-179" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb56-180"><a href="#cb56-180" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb56-181"><a href="#cb56-181" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb56-182"><a href="#cb56-182" aria-hidden="true" tabindex="-1"></a><span class="co"># Test de Engle</span></span>
+<span id="cb56-183"><a href="#cb56-183" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> [<span class="st">&#39;LM statistic&#39;</span>, <span class="st">&#39;Chi^2 p-val&#39;</span>, <span class="st">&#39;F statistic&#39;</span>, <span class="st">&#39;F p-val&#39;</span>]</span>
+<span id="cb56-184"><a href="#cb56-184" aria-hidden="true" tabindex="-1"></a>E_test_1 <span class="op">=</span> smsdiag.het_arch(residuals, nlags<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb56-185"><a href="#cb56-185" aria-hidden="true" tabindex="-1"></a>lzip(name,E_test_1)</span>
+<span id="cb56-186"><a href="#cb56-186" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.DataFrame([np.<span class="bu">round</span>(E_test_1, <span class="dv">3</span>)], columns<span class="op">=</span>name))</span>
+<span id="cb56-187"><a href="#cb56-187" aria-hidden="true" tabindex="-1"></a>E_test_2 <span class="op">=</span> smsdiag.het_arch(residuals, nlags<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb56-188"><a href="#cb56-188" aria-hidden="true" tabindex="-1"></a>lzip(name,E_test_2)</span>
+<span id="cb56-189"><a href="#cb56-189" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pd.DataFrame([np.<span class="bu">round</span>(E_test_2, <span class="dv">3</span>)], columns<span class="op">=</span>name))</span>
+<span id="cb56-190"><a href="#cb56-190" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo GARCH para los errores del modelo</span></span>
+<span id="cb56-191"><a href="#cb56-191" aria-hidden="true" tabindex="-1"></a>garch_model <span class="op">=</span> arch_model(residuals, mean<span class="op">=</span><span class="st">&#39;Zero&#39;</span>, vol<span class="op">=</span><span class="st">&#39;GARCH&#39;</span>, p<span class="op">=</span><span class="dv">2</span>, q<span class="op">=</span><span class="dv">0</span>, </span>
+<span id="cb56-192"><a href="#cb56-192" aria-hidden="true" tabindex="-1"></a>dist<span class="op">=</span><span class="st">&#39;normal&#39;</span>)</span>
+<span id="cb56-193"><a href="#cb56-193" aria-hidden="true" tabindex="-1"></a>mv_garch_model <span class="op">=</span> garch_model.fit()</span>
+<span id="cb56-194"><a href="#cb56-194" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mv_garch_model)</span>
+<span id="cb56-195"><a href="#cb56-195" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> mv_garch_model.plot()</span>
+<span id="cb56-196"><a href="#cb56-196" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb56-197"><a href="#cb56-197" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb56-198"><a href="#cb56-198" aria-hidden="true" tabindex="-1"></a>:::</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

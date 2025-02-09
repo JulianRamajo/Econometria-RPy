@@ -1,5 +1,5 @@
 ---
-editor: visual
+title: "Aplicación 2.5: Variaciones del modelo básico"
 engine: knitr
 excerpt: ""
 draft: false
@@ -16,9 +16,7 @@ format:
 ```
 
 ::: justify
-# Aplicación 2.5: Variaciones del modelo lineal básico {.unnumbered}
-
-## Forma funcional polinómica: Curva de costes en el sector textil {.unnumbered}
+# Forma funcional polinómica: Curva de costes en el sector textil {.unnumbered}
 
 En esta aplicación trabajaremos con datos de series temporales que consisten en 28 observaciones mensuales sobre los costes totales ($COST$) y la cantidad producida ($Q$) de una empresa del sector textil.
 
@@ -29,7 +27,8 @@ $$COST_{t} = \beta_1 + \beta_2  Q_{t} +  \beta_3  Q_{t}^2 + e_{t}$$
 es decir, se supondrá que los costes totales son una función polinómica (cuadrática) de la cantidad producida.
 :::
 
-### Código R {.unnumbered}
+::: {.panel-tabset group="language"}
+# Código R {.unnumbered}
 
 ```{r}
 #| include: true
@@ -58,7 +57,7 @@ ggplot(data = COST_TEXT, aes(x = Q, y = COST)) +
   theme_minimal()
 ```
 
-### Código Python {.unnumbered}
+# Código Python {.unnumbered}
 
 ```{python}
 #| include: true
@@ -90,9 +89,10 @@ plt.xlabel('Cantidad producida')
 plt.ylabel('Coste total')
 plt.show()
 ```
+:::
 
 ::: justify
-## Términos de interacción: Efectos diferenciados de la publicidad sobre las ventas {.unnumbered}
+# Términos de interacción: Efectos diferenciados de la publicidad sobre las ventas {.unnumbered}
 
 Supongamos que somos consultores contratados por un cliente para asesorarle sobre cómo mejorar las ventas de un determinado producto. No es posible para el empresario incrementar las ventas del producto de una forma directa (vía mejoras de la calidad o reducciones en el precio, por ejemplo), sino sólo de forma indirecta a través de [campañas publicitarias](https://es.wikipedia.org/wiki/Publicidad). La idea es construir un modelo que pueda usarse para predecir las ventas en función de la inversión realizada en publicidad.
 
@@ -109,7 +109,8 @@ Si se contempla la posibilidad de que existan *efectos sinergia*, es decir, que 
 $$VENTAS_{i} = \beta_1 + \beta_2  TV_{i} +  \beta_3  RADIO_{i} +  \beta_4  (TV_i*RADIO_i)  + e_{i}$$
 :::
 
-### Código R {.unnumbered}
+::: {.panel-tabset group="language"}
+# Código R {.unnumbered}
 
 ```{r}
 #| include: true
@@ -154,7 +155,7 @@ plot_ly(data = PUB_VENTAS) %>%
                         zaxis = list(title = 'VENTAS'), aspectmode='cube'))
 ```
 
-### Código Python {.unnumbered}
+# Código Python {.unnumbered}
 
 ```{python}
 #| include: true
@@ -175,9 +176,10 @@ print(model1.fit().summary())
 model2 = smf.ols('VENTAS ~ TV * RADIO', data=PUB_VENTAS)
 print(model2.fit().summary())
 ```
+:::
 
 ::: justify
-## Variables cualitativas: Brecha salarial entre hombres y mujeres en Estados Unidos {.unnumbered}
+# Variables cualitativas: Brecha salarial entre hombres y mujeres en Estados Unidos {.unnumbered}
 
 Desde un punto de vista económico, el objetivo de esta aplicación es cuantificar el alcance de la discriminación salarial de las mujeres en el mercado laboral americano. Así, en primer lugar compararemos los salarios de hombres y mujeres que comparten similitudes en los dos factores más relevantes para la determinación del salario, que son la edad o el nivel de educación, y luego extenderemos la especificación básica con diferentes "variables de control" para tener una aproximación más realista del concepto *ceteris paribus* (para poder aproximarse a la verdadera relación causal hay que tratar de condicionar sobre "todas" las variables relevantes para la determinación del salario).
 
@@ -192,7 +194,8 @@ donde $W$ representa el salario por hora trabajada, $AGE$ es la edad y $ED$ el n
 Desde un punto de vista metodológico, en este ejemplo se introduce el concepto de *variable ficticia* y su uso en econometría, mostrando su potencial para modelizar situaciones donde algunos de los regresores son de tipo cualitativo. Asimismo, se mostrará cómo debe cambiarse la especificación base en función de las características específicas de los datos con los que se trabaje.
 :::
 
-### Código R {.unnumbered}
+::: {.panel-tabset group="language"}
+# Código R {.unnumbered}
 
 ```{r}
 #| include: true
@@ -307,7 +310,7 @@ reg5 <- lm(log(w) ~ female
 summary(reg5)
 ```
 
-### Código Python {.unnumbered}
+# Código Python {.unnumbered}
 
 ```{python}
 #| include: true
@@ -431,16 +434,18 @@ stargazer.add_line("Características demográficas", ["", "Yes"])
 stargazer.add_line("Características laborales", ["", "Yes"])
 stargazer
 ```
+:::
 
 ::: justify
-## Variables de alta frecuencia y con estacionalidad: Demanda de electricidad en el estado de Victoria (Australia) {.unnumbered}
+# Variables de alta frecuencia y con estacionalidad: Demanda de electricidad en el estado australiano de Victoria {.unnumbered}
 
 En esta aplicación se estimará una función de demanda de electricidad para el estado de Victoria, en Australia. Se explicará el consumo de electricidad en función de la temperatura y de otras variables de control, usando datos semi-horarios (cada media hora) para el período 2012-2014.
 
 Desde el punto de vista técnico se verán los problemas a los que se enfrenta el económetra al tratar con datos de frecuencia alta que además poseen distintos tipos de estacionalidad de forma simultánea.
 :::
 
-### Código R {.unnumbered}
+::: {.panel-tabset group="language"}
+# Código R {.unnumbered}
 
 ```{r}
 #| include: true
@@ -511,7 +516,7 @@ dem_elec <- lm(log(Demanda) ~ Temperatura + I(Temperatura^2) +
 summary(dem_elec)
 ```
 
-### Código Python {.unnumbered}
+# Código Python {.unnumbered}
 
 ```{python}
 #| include: true
@@ -537,3 +542,4 @@ plt.show()
 dem_elec = smf.ols('np.log(Demanda) ~ Temperatura + np.power(Temperatura,2) + Dia_sem + Dia_lab + Frio + Calor', data=dem_elec_vict).fit()
 print(dem_elec.summary())
 ```
+:::

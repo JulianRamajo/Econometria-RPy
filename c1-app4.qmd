@@ -1,5 +1,5 @@
 ---
-editor: visual
+title: "Aplicación 1.4: Datos georreferenciados"
 engine: knitr
 excerpt: ""
 draft: false
@@ -16,16 +16,15 @@ format:
 ```
 
 ::: justify
-# Aplicación 1.4: Datos georreferenciados {.unnumbered}
-
-## Datos espacio-temporales: Emisiones de CO2 al nivel mundial {.unnumbered}
+# Datos espacio-temporales: Emisiones de CO2 al nivel mundial {.unnumbered}
 
 En esta aplicación se analizarán los datos de la publicación de 2022 del [*Global Carbon Project*](https://www.globalcarbonproject.org/) sobre emisiones de gases de efecto invernadero al nivel mundial y nacional, con el objetivo de encontrar los países más contaminantes, tanto en términos de emisiones de CO2 totales como en forma per capita. Pueden encontrarse los datos e información sobre los mismos en la siguiente dirección: <https://zenodo.org/record/7215364>.
 
 Igual que en la aplicación anterior, previamente al análisis estadístico deseado se usarán varias técnicas de *data wrangling* para "preparar" los datos para dicho estudio antes de su representación gráfica.
 :::
 
-### Código R {.unnumbered}
+::: {.panel-tabset group="language"}
+# Código R {.unnumbered}
 
 ```{r}
 #| include: true
@@ -130,7 +129,7 @@ leaflet(datos_geo) %>% setView(0, 0, zoom = 2) %>% addTiles() %>%
                   bringToFront = TRUE))
 ```
 
-### Código Python {.unnumbered}
+# Código Python {.unnumbered}
 
 ```{python}
 #| include: true
@@ -248,9 +247,10 @@ folium.Choropleth(
 folium.LayerControl().add_to(mapa_emisiones)
 mapa_emisiones
 ```
+:::
 
 ::: justify
-## Datos espaciales: Desarrollo humano al nivel mundial {.unnumbered}
+# Datos espaciales: Desarrollo humano al nivel mundial {.unnumbered}
 
 En esta aplicación se analizarán los datos de la publicación del [*Global Data Lab*](https://globaldatalab.org/) sobre las variaciones habidas en el desarrollo humano, la salud, la educación y la renta dentro de más de 160 países ('*within*') y entre ellos ('*between*') desde 1990 hasta 2021.
 
@@ -269,7 +269,8 @@ Respecto a las librerías especializadas en gráficas dinámicas (`plotly`) y en
 De nuevo se usarán varias técnicas de *data wrangling* para "preparar" los datos antes del análisis gráfico y estadístico.
 :::
 
-### Código R {.unnumbered}
+::: {.panel-tabset group="language"}
+# Código R {.unnumbered}
 
 ```{r}
 #| include: true
@@ -284,8 +285,6 @@ library(sf)
 library(geojsonsf)
 # Lectura de datos
 df <- read_csv("data/GDLdbase.csv")
-str(df)
-print(df)
 map <- geojson_sf("data/GDLmap.geojson")
 class(map)
 str(map)
@@ -293,8 +292,6 @@ print(map)
 # Preparación de datos
 # Eliminación de observaciones nacionales (variable level -> National)
 df1 <- filter(df, level != 'National')
-df1
-colnames(df1)
 # Selección del año de análisis, 2021
 df1$year <- as.character(df1$year)
 df2021 <- filter(df1, year == '2021')
@@ -302,10 +299,6 @@ print(df2021)
 unique(df2021$continent)
 unique(df2021$country)
 # Análisis exploratorio básico (EDA)
-# Estadísticos para todo el período
-df1 %>% 
-  select(-c(...1,iso_code, year, country, GDLCODE, level, region,continent)) %>%
-  summary()
 # Estadísticos para el año 2021
 df2021 %>%
   select(-c(...1,iso_code, year, country, GDLCODE, level, region,continent)) %>%
@@ -315,25 +308,25 @@ df2021 %>%
   select(-c(...1,iso_code, year, GDLCODE, level, region,continent)) %>%
   filter(country == 'Spain') %>% 
   summary()
-# Diferencias regionales durante el período (box plots)
+# Diferencias regionales durante el período 1990-2021 (box plots)
 # Comparación entre continentes
 df1 %>%
   plot_ly(x = ~shdi, y = ~continent, frame = ~year, color = ~continent, 
           type = 'box') %>%
     layout(xaxis = list(title = "SHDI"),
            yaxis = list(title = "Continente"))
-# Comparación entre varios países
+# Comparación entre varios países 1990-2021
 subset(df1, country %in% c("Spain", "Portugal", "France")) %>%
   plot_ly(x = ~shdi, y = ~country, frame = ~year, color = ~country, 
           type = 'box') %>%
     layout(xaxis = list(title = "SHDI"),
            yaxis = list(title = "País"))
-# Evolución regional dentro de un país (series temporales)
+# Evolución regional dentro de un país 1990-2021 (series temporales)
 plot_ly(df1[df1$country == "Spain",], x = ~year, y = ~shdi, 
         color = ~region, type = "scatter", mode = "lines") %>%
     layout(xaxis = list(title = "Año"),
            yaxis = list(title = "SHDI", type = "log"))
-# Correlación desarrollo humano-renta per cápita (scatter plots)
+# Correlación desarrollo humano-renta per cápita 1990-2021 (scatter plots)
 plot_ly(df1, 
         y = ~shdi, 
         x = ~lgnic,
@@ -350,7 +343,6 @@ df2021_2 <- df2021 %>%
   rename(GDLcode = GDLCODE)
 gdf2021 <- inner_join(map, df2021_2, by = "GDLcode")
 colnames(gdf2021)
-print(gdf2021)
 ggplot(gdf2021) +
   geom_sf(aes(fill=shdi)) +
   theme_bw() +
@@ -369,7 +361,7 @@ ggplot(gdf2021Spain_2 <- gdf2021Spain[-c(14,17),]) + geom_sf(aes(fill=shdi)) +
   scale_fill_viridis(option="OrRd")
 ```
 
-### Código Python {.unnumbered}
+# Código Python {.unnumbered}
 
 ```{python}
 #| include: true
@@ -397,16 +389,12 @@ import warnings
 warnings.filterwarnings('ignore')
 # Lectura de datos
 df = pd.read_csv('data/GDLdbase.csv', index_col=0)
-df.info()
-df
 map = gpd.read_file("data/GDLmap.geojson")
 map.info()
 map
 # Preparación de datos
 # Eliminación de observaciones nacionales (variable level -> National)
 df1 = df[df.level != 'National']
-df1
-df1.columns
 # Selección del año de análisis, 2021
 df1["year"]= df1["year"].astype(str)
 df2021 = df1[df1['year'] == '2021']
@@ -414,13 +402,11 @@ df2021
 df2021['continent'].unique()
 df2021['country'].unique()
 # Análisis exploratorio básico (EDA)
-# Estadísticos para todo el período
-df1.loc[:, (df1.columns != 'iso_code') & (df1.columns != 'year') & (df1.columns != 'country') & (df1.columns != 'GDLCODE') & (df1.columns != 'level') & (df1.columns != 'region') & (df1.columns != 'continent')].describe().round(3)
 # Estadísticos para el año 2021
 df2021.describe().round(3)
 # Estadísticos para España en el año 2021
 df2021.query("country == 'Spain'").describe().round(3)
-# Diferencias regionales durante el período (box plots)
+# Diferencias regionales durante el período 1990-2021 (box plots)
 # Comparación entre continentes
 px.box(df1,
          x = 'shdi',
@@ -445,7 +431,7 @@ px.box(df1[df1['country'].isin(['Spain', 'Portugal', 'France'])],
          labels=dict(country = "País",
                      shdi ="SHDI")
          )
-# Evolución regional dentro de un país (series temporales)
+# Evolución regional dentro de un país 1990-2021 (series temporales)
 fig = px.line(
     df1[df1['country'].isin(['Spain'])],
     x="year",
@@ -462,7 +448,7 @@ fig = px.line(
     height= 500
     )
 fig.update_layout(showlegend=False)
-# Correlación desarrollo humano-renta per cápita (scatter plots)
+# Correlación desarrollo humano-renta per cápita 1990-2021 (scatter plots)
 px.scatter(df1,
             y = "shdi", 
             x = "lgnic",
@@ -495,7 +481,6 @@ plt.tight_layout()
 plt.show()
 # El SHDI español en 2021
 gdf2021Spain = gdf2021.query("country_x =='Spain'").reset_index(drop=True)
-gdf2021Spain
 fig, ax = plt.subplots(1,1)
 gdf2021Spain.plot(column="shdi",
            legend=True,
@@ -505,7 +490,6 @@ plt.tight_layout()
 plt.show()
 # Gráfica sólo con las regiones peninsulares
 gdf2021Spain_2 = gdf2021Spain.drop(labels=[13,16])
-gdf2021Spain_2
 fig, ax = plt.subplots(1,1)
 gdf2021Spain_2.plot(column="shdi",
            legend=True,
@@ -514,3 +498,4 @@ plt.title('Distribución del SHDI peninsular español en 2021')
 plt.tight_layout()
 plt.show()
 ```
+:::

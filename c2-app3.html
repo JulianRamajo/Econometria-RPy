@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>c2-app3</title>
+<title>Aplicación 2.3: Inferencia estadística</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -3222,9 +3222,25 @@ window.Quarto = {
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
 
-<main class="content" id="quarto-document-content"><div class="quarto-title-block"><div class="quarto-title-tools-only"><h1></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Aplicación 2.3: Inferencia estadística</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
 
 
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
 
 
 <div class="cell">
@@ -3232,18 +3248,17 @@ window.Quarto = {
 .justify { text-align: justify !important }
 </style>
 </div>
-<section id="aplicación-2.3-inferencia-estadística-en-el-mrl" class="level1 unnumbered justify">
-<h1 class="unnumbered">Aplicación 2.3: Inferencia estadística en el MRL</h1>
-<section id="modelo-capm-para-las-acciones-del-banco-santander" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="modelo-capm-para-las-acciones-del-banco-santander">Modelo CAPM para las acciones del Banco Santander</h2>
+<section id="modelo-capm-para-las-acciones-del-banco-santander" class="level1 unnumbered justify">
+<h1 class="unnumbered">Modelo CAPM para las acciones del Banco Santander</h1>
 <p>En esta aplicación se estimará una versión simple del <a href="https://es.wikipedia.org/wiki/Modelo_de_valoraci%C3%B3n_de_activos_financieros">modelo CAPM</a> para las acciones del Banco Santander:</p>
 <p><span class="math display">\[erSAN_{t} = \beta_{1} + \beta_{2}\, erIBEX_{t} + e_{t}\]</span></p>
 <p>donde <span class="math inline">\(erSAN\)</span> representa el <em>exceso de rendimiento</em> de las acciones del Banco Santander, definido como la diferencia entre la rentabilidad de las acciones del banco y la rentabilidad de un activo libre de riesgo, en nuestro caso las letras del tesoro, y <span class="math inline">\(erIBEX\)</span> es el exceso de rendimiento del mercado, representado por el índice IBEX35 de la bolsa española.</p>
 <p>Como ejercicio, se pueden repetir todos los cálculos de la aplicación para analizar las empresas Telefónica e Inditex, cuyos datos están contenidos en el fichero usado en la aplicación.</p>
 </section>
-</section>
-<section id="código-r" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="código-r">Código R</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href>Código R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href>Código Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
 <details open class="code-fold">
 <summary>Code</summary>
@@ -3878,9 +3893,8 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a><span class="co"># https://rstudio.github.io/r-manuals/r-intro/Probability-distributions.html</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-</section>
-<section id="código-python" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="código-python">Código Python</h2>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
 <details open class="code-fold">
 <summary>Code</summary>
@@ -3977,8 +3991,8 @@ date
 Dep. Variable:                 er_SAN   R-squared:                       0.095
 Model:                            OLS   Adj. R-squared:                  0.090
 Method:                 Least Squares   F-statistic:                     20.77
-Date:                Tue, 04 Feb 2025   Prob (F-statistic):           9.03e-06
-Time:                        17:40:02   Log-Likelihood:                -725.31
+Date:                Sun, 09 Feb 2025   Prob (F-statistic):           9.03e-06
+Time:                        13:11:35   Log-Likelihood:                -725.31
 No. Observations:                 200   AIC:                             1455.
 Df Residuals:                     198   BIC:                             1461.
 Df Model:                           1                                         
@@ -4206,9 +4220,11 @@ Residual  198.0  16540.021306    83.535461        NaN       NaN</code></pre>
 </div>
 </div>
 </div>
+</div>
+</div>
+</div>
 <!-- -->
 
-</section>
 
 </main>
 <!-- /main column -->
@@ -4681,7 +4697,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class>
 <div class="sourceCode" id="cb135" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb135-2"><a href="#cb135-2" aria-hidden="true" tabindex="-1"></a><span class="an">editor:</span><span class="co"> visual</span></span>
+<span id="cb135-2"><a href="#cb135-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;Aplicación 2.3: Inferencia estadística&quot;</span></span>
 <span id="cb135-3"><a href="#cb135-3" aria-hidden="true" tabindex="-1"></a><span class="an">engine:</span><span class="co"> knitr</span></span>
 <span id="cb135-4"><a href="#cb135-4" aria-hidden="true" tabindex="-1"></a><span class="an">excerpt:</span><span class="co"> &quot;&quot;</span></span>
 <span id="cb135-5"><a href="#cb135-5" aria-hidden="true" tabindex="-1"></a><span class="an">draft:</span><span class="co"> false</span></span>
@@ -4698,335 +4714,335 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb135-16"><a href="#cb135-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb135-17"><a href="#cb135-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb135-18"><a href="#cb135-18" aria-hidden="true" tabindex="-1"></a>::: justify</span>
-<span id="cb135-19"><a href="#cb135-19" aria-hidden="true" tabindex="-1"></a><span class="fu"># Aplicación 2.3: Inferencia estadística en el MRL {.unnumbered}</span></span>
+<span id="cb135-19"><a href="#cb135-19" aria-hidden="true" tabindex="-1"></a><span class="fu"># Modelo CAPM para las acciones del Banco Santander {.unnumbered}</span></span>
 <span id="cb135-20"><a href="#cb135-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb135-21"><a href="#cb135-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## Modelo CAPM para las acciones del Banco Santander {.unnumbered}</span></span>
+<span id="cb135-21"><a href="#cb135-21" aria-hidden="true" tabindex="-1"></a>En esta aplicación se estimará una versión simple del <span class="co">[</span><span class="ot">modelo CAPM</span><span class="co">](https://es.wikipedia.org/wiki/Modelo_de_valoraci%C3%B3n_de_activos_financieros)</span> para las acciones del Banco Santander:</span>
 <span id="cb135-22"><a href="#cb135-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb135-23"><a href="#cb135-23" aria-hidden="true" tabindex="-1"></a>En esta aplicación se estimará una versión simple del <span class="co">[</span><span class="ot">modelo CAPM</span><span class="co">](https://es.wikipedia.org/wiki/Modelo_de_valoraci%C3%B3n_de_activos_financieros)</span> para las acciones del Banco Santander:</span>
+<span id="cb135-23"><a href="#cb135-23" aria-hidden="true" tabindex="-1"></a>$$erSAN_{t} = \beta_{1} + \beta_{2}\, erIBEX_{t} + e_{t}$$</span>
 <span id="cb135-24"><a href="#cb135-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb135-25"><a href="#cb135-25" aria-hidden="true" tabindex="-1"></a>$$erSAN_{t} = \beta_{1} + \beta_{2}\, erIBEX_{t} + e_{t}$$</span>
+<span id="cb135-25"><a href="#cb135-25" aria-hidden="true" tabindex="-1"></a>donde $erSAN$ representa el *exceso de rendimiento* de las acciones del Banco Santander, definido como la diferencia entre la rentabilidad de las acciones del banco y la rentabilidad de un activo libre de riesgo, en nuestro caso las letras del tesoro, y $erIBEX$ es el exceso de rendimiento del mercado, representado por el índice IBEX35 de la bolsa española.</span>
 <span id="cb135-26"><a href="#cb135-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb135-27"><a href="#cb135-27" aria-hidden="true" tabindex="-1"></a>donde $erSAN$ representa el *exceso de rendimiento* de las acciones del Banco Santander, definido como la diferencia entre la rentabilidad de las acciones del banco y la rentabilidad de un activo libre de riesgo, en nuestro caso las letras del tesoro, y $erIBEX$ es el exceso de rendimiento del mercado, representado por el índice IBEX35 de la bolsa española.</span>
-<span id="cb135-28"><a href="#cb135-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb135-29"><a href="#cb135-29" aria-hidden="true" tabindex="-1"></a>Como ejercicio, se pueden repetir todos los cálculos de la aplicación para analizar las empresas Telefónica e Inditex, cuyos datos están contenidos en el fichero usado en la aplicación.</span>
-<span id="cb135-30"><a href="#cb135-30" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb135-31"><a href="#cb135-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb135-32"><a href="#cb135-32" aria-hidden="true" tabindex="-1"></a><span class="fu">## Código R {.unnumbered}</span></span>
-<span id="cb135-33"><a href="#cb135-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb135-36"><a href="#cb135-36" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb135-37"><a href="#cb135-37" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: true</span></span>
-<span id="cb135-38"><a href="#cb135-38" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb135-39"><a href="#cb135-39" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb135-40"><a href="#cb135-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb135-41"><a href="#cb135-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de librerías</span></span>
-<span id="cb135-42"><a href="#cb135-42" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb135-43"><a href="#cb135-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de datos</span></span>
-<span id="cb135-44"><a href="#cb135-44" aria-hidden="true" tabindex="-1"></a>CAPM_ESP <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;data/CAPM_ESP.csv&quot;</span>, <span class="at">delim =</span> <span class="st">&quot;;&quot;</span>)</span>
-<span id="cb135-45"><a href="#cb135-45" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(CAPM_ESP)</span>
-<span id="cb135-46"><a href="#cb135-46" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(CAPM_ESP)</span>
-<span id="cb135-47"><a href="#cb135-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Transformación de variables</span></span>
-<span id="cb135-48"><a href="#cb135-48" aria-hidden="true" tabindex="-1"></a>CAPM_ESP<span class="sc">$</span>r_SAN <span class="ot">=</span> <span class="fu">c</span>(<span class="cn">NA</span>,<span class="dv">100</span><span class="sc">*</span><span class="fu">diff</span>(<span class="fu">log</span>(CAPM_ESP<span class="sc">$</span>P_SANTANDER)))</span>
-<span id="cb135-49"><a href="#cb135-49" aria-hidden="true" tabindex="-1"></a>CAPM_ESP<span class="sc">$</span>r_IBEX <span class="ot">=</span> <span class="fu">c</span>(<span class="cn">NA</span>,<span class="dv">100</span><span class="sc">*</span><span class="fu">diff</span>(<span class="fu">log</span>(CAPM_ESP<span class="sc">$</span>P_IBEX35)))</span>
-<span id="cb135-50"><a href="#cb135-50" aria-hidden="true" tabindex="-1"></a>CAPM_ESP<span class="sc">$</span>r_LT1Y <span class="ot">=</span> CAPM_ESP<span class="sc">$</span>R_LT1Y<span class="sc">/</span><span class="dv">12</span></span>
-<span id="cb135-51"><a href="#cb135-51" aria-hidden="true" tabindex="-1"></a>CAPM_ESP<span class="sc">$</span>er_SAN <span class="ot">=</span> CAPM_ESP<span class="sc">$</span>r_SAN <span class="sc">-</span> CAPM_ESP<span class="sc">$</span>r_LT1Y</span>
-<span id="cb135-52"><a href="#cb135-52" aria-hidden="true" tabindex="-1"></a>CAPM_ESP<span class="sc">$</span>er_IBEX <span class="ot">=</span> CAPM_ESP<span class="sc">$</span>r_IBEX <span class="sc">-</span> CAPM_ESP<span class="sc">$</span>r_LT1Y</span>
-<span id="cb135-53"><a href="#cb135-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Formato de series temporales</span></span>
-<span id="cb135-54"><a href="#cb135-54" aria-hidden="true" tabindex="-1"></a>ts_CAPM_ESP <span class="ot">&lt;-</span> <span class="fu">ts</span>(CAPM_ESP, </span>
-<span id="cb135-55"><a href="#cb135-55" aria-hidden="true" tabindex="-1"></a>                  <span class="at">start =</span> <span class="fu">c</span>(<span class="dv">2001</span>,<span class="dv">5</span>), </span>
-<span id="cb135-56"><a href="#cb135-56" aria-hidden="true" tabindex="-1"></a>                  <span class="at">end =</span> <span class="fu">c</span>(<span class="dv">2018</span>,<span class="dv">1</span>), </span>
-<span id="cb135-57"><a href="#cb135-57" aria-hidden="true" tabindex="-1"></a>                  <span class="at">frequency =</span> <span class="dv">12</span>)</span>
-<span id="cb135-58"><a href="#cb135-58" aria-hidden="true" tabindex="-1"></a><span class="co"># Algunas gráficas de las variables básicas del modelo</span></span>
-<span id="cb135-59"><a href="#cb135-59" aria-hidden="true" tabindex="-1"></a><span class="fu">ts.plot</span>(ts_CAPM_ESP[,<span class="st">&quot;P_IBEX35&quot;</span>])</span>
-<span id="cb135-60"><a href="#cb135-60" aria-hidden="true" tabindex="-1"></a><span class="fu">ts.plot</span>(ts_CAPM_ESP[,<span class="st">&quot;P_SANTANDER&quot;</span>])</span>
-<span id="cb135-61"><a href="#cb135-61" aria-hidden="true" tabindex="-1"></a><span class="fu">ts.plot</span>(ts_CAPM_ESP[,<span class="st">&quot;er_SAN&quot;</span>],ts_CAPM_ESP[,<span class="st">&quot;er_IBEX&quot;</span>])</span>
-<span id="cb135-62"><a href="#cb135-62" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo CAPM para las acciones del Banco Santander </span></span>
-<span id="cb135-63"><a href="#cb135-63" aria-hidden="true" tabindex="-1"></a>CAPM_SANTANDER  <span class="ot">&lt;-</span>  <span class="fu">lm</span>(er_SAN <span class="sc">~</span> er_IBEX, <span class="at">data =</span> ts_CAPM_ESP)</span>
-<span id="cb135-64"><a href="#cb135-64" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(CAPM_SANTANDER)</span>
-<span id="cb135-65"><a href="#cb135-65" aria-hidden="true" tabindex="-1"></a><span class="co"># Intervalos de confianza para los parámetros estructurales del modelo</span></span>
-<span id="cb135-66"><a href="#cb135-66" aria-hidden="true" tabindex="-1"></a><span class="co"># Cálculo de forma &#39;manual&#39;</span></span>
-<span id="cb135-67"><a href="#cb135-67" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
-<span id="cb135-68"><a href="#cb135-68" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">df.residual</span>(CAPM_SANTANDER) <span class="co"># grados de libertad</span></span>
-<span id="cb135-69"><a href="#cb135-69" aria-hidden="true" tabindex="-1"></a>t_c <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>, df)</span>
-<span id="cb135-70"><a href="#cb135-70" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="fu">coef</span>(CAPM_SANTANDER)[[<span class="dv">1</span>]] <span class="co"># estimación del parámetro beta1</span></span>
-<span id="cb135-71"><a href="#cb135-71" aria-hidden="true" tabindex="-1"></a>b1</span>
-<span id="cb135-72"><a href="#cb135-72" aria-hidden="true" tabindex="-1"></a>seb1 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">vcov</span>(CAPM_SANTANDER)[<span class="dv">1</span>,<span class="dv">1</span>]) <span class="co"># est. desviación típica beta1</span></span>
-<span id="cb135-73"><a href="#cb135-73" aria-hidden="true" tabindex="-1"></a>seb1</span>
-<span id="cb135-74"><a href="#cb135-74" aria-hidden="true" tabindex="-1"></a>inf_b1 <span class="ot">&lt;-</span> b1<span class="sc">-</span>t_c<span class="sc">*</span>seb1 <span class="co"># cota inferior</span></span>
-<span id="cb135-75"><a href="#cb135-75" aria-hidden="true" tabindex="-1"></a>sup_b1 <span class="ot">&lt;-</span> b1<span class="sc">+</span>t_c<span class="sc">*</span>seb1 <span class="co"># cota superior</span></span>
-<span id="cb135-76"><a href="#cb135-76" aria-hidden="true" tabindex="-1"></a>inf_b1 ; sup_b1</span>
-<span id="cb135-77"><a href="#cb135-77" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> <span class="fu">coef</span>(CAPM_SANTANDER)[[<span class="dv">2</span>]] <span class="co"># estimación del parámetro beta2</span></span>
-<span id="cb135-78"><a href="#cb135-78" aria-hidden="true" tabindex="-1"></a>b2</span>
-<span id="cb135-79"><a href="#cb135-79" aria-hidden="true" tabindex="-1"></a>seb2 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">vcov</span>(CAPM_SANTANDER)[<span class="dv">2</span>,<span class="dv">2</span>]) <span class="co"># est. desviación típica beta2</span></span>
-<span id="cb135-80"><a href="#cb135-80" aria-hidden="true" tabindex="-1"></a>seb2</span>
-<span id="cb135-81"><a href="#cb135-81" aria-hidden="true" tabindex="-1"></a>inf_b2 <span class="ot">&lt;-</span> b2<span class="sc">-</span>t_c<span class="sc">*</span>seb2 <span class="co"># cota inferior</span></span>
-<span id="cb135-82"><a href="#cb135-82" aria-hidden="true" tabindex="-1"></a>sup_b2 <span class="ot">&lt;-</span> b2<span class="sc">+</span>t_c<span class="sc">*</span>seb2 <span class="co"># cota superior</span></span>
-<span id="cb135-83"><a href="#cb135-83" aria-hidden="true" tabindex="-1"></a>inf_b2 ; sup_b2</span>
-<span id="cb135-84"><a href="#cb135-84" aria-hidden="true" tabindex="-1"></a><span class="co"># Cálculo automático</span></span>
-<span id="cb135-85"><a href="#cb135-85" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(CAPM_SANTANDER)</span>
-<span id="cb135-86"><a href="#cb135-86" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajuste del modelo (R^2) y ANOVA</span></span>
-<span id="cb135-87"><a href="#cb135-87" aria-hidden="true" tabindex="-1"></a>s_CAPM_SANTANDER <span class="ot">&lt;-</span> <span class="fu">summary</span>(CAPM_SANTANDER)</span>
-<span id="cb135-88"><a href="#cb135-88" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(s_CAPM_SANTANDER)</span>
-<span id="cb135-89"><a href="#cb135-89" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(s_CAPM_SANTANDER)</span>
-<span id="cb135-90"><a href="#cb135-90" aria-hidden="true" tabindex="-1"></a>R2 <span class="ot">&lt;-</span> s_CAPM_SANTANDER<span class="sc">$</span>r.squared</span>
-<span id="cb135-91"><a href="#cb135-91" aria-hidden="true" tabindex="-1"></a>R2</span>
-<span id="cb135-92"><a href="#cb135-92" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(CAPM_SANTANDER)</span>
-<span id="cb135-93"><a href="#cb135-93" aria-hidden="true" tabindex="-1"></a><span class="co"># Número de obsevaciones</span></span>
-<span id="cb135-94"><a href="#cb135-94" aria-hidden="true" tabindex="-1"></a>T <span class="ot">&lt;-</span> <span class="fu">nobs</span>(CAPM_SANTANDER)</span>
-<span id="cb135-95"><a href="#cb135-95" aria-hidden="true" tabindex="-1"></a>T</span>
-<span id="cb135-96"><a href="#cb135-96" aria-hidden="true" tabindex="-1"></a><span class="co"># Número de parámetros</span></span>
-<span id="cb135-97"><a href="#cb135-97" aria-hidden="true" tabindex="-1"></a>K <span class="ot">&lt;-</span> T<span class="sc">-</span>df</span>
-<span id="cb135-98"><a href="#cb135-98" aria-hidden="true" tabindex="-1"></a>K</span>
-<span id="cb135-99"><a href="#cb135-99" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadístico F de significación global</span></span>
-<span id="cb135-100"><a href="#cb135-100" aria-hidden="true" tabindex="-1"></a>F_0 <span class="ot">&lt;-</span> (R2<span class="sc">/</span>(K<span class="dv">-1</span>))<span class="sc">/</span>((<span class="dv">1</span><span class="sc">-</span>R2)<span class="sc">/</span>(T<span class="sc">-</span>K))</span>
-<span id="cb135-101"><a href="#cb135-101" aria-hidden="true" tabindex="-1"></a>F_0</span>
-<span id="cb135-102"><a href="#cb135-102" aria-hidden="true" tabindex="-1"></a><span class="co"># Residuos del modelo</span></span>
-<span id="cb135-103"><a href="#cb135-103" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> s_CAPM_SANTANDER<span class="sc">$</span>residuals</span>
-<span id="cb135-104"><a href="#cb135-104" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">ts</span>(res, <span class="at">start=</span><span class="fu">c</span>(<span class="dv">2001</span>,<span class="dv">5</span>), <span class="at">end =</span> <span class="fu">c</span>(<span class="dv">2018</span>,<span class="dv">1</span>), <span class="at">frequency =</span> <span class="dv">12</span>)</span>
-<span id="cb135-105"><a href="#cb135-105" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res)</span>
-<span id="cb135-106"><a href="#cb135-106" aria-hidden="true" tabindex="-1"></a><span class="co"># Histograma de los residuos y comparación con la distribución normal</span></span>
-<span id="cb135-107"><a href="#cb135-107" aria-hidden="true" tabindex="-1"></a>ehat <span class="ot">&lt;-</span> <span class="fu">resid</span>(CAPM_SANTANDER)</span>
-<span id="cb135-108"><a href="#cb135-108" aria-hidden="true" tabindex="-1"></a>ebar <span class="ot">&lt;-</span> <span class="fu">mean</span>(ehat)</span>
-<span id="cb135-109"><a href="#cb135-109" aria-hidden="true" tabindex="-1"></a>sdehat <span class="ot">&lt;-</span> <span class="fu">sd</span>(ehat)</span>
-<span id="cb135-110"><a href="#cb135-110" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ehat, <span class="at">col=</span><span class="st">&quot;grey&quot;</span>, <span class="at">breaks =</span> <span class="dv">20</span>, <span class="at">freq=</span><span class="cn">FALSE</span>, <span class="at">main=</span><span class="st">&quot;&quot;</span>, </span>
-<span id="cb135-111"><a href="#cb135-111" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;density&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;ehat&quot;</span>)</span>
-<span id="cb135-112"><a href="#cb135-112" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, ebar, sdehat), <span class="at">col=</span><span class="dv">2</span>, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">ylab=</span><span class="st">&quot;density&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;ehat&quot;</span>)</span>
-<span id="cb135-113"><a href="#cb135-113" aria-hidden="true" tabindex="-1"></a><span class="co"># Contrastes de hipótesis bilaterales</span></span>
-<span id="cb135-114"><a href="#cb135-114" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb135-115"><a href="#cb135-115" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;Valor alfa&quot; del activo: beta1=0 versus beta1≠0</span></span>
-<span id="cb135-116"><a href="#cb135-116" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadístico t</span></span>
-<span id="cb135-117"><a href="#cb135-117" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span> <span class="co"># nivel de significación</span></span>
-<span id="cb135-118"><a href="#cb135-118" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="fu">coef</span>(CAPM_SANTANDER)[[<span class="dv">1</span>]] <span class="co"># estimación del parámetro beta1</span></span>
-<span id="cb135-119"><a href="#cb135-119" aria-hidden="true" tabindex="-1"></a>b1</span>
-<span id="cb135-120"><a href="#cb135-120" aria-hidden="true" tabindex="-1"></a>seb1 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">vcov</span>(CAPM_SANTANDER)[<span class="dv">1</span>,<span class="dv">1</span>]) <span class="co"># est. desviación típica beta1</span></span>
-<span id="cb135-121"><a href="#cb135-121" aria-hidden="true" tabindex="-1"></a>seb1</span>
-<span id="cb135-122"><a href="#cb135-122" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb135-123"><a href="#cb135-123" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">df.residual</span>(CAPM_SANTANDER) <span class="co"># grados de libertad</span></span>
-<span id="cb135-124"><a href="#cb135-124" aria-hidden="true" tabindex="-1"></a>t_0 <span class="ot">&lt;-</span> (b1<span class="sc">-</span>c)<span class="sc">/</span>seb1 <span class="co"># estadístico t</span></span>
-<span id="cb135-125"><a href="#cb135-125" aria-hidden="true" tabindex="-1"></a>t_0</span>
-<span id="cb135-126"><a href="#cb135-126" aria-hidden="true" tabindex="-1"></a><span class="co"># Método del valor crítico</span></span>
-<span id="cb135-127"><a href="#cb135-127" aria-hidden="true" tabindex="-1"></a>t_c <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>, df) <span class="co"># valor crítico</span></span>
-<span id="cb135-128"><a href="#cb135-128" aria-hidden="true" tabindex="-1"></a>t_c</span>
-<span id="cb135-129"><a href="#cb135-129" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de la función de densidad de la distribución t de Student, </span></span>
-<span id="cb135-130"><a href="#cb135-130" aria-hidden="true" tabindex="-1"></a><span class="co"># del valor crítico y del estadístico t_0</span></span>
-<span id="cb135-131"><a href="#cb135-131" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x, df), <span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">ylab=</span><span class="st">&quot; &quot;</span>, <span class="at">xlab=</span><span class="st">&quot;t&quot;</span>)</span>
-<span id="cb135-132"><a href="#cb135-132" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">c</span>(<span class="sc">-</span>t_c, t_c, t_0), <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>), <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>))</span>
-<span id="cb135-133"><a href="#cb135-133" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;-t_c&quot;</span>, <span class="st">&quot;t_c&quot;</span>, <span class="st">&quot;t_0&quot;</span>), </span>
-<span id="cb135-134"><a href="#cb135-134" aria-hidden="true" tabindex="-1"></a>       <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>), <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>))</span>
-<span id="cb135-135"><a href="#cb135-135" aria-hidden="true" tabindex="-1"></a><span class="co"># Método del P-valor</span></span>
-<span id="cb135-136"><a href="#cb135-136" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">pt</span>(<span class="fu">abs</span>(t_0), df))</span>
-<span id="cb135-137"><a href="#cb135-137" aria-hidden="true" tabindex="-1"></a>p</span>
-<span id="cb135-138"><a href="#cb135-138" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de la función de densidad de la distribución t y del estadístico t_0</span></span>
-<span id="cb135-139"><a href="#cb135-139" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x, df), <span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">ylab=</span><span class="st">&quot; &quot;</span>, <span class="at">xlab=</span><span class="st">&quot;t&quot;</span>)</span>
-<span id="cb135-140"><a href="#cb135-140" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">c</span>(t_0), <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>), <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">3</span>))</span>
-<span id="cb135-141"><a href="#cb135-141" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;t_0&quot;</span>), <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>), <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">3</span>))</span>
-<span id="cb135-142"><a href="#cb135-142" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadístico F</span></span>
-<span id="cb135-143"><a href="#cb135-143" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
-<span id="cb135-144"><a href="#cb135-144" aria-hidden="true" tabindex="-1"></a>H_0 <span class="ot">&lt;-</span> <span class="st">&quot;(Intercept) = 0&quot;</span></span>
-<span id="cb135-145"><a href="#cb135-145" aria-hidden="true" tabindex="-1"></a><span class="fu">linearHypothesis</span>(CAPM_SANTANDER, H_0, <span class="at">test=</span><span class="st">&quot;F&quot;</span>)</span>
-<span id="cb135-146"><a href="#cb135-146" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de la función de densidad de la distribución F de Fisher-Snedecor, </span></span>
-<span id="cb135-147"><a href="#cb135-147" aria-hidden="true" tabindex="-1"></a><span class="co"># del valor crítico y del estadístico F_0</span></span>
-<span id="cb135-148"><a href="#cb135-148" aria-hidden="true" tabindex="-1"></a>F_0 <span class="ot">&lt;-</span> <span class="fu">linearHypothesis</span>(CAPM_SANTANDER, H_0, <span class="at">test=</span><span class="st">&quot;F&quot;</span>)[<span class="dv">2</span>,<span class="dv">5</span>] <span class="co"># estadístico F</span></span>
-<span id="cb135-149"><a href="#cb135-149" aria-hidden="true" tabindex="-1"></a>F_0</span>
-<span id="cb135-150"><a href="#cb135-150" aria-hidden="true" tabindex="-1"></a>F_c <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="dv">1</span><span class="sc">-</span>alpha, <span class="dv">1</span>, df) <span class="co"># valor crítico</span></span>
-<span id="cb135-151"><a href="#cb135-151" aria-hidden="true" tabindex="-1"></a>F_c</span>
-<span id="cb135-152"><a href="#cb135-152" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">df</span>(x, <span class="dv">1</span>, df), <span class="dv">0</span>, <span class="dv">5</span>, <span class="at">ylab=</span><span class="st">&quot; &quot;</span>, <span class="at">xlab=</span><span class="st">&quot;F&quot;</span>)</span>
-<span id="cb135-153"><a href="#cb135-153" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">c</span>(F_0,F_c), <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;red&quot;</span>), <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))</span>
-<span id="cb135-154"><a href="#cb135-154" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;F&quot;</span>,<span class="st">&quot;Fcr&quot;</span>), <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;red&quot;</span>), <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))</span>
-<span id="cb135-155"><a href="#cb135-155" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;Valor beta&quot; del activo: beta2=1 versus beta2≠1</span></span>
-<span id="cb135-156"><a href="#cb135-156" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadístico t</span></span>
-<span id="cb135-157"><a href="#cb135-157" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span> <span class="co"># nivel de significación</span></span>
-<span id="cb135-158"><a href="#cb135-158" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> <span class="fu">coef</span>(CAPM_SANTANDER)[[<span class="dv">2</span>]] <span class="co"># estimación del parámetro beta2</span></span>
-<span id="cb135-159"><a href="#cb135-159" aria-hidden="true" tabindex="-1"></a>b2</span>
-<span id="cb135-160"><a href="#cb135-160" aria-hidden="true" tabindex="-1"></a>seb2 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">vcov</span>(CAPM_SANTANDER)[<span class="dv">2</span>,<span class="dv">2</span>]) <span class="co"># est. desviación típica beta2</span></span>
-<span id="cb135-161"><a href="#cb135-161" aria-hidden="true" tabindex="-1"></a>seb2</span>
-<span id="cb135-162"><a href="#cb135-162" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb135-163"><a href="#cb135-163" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">df.residual</span>(CAPM_SANTANDER) <span class="co"># grados de libertad</span></span>
-<span id="cb135-164"><a href="#cb135-164" aria-hidden="true" tabindex="-1"></a>t_0 <span class="ot">&lt;-</span> (b2<span class="sc">-</span>c)<span class="sc">/</span>seb2 <span class="co"># estadístico t</span></span>
-<span id="cb135-165"><a href="#cb135-165" aria-hidden="true" tabindex="-1"></a>t_0</span>
-<span id="cb135-166"><a href="#cb135-166" aria-hidden="true" tabindex="-1"></a><span class="co"># Método del valor crítico</span></span>
-<span id="cb135-167"><a href="#cb135-167" aria-hidden="true" tabindex="-1"></a>t_c <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>, df) <span class="co"># valor crítico</span></span>
-<span id="cb135-168"><a href="#cb135-168" aria-hidden="true" tabindex="-1"></a>t_c</span>
-<span id="cb135-169"><a href="#cb135-169" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de la función de densidad de la distribución t, del valor crítico </span></span>
-<span id="cb135-170"><a href="#cb135-170" aria-hidden="true" tabindex="-1"></a><span class="co"># y del estadístico t_0</span></span>
-<span id="cb135-171"><a href="#cb135-171" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x, df), <span class="sc">-</span><span class="dv">6</span>, <span class="dv">6</span>, <span class="at">ylab=</span><span class="st">&quot; &quot;</span>, <span class="at">xlab=</span><span class="st">&quot;t&quot;</span>)</span>
-<span id="cb135-172"><a href="#cb135-172" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">c</span>(<span class="sc">-</span>t_c, t_c, t_0), <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>), <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>))</span>
-<span id="cb135-173"><a href="#cb135-173" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;-t_c&quot;</span>, <span class="st">&quot;t_c&quot;</span>, <span class="st">&quot;t_0&quot;</span>), </span>
-<span id="cb135-174"><a href="#cb135-174" aria-hidden="true" tabindex="-1"></a>       <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>), <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>))</span>
-<span id="cb135-175"><a href="#cb135-175" aria-hidden="true" tabindex="-1"></a><span class="co"># Método del P-valor</span></span>
-<span id="cb135-176"><a href="#cb135-176" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">pt</span>(<span class="fu">abs</span>(t_0), df))</span>
-<span id="cb135-177"><a href="#cb135-177" aria-hidden="true" tabindex="-1"></a>p</span>
-<span id="cb135-178"><a href="#cb135-178" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de la función de densidad de la distribución t y del estadístico t_0</span></span>
-<span id="cb135-179"><a href="#cb135-179" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x, df), <span class="sc">-</span><span class="dv">6</span>, <span class="dv">6</span>, <span class="at">ylab=</span><span class="st">&quot; &quot;</span>, <span class="at">xlab=</span><span class="st">&quot;t&quot;</span>)</span>
-<span id="cb135-180"><a href="#cb135-180" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">c</span>(t_0), <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>), <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">3</span>))</span>
-<span id="cb135-181"><a href="#cb135-181" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;t_0&quot;</span>), <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>), <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">3</span>))</span>
-<span id="cb135-182"><a href="#cb135-182" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadístico F</span></span>
-<span id="cb135-183"><a href="#cb135-183" aria-hidden="true" tabindex="-1"></a>H_0 <span class="ot">&lt;-</span> <span class="st">&quot;er_IBEX = 1&quot;</span></span>
-<span id="cb135-184"><a href="#cb135-184" aria-hidden="true" tabindex="-1"></a><span class="fu">linearHypothesis</span>(CAPM_SANTANDER,H_0,<span class="at">test=</span><span class="st">&quot;F&quot;</span>)</span>
-<span id="cb135-185"><a href="#cb135-185" aria-hidden="true" tabindex="-1"></a><span class="co"># Contraste conjunto de la hipótesis beta1=0, beta2=1</span></span>
-<span id="cb135-186"><a href="#cb135-186" aria-hidden="true" tabindex="-1"></a>H_0 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;(Intercept) = 0&quot;</span>, <span class="st">&quot;er_IBEX = 1&quot;</span>)</span>
-<span id="cb135-187"><a href="#cb135-187" aria-hidden="true" tabindex="-1"></a><span class="fu">linearHypothesis</span>(CAPM_SANTANDER,H_0,<span class="at">test=</span><span class="st">&quot;F&quot;</span>)</span>
-<span id="cb135-188"><a href="#cb135-188" aria-hidden="true" tabindex="-1"></a><span class="co"># Contrastes unilaterales</span></span>
-<span id="cb135-189"><a href="#cb135-189" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb135-190"><a href="#cb135-190" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿Activo defensivo o agresivo?: beta2≤1 versus beta2&gt;1</span></span>
-<span id="cb135-191"><a href="#cb135-191" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb135-192"><a href="#cb135-192" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
-<span id="cb135-193"><a href="#cb135-193" aria-hidden="true" tabindex="-1"></a>t_0 <span class="ot">&lt;-</span> (b2<span class="sc">-</span>c)<span class="sc">/</span>seb2</span>
-<span id="cb135-194"><a href="#cb135-194" aria-hidden="true" tabindex="-1"></a>t_0</span>
-<span id="cb135-195"><a href="#cb135-195" aria-hidden="true" tabindex="-1"></a><span class="co"># Método del valor crítico</span></span>
-<span id="cb135-196"><a href="#cb135-196" aria-hidden="true" tabindex="-1"></a>t_c <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span><span class="sc">-</span>alpha, df) <span class="co"># alpha no se divide por 2</span></span>
-<span id="cb135-197"><a href="#cb135-197" aria-hidden="true" tabindex="-1"></a>t_c</span>
-<span id="cb135-198"><a href="#cb135-198" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x, df), <span class="sc">-</span><span class="dv">6</span>, <span class="dv">6</span>, <span class="at">ylab=</span><span class="st">&quot; &quot;</span>, <span class="at">xlab=</span><span class="st">&quot;t&quot;</span>)</span>
-<span id="cb135-199"><a href="#cb135-199" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">c</span>(t_c, t_0), <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>), <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>))</span>
-<span id="cb135-200"><a href="#cb135-200" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;t_c&quot;</span>, <span class="st">&quot;t_0&quot;</span>), <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>), <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>))</span>
-<span id="cb135-201"><a href="#cb135-201" aria-hidden="true" tabindex="-1"></a><span class="co"># Método del P-valor</span></span>
-<span id="cb135-202"><a href="#cb135-202" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">-</span><span class="fu">pt</span>(t_0, df)</span>
-<span id="cb135-203"><a href="#cb135-203" aria-hidden="true" tabindex="-1"></a>p</span>
-<span id="cb135-204"><a href="#cb135-204" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿Activo ultra-agresivo?: beta2≥2 versus beta2&lt;2</span></span>
-<span id="cb135-205"><a href="#cb135-205" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb135-206"><a href="#cb135-206" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
-<span id="cb135-207"><a href="#cb135-207" aria-hidden="true" tabindex="-1"></a>t_0 <span class="ot">&lt;-</span> (b2<span class="sc">-</span>c)<span class="sc">/</span>seb2</span>
-<span id="cb135-208"><a href="#cb135-208" aria-hidden="true" tabindex="-1"></a>t_0</span>
-<span id="cb135-209"><a href="#cb135-209" aria-hidden="true" tabindex="-1"></a><span class="co"># Método del valor crítico</span></span>
-<span id="cb135-210"><a href="#cb135-210" aria-hidden="true" tabindex="-1"></a>t_c <span class="ot">&lt;-</span> <span class="fu">qt</span>(alpha, df) <span class="co"># alpha no se divide por 2</span></span>
-<span id="cb135-211"><a href="#cb135-211" aria-hidden="true" tabindex="-1"></a>t_c</span>
-<span id="cb135-212"><a href="#cb135-212" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x, df), <span class="sc">-</span><span class="dv">20</span>, <span class="dv">20</span>, <span class="at">ylab=</span><span class="st">&quot; &quot;</span>, <span class="at">xlab=</span><span class="st">&quot;t&quot;</span>)</span>
-<span id="cb135-213"><a href="#cb135-213" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">c</span>(t_c, t_0), <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>), <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>))</span>
-<span id="cb135-214"><a href="#cb135-214" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;t_c&quot;</span>, <span class="st">&quot;t_0&quot;</span>), <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>), <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>))</span>
-<span id="cb135-215"><a href="#cb135-215" aria-hidden="true" tabindex="-1"></a><span class="co"># Método del P-valor</span></span>
-<span id="cb135-216"><a href="#cb135-216" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">pt</span>(t_0, df)</span>
-<span id="cb135-217"><a href="#cb135-217" aria-hidden="true" tabindex="-1"></a>p</span>
-<span id="cb135-218"><a href="#cb135-218" aria-hidden="true" tabindex="-1"></a><span class="co"># NOTA:</span></span>
-<span id="cb135-219"><a href="#cb135-219" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribuciones de probabilidad en R -&gt;</span></span>
-<span id="cb135-220"><a href="#cb135-220" aria-hidden="true" tabindex="-1"></a><span class="co"># https://rstudio.github.io/r-manuals/r-intro/Probability-distributions.html</span></span>
-<span id="cb135-221"><a href="#cb135-221" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb135-222"><a href="#cb135-222" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb135-223"><a href="#cb135-223" aria-hidden="true" tabindex="-1"></a><span class="fu">## Código Python {.unnumbered}</span></span>
-<span id="cb135-224"><a href="#cb135-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb135-227"><a href="#cb135-227" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb135-228"><a href="#cb135-228" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: true</span></span>
-<span id="cb135-229"><a href="#cb135-229" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb135-230"><a href="#cb135-230" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb135-231"><a href="#cb135-231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb135-232"><a href="#cb135-232" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de librerías</span></span>
-<span id="cb135-233"><a href="#cb135-233" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb135-234"><a href="#cb135-234" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb135-235"><a href="#cb135-235" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb135-236"><a href="#cb135-236" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
-<span id="cb135-237"><a href="#cb135-237" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
-<span id="cb135-238"><a href="#cb135-238" aria-hidden="true" tabindex="-1"></a><span class="co"># Librería SciPy (stats): https://docs.scipy.org/doc/scipy/tutorial/stats.html</span></span>
-<span id="cb135-239"><a href="#cb135-239" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy <span class="im">as</span> sp </span>
-<span id="cb135-240"><a href="#cb135-240" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de datos</span></span>
-<span id="cb135-241"><a href="#cb135-241" aria-hidden="true" tabindex="-1"></a>CAPM_ESP <span class="op">=</span> pd.read_csv(<span class="st">&#39;data/CAPM_ESP.csv&#39;</span>, delimiter<span class="op">=</span><span class="st">&#39;;&#39;</span>, </span>
-<span id="cb135-242"><a href="#cb135-242" aria-hidden="true" tabindex="-1"></a>parse_dates<span class="op">=</span>[<span class="st">&#39;date&#39;</span>], index_col<span class="op">=</span><span class="st">&#39;date&#39;</span>)</span>
-<span id="cb135-243"><a href="#cb135-243" aria-hidden="true" tabindex="-1"></a>CAPM_ESP.head()</span>
-<span id="cb135-244"><a href="#cb135-244" aria-hidden="true" tabindex="-1"></a>CAPM_ESP.tail()</span>
-<span id="cb135-245"><a href="#cb135-245" aria-hidden="true" tabindex="-1"></a><span class="co"># Transformación de variables</span></span>
-<span id="cb135-246"><a href="#cb135-246" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> LogDiff(x):</span>
-<span id="cb135-247"><a href="#cb135-247" aria-hidden="true" tabindex="-1"></a>    x_diff <span class="op">=</span> <span class="dv">100</span><span class="op">*</span>np.log(x<span class="op">/</span>x.shift(<span class="dv">1</span>))</span>
-<span id="cb135-248"><a href="#cb135-248" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x_diff</span>
-<span id="cb135-249"><a href="#cb135-249" aria-hidden="true" tabindex="-1"></a>CAPM_ESP[<span class="st">&#39;r_IBEX&#39;</span>] <span class="op">=</span> LogDiff(CAPM_ESP[<span class="st">&#39;P_IBEX35&#39;</span>])</span>
-<span id="cb135-250"><a href="#cb135-250" aria-hidden="true" tabindex="-1"></a>CAPM_ESP[<span class="st">&#39;r_SAN&#39;</span>] <span class="op">=</span> LogDiff(CAPM_ESP[<span class="st">&#39;P_SANTANDER&#39;</span>])</span>
-<span id="cb135-251"><a href="#cb135-251" aria-hidden="true" tabindex="-1"></a>CAPM_ESP[<span class="st">&#39;r_LT1Y&#39;</span>] <span class="op">=</span> CAPM_ESP[<span class="st">&#39;R_LT1Y&#39;</span>]<span class="op">/</span><span class="dv">12</span></span>
-<span id="cb135-252"><a href="#cb135-252" aria-hidden="true" tabindex="-1"></a>CAPM_ESP[<span class="st">&#39;er_IBEX&#39;</span>] <span class="op">=</span> LogDiff(CAPM_ESP[<span class="st">&#39;P_IBEX35&#39;</span>]) <span class="op">-</span> CAPM_ESP[<span class="st">&#39;R_LT1Y&#39;</span>]<span class="op">/</span><span class="dv">12</span></span>
-<span id="cb135-253"><a href="#cb135-253" aria-hidden="true" tabindex="-1"></a>CAPM_ESP[<span class="st">&#39;er_SAN&#39;</span>] <span class="op">=</span> LogDiff(CAPM_ESP[<span class="st">&#39;P_SANTANDER&#39;</span>]) <span class="op">-</span> CAPM_ESP[<span class="st">&#39;R_LT1Y&#39;</span>]<span class="op">/</span><span class="dv">12</span></span>
-<span id="cb135-254"><a href="#cb135-254" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráficas de las variables del modelo</span></span>
-<span id="cb135-255"><a href="#cb135-255" aria-hidden="true" tabindex="-1"></a>plt.figure(<span class="dv">1</span>)</span>
-<span id="cb135-256"><a href="#cb135-256" aria-hidden="true" tabindex="-1"></a>plt.plot(CAPM_ESP[<span class="st">&#39;er_IBEX&#39;</span>], label<span class="op">=</span><span class="st">&#39;Exceso de rendimiento IBEX35&#39;</span>)</span>
-<span id="cb135-257"><a href="#cb135-257" aria-hidden="true" tabindex="-1"></a>plt.plot(CAPM_ESP[<span class="st">&#39;er_SAN&#39;</span>], label<span class="op">=</span><span class="st">&#39;Exceso de rendimiento Banco Santander&#39;</span>)</span>
-<span id="cb135-258"><a href="#cb135-258" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Date&#39;</span>)</span>
-<span id="cb135-259"><a href="#cb135-259" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;%&#39;</span>)</span>
-<span id="cb135-260"><a href="#cb135-260" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Variables del modelo CAPM para el Banco Santander&#39;</span>)</span>
-<span id="cb135-261"><a href="#cb135-261" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb135-262"><a href="#cb135-262" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb135-263"><a href="#cb135-263" aria-hidden="true" tabindex="-1"></a><span class="co"># Diagrama de puntos asociado a la regresión</span></span>
-<span id="cb135-264"><a href="#cb135-264" aria-hidden="true" tabindex="-1"></a>plt.figure(<span class="dv">2</span>)</span>
-<span id="cb135-265"><a href="#cb135-265" aria-hidden="true" tabindex="-1"></a>plt.scatter(CAPM_ESP[<span class="st">&#39;er_IBEX&#39;</span>], CAPM_ESP[<span class="st">&#39;er_SAN&#39;</span>])</span>
-<span id="cb135-266"><a href="#cb135-266" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;er_IBEX&#39;</span>)</span>
-<span id="cb135-267"><a href="#cb135-267" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;er_SAN&#39;</span>)</span>
-<span id="cb135-268"><a href="#cb135-268" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Exceso de rendimiento de SAN frente a IBEX&#39;</span>)</span>
-<span id="cb135-269"><a href="#cb135-269" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb135-270"><a href="#cb135-270" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo CAPM para las acciones del Banco Santander</span></span>
-<span id="cb135-271"><a href="#cb135-271" aria-hidden="true" tabindex="-1"></a>formula <span class="op">=</span> <span class="st">&#39;er_SAN ~ er_IBEX&#39;</span></span>
-<span id="cb135-272"><a href="#cb135-272" aria-hidden="true" tabindex="-1"></a>CAPM_SANTANDER <span class="op">=</span> smf.ols(formula, CAPM_ESP).fit()</span>
-<span id="cb135-273"><a href="#cb135-273" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(CAPM_SANTANDER.summary())</span>
-<span id="cb135-274"><a href="#cb135-274" aria-hidden="true" tabindex="-1"></a><span class="co"># Intervalos de confianza para los parámetros estructurales del modelo</span></span>
-<span id="cb135-275"><a href="#cb135-275" aria-hidden="true" tabindex="-1"></a><span class="co"># Automático</span></span>
-<span id="cb135-276"><a href="#cb135-276" aria-hidden="true" tabindex="-1"></a>CAPM_SANTANDER.conf_int()</span>
-<span id="cb135-277"><a href="#cb135-277" aria-hidden="true" tabindex="-1"></a><span class="co"># Manualmente</span></span>
-<span id="cb135-278"><a href="#cb135-278" aria-hidden="true" tabindex="-1"></a>t_c <span class="op">=</span> np.array(sp.stats.t.interval(<span class="fl">0.95</span>,CAPM_SANTANDER.df_resid))</span>
-<span id="cb135-279"><a href="#cb135-279" aria-hidden="true" tabindex="-1"></a>CAPM_SANTANDER.params[<span class="dv">0</span>]<span class="op">+</span>CAPM_SANTANDER.bse[<span class="dv">0</span>]<span class="op">*</span>t_c</span>
-<span id="cb135-280"><a href="#cb135-280" aria-hidden="true" tabindex="-1"></a>CAPM_SANTANDER.params[<span class="dv">1</span>]<span class="op">+</span>CAPM_SANTANDER.bse[<span class="dv">1</span>]<span class="op">*</span>t_c</span>
-<span id="cb135-281"><a href="#cb135-281" aria-hidden="true" tabindex="-1"></a><span class="co"># ANOVA</span></span>
-<span id="cb135-282"><a href="#cb135-282" aria-hidden="true" tabindex="-1"></a>sm.stats.anova_lm(CAPM_SANTANDER)</span>
-<span id="cb135-283"><a href="#cb135-283" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajuste del modelo (R^2)</span></span>
-<span id="cb135-284"><a href="#cb135-284" aria-hidden="true" tabindex="-1"></a>CAPM_SANTANDER.rsquared</span>
-<span id="cb135-285"><a href="#cb135-285" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadístico F de significación global</span></span>
-<span id="cb135-286"><a href="#cb135-286" aria-hidden="true" tabindex="-1"></a>CAPM_SANTANDER.fvalue, CAPM_SANTANDER.f_pvalue</span>
-<span id="cb135-287"><a href="#cb135-287" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadístico F y R^2</span></span>
-<span id="cb135-288"><a href="#cb135-288" aria-hidden="true" tabindex="-1"></a>F_0 <span class="op">=</span> (CAPM_SANTANDER.rsquared<span class="op">/</span>(CAPM_SANTANDER.df_model))<span class="op">/</span>((<span class="dv">1</span><span class="op">-</span>CAPM_SANTANDER.rsquared)<span class="op">/</span>(CAPM_SANTANDER.df_resid))</span>
-<span id="cb135-289"><a href="#cb135-289" aria-hidden="true" tabindex="-1"></a>F_0, <span class="dv">1</span><span class="op">-</span>sp.stats.f.cdf(F_0, CAPM_SANTANDER.df_model, CAPM_SANTANDER.df_resid)</span>
-<span id="cb135-290"><a href="#cb135-290" aria-hidden="true" tabindex="-1"></a><span class="co"># Número de obsevaciones</span></span>
-<span id="cb135-291"><a href="#cb135-291" aria-hidden="true" tabindex="-1"></a>CAPM_SANTANDER.nobs</span>
-<span id="cb135-292"><a href="#cb135-292" aria-hidden="true" tabindex="-1"></a><span class="co"># Número de parámetros</span></span>
-<span id="cb135-293"><a href="#cb135-293" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="op">+</span>CAPM_SANTANDER.df_model</span>
-<span id="cb135-294"><a href="#cb135-294" aria-hidden="true" tabindex="-1"></a><span class="co"># Errores estimados (residuos) del modelo</span></span>
-<span id="cb135-295"><a href="#cb135-295" aria-hidden="true" tabindex="-1"></a>plt.figure(<span class="dv">3</span>)</span>
-<span id="cb135-296"><a href="#cb135-296" aria-hidden="true" tabindex="-1"></a>plt.plot(CAPM_SANTANDER.resid, label<span class="op">=</span><span class="st">&#39;res&#39;</span>)</span>
-<span id="cb135-297"><a href="#cb135-297" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Date&#39;</span>)</span>
-<span id="cb135-298"><a href="#cb135-298" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Residuos del modelo CAPM para el Banco Santander&#39;</span>)</span>
-<span id="cb135-299"><a href="#cb135-299" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb135-300"><a href="#cb135-300" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb135-301"><a href="#cb135-301" aria-hidden="true" tabindex="-1"></a><span class="co"># Histograma de los residuos y comparación con la distribución normal</span></span>
-<span id="cb135-302"><a href="#cb135-302" aria-hidden="true" tabindex="-1"></a>ebar <span class="op">=</span> np.mean(CAPM_SANTANDER.resid)</span>
-<span id="cb135-303"><a href="#cb135-303" aria-hidden="true" tabindex="-1"></a>sdehat <span class="op">=</span> np.std(CAPM_SANTANDER.resid)</span>
-<span id="cb135-304"><a href="#cb135-304" aria-hidden="true" tabindex="-1"></a>plt.figure(<span class="dv">4</span>)</span>
-<span id="cb135-305"><a href="#cb135-305" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb135-306"><a href="#cb135-306" aria-hidden="true" tabindex="-1"></a>ax.hist(CAPM_SANTANDER.resid, bins<span class="op">=</span><span class="dv">20</span>, density<span class="op">=</span><span class="va">True</span>, </span>
-<span id="cb135-307"><a href="#cb135-307" aria-hidden="true" tabindex="-1"></a>edgecolor<span class="op">=</span><span class="st">&#39;white&#39;</span>, linewidth<span class="op">=</span><span class="fl">1.2</span>)</span>
-<span id="cb135-308"><a href="#cb135-308" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="bu">min</span>(CAPM_SANTANDER.resid), <span class="bu">max</span>(CAPM_SANTANDER.resid), <span class="dv">100</span>)</span>
-<span id="cb135-309"><a href="#cb135-309" aria-hidden="true" tabindex="-1"></a>ax.plot(x, sp.stats.norm.pdf(x, ebar, sdehat), color<span class="op">=</span><span class="st">&#39;black&#39;</span>, </span>
-<span id="cb135-310"><a href="#cb135-310" aria-hidden="true" tabindex="-1"></a>label <span class="op">=</span> <span class="st">&#39;Distribución normal&#39;</span>)</span>
-<span id="cb135-311"><a href="#cb135-311" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Residuos del modelo CAPM para el Banco Santander&#39;</span>)</span>
-<span id="cb135-312"><a href="#cb135-312" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Residuos&#39;</span>)</span>
-<span id="cb135-313"><a href="#cb135-313" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;Densidad&#39;</span>)</span>
-<span id="cb135-314"><a href="#cb135-314" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">&#39;best&#39;</span>)</span>
-<span id="cb135-315"><a href="#cb135-315" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb135-316"><a href="#cb135-316" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb135-317"><a href="#cb135-317" aria-hidden="true" tabindex="-1"></a><span class="co"># Contrastes de hipótesis bilaterales</span></span>
-<span id="cb135-318"><a href="#cb135-318" aria-hidden="true" tabindex="-1"></a><span class="co"># beta1=0 versus beta1≠0</span></span>
-<span id="cb135-319"><a href="#cb135-319" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadístico t</span></span>
-<span id="cb135-320"><a href="#cb135-320" aria-hidden="true" tabindex="-1"></a>t_stat <span class="op">=</span> (CAPM_SANTANDER.params[<span class="st">&#39;Intercept&#39;</span>]<span class="op">-</span><span class="dv">0</span>)<span class="op">/</span>CAPM_SANTANDER.bse[<span class="st">&#39;Intercept&#39;</span>]</span>
-<span id="cb135-321"><a href="#cb135-321" aria-hidden="true" tabindex="-1"></a>t_stat, <span class="dv">2</span><span class="op">*</span>sp.stats.t.cdf(t_stat, CAPM_SANTANDER.df_resid)</span>
-<span id="cb135-322"><a href="#cb135-322" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadístico F y P-valor</span></span>
-<span id="cb135-323"><a href="#cb135-323" aria-hidden="true" tabindex="-1"></a>H_0 <span class="op">=</span> <span class="st">&#39;Intercept = 0&#39;</span></span>
-<span id="cb135-324"><a href="#cb135-324" aria-hidden="true" tabindex="-1"></a>F_0 <span class="op">=</span> CAPM_SANTANDER.f_test(H_0)</span>
-<span id="cb135-325"><a href="#cb135-325" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(F_0)</span>
-<span id="cb135-326"><a href="#cb135-326" aria-hidden="true" tabindex="-1"></a><span class="co"># beta2=1 versus beta2≠1</span></span>
-<span id="cb135-327"><a href="#cb135-327" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadístico t y P-valor</span></span>
-<span id="cb135-328"><a href="#cb135-328" aria-hidden="true" tabindex="-1"></a>t_0 <span class="op">=</span> (CAPM_SANTANDER.params[<span class="st">&#39;er_IBEX&#39;</span>]<span class="op">-</span><span class="dv">1</span>)<span class="op">/</span>CAPM_SANTANDER.bse[<span class="st">&#39;er_IBEX&#39;</span>]</span>
-<span id="cb135-329"><a href="#cb135-329" aria-hidden="true" tabindex="-1"></a>t_0, <span class="dv">2</span><span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>sp.stats.t.cdf(<span class="bu">abs</span>(t_0), CAPM_SANTANDER.df_resid))</span>
-<span id="cb135-330"><a href="#cb135-330" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadístico F y P-valor</span></span>
-<span id="cb135-331"><a href="#cb135-331" aria-hidden="true" tabindex="-1"></a>H_0 <span class="op">=</span> <span class="st">&#39;er_IBEX = 1&#39;</span></span>
-<span id="cb135-332"><a href="#cb135-332" aria-hidden="true" tabindex="-1"></a>F_0 <span class="op">=</span> CAPM_SANTANDER.f_test(H_0)</span>
-<span id="cb135-333"><a href="#cb135-333" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(F_0)</span>
-<span id="cb135-334"><a href="#cb135-334" aria-hidden="true" tabindex="-1"></a><span class="co"># Contraste conjunto de la hipótesis beta1=0, beta2=1</span></span>
-<span id="cb135-335"><a href="#cb135-335" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadístico F y P-valor</span></span>
-<span id="cb135-336"><a href="#cb135-336" aria-hidden="true" tabindex="-1"></a>H_0 <span class="op">=</span> <span class="st">&#39;Intercept = 0 , er_IBEX = 1&#39;</span></span>
-<span id="cb135-337"><a href="#cb135-337" aria-hidden="true" tabindex="-1"></a>F_0 <span class="op">=</span> CAPM_SANTANDER.f_test(H_0)</span>
-<span id="cb135-338"><a href="#cb135-338" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(F_0)</span>
-<span id="cb135-339"><a href="#cb135-339" aria-hidden="true" tabindex="-1"></a><span class="co"># Contrastes unilaterales</span></span>
-<span id="cb135-340"><a href="#cb135-340" aria-hidden="true" tabindex="-1"></a><span class="co"># beta2≤1 versus beta2&gt;1</span></span>
-<span id="cb135-341"><a href="#cb135-341" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadístico t y P-valor</span></span>
-<span id="cb135-342"><a href="#cb135-342" aria-hidden="true" tabindex="-1"></a>t_0 <span class="op">=</span> (CAPM_SANTANDER.params[<span class="st">&#39;er_IBEX&#39;</span>]<span class="op">-</span><span class="dv">1</span>)<span class="op">/</span>CAPM_SANTANDER.bse[<span class="st">&#39;er_IBEX&#39;</span>]</span>
-<span id="cb135-343"><a href="#cb135-343" aria-hidden="true" tabindex="-1"></a>t_0, <span class="dv">1</span><span class="op">-</span>sp.stats.t.cdf(t_0, CAPM_SANTANDER.df_resid)</span>
-<span id="cb135-344"><a href="#cb135-344" aria-hidden="true" tabindex="-1"></a><span class="co"># beta2≥2 versus beta2&lt;2</span></span>
-<span id="cb135-345"><a href="#cb135-345" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadístico t y P-valor</span></span>
-<span id="cb135-346"><a href="#cb135-346" aria-hidden="true" tabindex="-1"></a>t_0 <span class="op">=</span> (CAPM_SANTANDER.params[<span class="st">&#39;er_IBEX&#39;</span>]<span class="op">-</span><span class="dv">2</span>)<span class="op">/</span>CAPM_SANTANDER.bse[<span class="st">&#39;er_IBEX&#39;</span>]</span>
-<span id="cb135-347"><a href="#cb135-347" aria-hidden="true" tabindex="-1"></a>t_0, sp.stats.t.cdf(t_0, CAPM_SANTANDER.df_resid)</span>
-<span id="cb135-348"><a href="#cb135-348" aria-hidden="true" tabindex="-1"></a><span class="co"># NOTA:</span></span>
-<span id="cb135-349"><a href="#cb135-349" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribuciones de probabilidad en Python (librería SciPy) -&gt;</span></span>
-<span id="cb135-350"><a href="#cb135-350" aria-hidden="true" tabindex="-1"></a><span class="co"># https://docs.scipy.org/doc/scipy/reference/stats.html</span></span>
-<span id="cb135-351"><a href="#cb135-351" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb135-27"><a href="#cb135-27" aria-hidden="true" tabindex="-1"></a>Como ejercicio, se pueden repetir todos los cálculos de la aplicación para analizar las empresas Telefónica e Inditex, cuyos datos están contenidos en el fichero usado en la aplicación.</span>
+<span id="cb135-28"><a href="#cb135-28" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb135-29"><a href="#cb135-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb135-30"><a href="#cb135-30" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group=&quot;language&quot;}</span>
+<span id="cb135-31"><a href="#cb135-31" aria-hidden="true" tabindex="-1"></a><span class="fu"># Código R {.unnumbered}</span></span>
+<span id="cb135-32"><a href="#cb135-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb135-35"><a href="#cb135-35" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb135-36"><a href="#cb135-36" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: true</span></span>
+<span id="cb135-37"><a href="#cb135-37" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb135-38"><a href="#cb135-38" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb135-39"><a href="#cb135-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb135-40"><a href="#cb135-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de librerías</span></span>
+<span id="cb135-41"><a href="#cb135-41" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb135-42"><a href="#cb135-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de datos</span></span>
+<span id="cb135-43"><a href="#cb135-43" aria-hidden="true" tabindex="-1"></a>CAPM_ESP <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;data/CAPM_ESP.csv&quot;</span>, <span class="at">delim =</span> <span class="st">&quot;;&quot;</span>)</span>
+<span id="cb135-44"><a href="#cb135-44" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(CAPM_ESP)</span>
+<span id="cb135-45"><a href="#cb135-45" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(CAPM_ESP)</span>
+<span id="cb135-46"><a href="#cb135-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Transformación de variables</span></span>
+<span id="cb135-47"><a href="#cb135-47" aria-hidden="true" tabindex="-1"></a>CAPM_ESP<span class="sc">$</span>r_SAN <span class="ot">=</span> <span class="fu">c</span>(<span class="cn">NA</span>,<span class="dv">100</span><span class="sc">*</span><span class="fu">diff</span>(<span class="fu">log</span>(CAPM_ESP<span class="sc">$</span>P_SANTANDER)))</span>
+<span id="cb135-48"><a href="#cb135-48" aria-hidden="true" tabindex="-1"></a>CAPM_ESP<span class="sc">$</span>r_IBEX <span class="ot">=</span> <span class="fu">c</span>(<span class="cn">NA</span>,<span class="dv">100</span><span class="sc">*</span><span class="fu">diff</span>(<span class="fu">log</span>(CAPM_ESP<span class="sc">$</span>P_IBEX35)))</span>
+<span id="cb135-49"><a href="#cb135-49" aria-hidden="true" tabindex="-1"></a>CAPM_ESP<span class="sc">$</span>r_LT1Y <span class="ot">=</span> CAPM_ESP<span class="sc">$</span>R_LT1Y<span class="sc">/</span><span class="dv">12</span></span>
+<span id="cb135-50"><a href="#cb135-50" aria-hidden="true" tabindex="-1"></a>CAPM_ESP<span class="sc">$</span>er_SAN <span class="ot">=</span> CAPM_ESP<span class="sc">$</span>r_SAN <span class="sc">-</span> CAPM_ESP<span class="sc">$</span>r_LT1Y</span>
+<span id="cb135-51"><a href="#cb135-51" aria-hidden="true" tabindex="-1"></a>CAPM_ESP<span class="sc">$</span>er_IBEX <span class="ot">=</span> CAPM_ESP<span class="sc">$</span>r_IBEX <span class="sc">-</span> CAPM_ESP<span class="sc">$</span>r_LT1Y</span>
+<span id="cb135-52"><a href="#cb135-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Formato de series temporales</span></span>
+<span id="cb135-53"><a href="#cb135-53" aria-hidden="true" tabindex="-1"></a>ts_CAPM_ESP <span class="ot">&lt;-</span> <span class="fu">ts</span>(CAPM_ESP, </span>
+<span id="cb135-54"><a href="#cb135-54" aria-hidden="true" tabindex="-1"></a>                  <span class="at">start =</span> <span class="fu">c</span>(<span class="dv">2001</span>,<span class="dv">5</span>), </span>
+<span id="cb135-55"><a href="#cb135-55" aria-hidden="true" tabindex="-1"></a>                  <span class="at">end =</span> <span class="fu">c</span>(<span class="dv">2018</span>,<span class="dv">1</span>), </span>
+<span id="cb135-56"><a href="#cb135-56" aria-hidden="true" tabindex="-1"></a>                  <span class="at">frequency =</span> <span class="dv">12</span>)</span>
+<span id="cb135-57"><a href="#cb135-57" aria-hidden="true" tabindex="-1"></a><span class="co"># Algunas gráficas de las variables básicas del modelo</span></span>
+<span id="cb135-58"><a href="#cb135-58" aria-hidden="true" tabindex="-1"></a><span class="fu">ts.plot</span>(ts_CAPM_ESP[,<span class="st">&quot;P_IBEX35&quot;</span>])</span>
+<span id="cb135-59"><a href="#cb135-59" aria-hidden="true" tabindex="-1"></a><span class="fu">ts.plot</span>(ts_CAPM_ESP[,<span class="st">&quot;P_SANTANDER&quot;</span>])</span>
+<span id="cb135-60"><a href="#cb135-60" aria-hidden="true" tabindex="-1"></a><span class="fu">ts.plot</span>(ts_CAPM_ESP[,<span class="st">&quot;er_SAN&quot;</span>],ts_CAPM_ESP[,<span class="st">&quot;er_IBEX&quot;</span>])</span>
+<span id="cb135-61"><a href="#cb135-61" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo CAPM para las acciones del Banco Santander </span></span>
+<span id="cb135-62"><a href="#cb135-62" aria-hidden="true" tabindex="-1"></a>CAPM_SANTANDER  <span class="ot">&lt;-</span>  <span class="fu">lm</span>(er_SAN <span class="sc">~</span> er_IBEX, <span class="at">data =</span> ts_CAPM_ESP)</span>
+<span id="cb135-63"><a href="#cb135-63" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(CAPM_SANTANDER)</span>
+<span id="cb135-64"><a href="#cb135-64" aria-hidden="true" tabindex="-1"></a><span class="co"># Intervalos de confianza para los parámetros estructurales del modelo</span></span>
+<span id="cb135-65"><a href="#cb135-65" aria-hidden="true" tabindex="-1"></a><span class="co"># Cálculo de forma &#39;manual&#39;</span></span>
+<span id="cb135-66"><a href="#cb135-66" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb135-67"><a href="#cb135-67" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">df.residual</span>(CAPM_SANTANDER) <span class="co"># grados de libertad</span></span>
+<span id="cb135-68"><a href="#cb135-68" aria-hidden="true" tabindex="-1"></a>t_c <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>, df)</span>
+<span id="cb135-69"><a href="#cb135-69" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="fu">coef</span>(CAPM_SANTANDER)[[<span class="dv">1</span>]] <span class="co"># estimación del parámetro beta1</span></span>
+<span id="cb135-70"><a href="#cb135-70" aria-hidden="true" tabindex="-1"></a>b1</span>
+<span id="cb135-71"><a href="#cb135-71" aria-hidden="true" tabindex="-1"></a>seb1 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">vcov</span>(CAPM_SANTANDER)[<span class="dv">1</span>,<span class="dv">1</span>]) <span class="co"># est. desviación típica beta1</span></span>
+<span id="cb135-72"><a href="#cb135-72" aria-hidden="true" tabindex="-1"></a>seb1</span>
+<span id="cb135-73"><a href="#cb135-73" aria-hidden="true" tabindex="-1"></a>inf_b1 <span class="ot">&lt;-</span> b1<span class="sc">-</span>t_c<span class="sc">*</span>seb1 <span class="co"># cota inferior</span></span>
+<span id="cb135-74"><a href="#cb135-74" aria-hidden="true" tabindex="-1"></a>sup_b1 <span class="ot">&lt;-</span> b1<span class="sc">+</span>t_c<span class="sc">*</span>seb1 <span class="co"># cota superior</span></span>
+<span id="cb135-75"><a href="#cb135-75" aria-hidden="true" tabindex="-1"></a>inf_b1 ; sup_b1</span>
+<span id="cb135-76"><a href="#cb135-76" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> <span class="fu">coef</span>(CAPM_SANTANDER)[[<span class="dv">2</span>]] <span class="co"># estimación del parámetro beta2</span></span>
+<span id="cb135-77"><a href="#cb135-77" aria-hidden="true" tabindex="-1"></a>b2</span>
+<span id="cb135-78"><a href="#cb135-78" aria-hidden="true" tabindex="-1"></a>seb2 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">vcov</span>(CAPM_SANTANDER)[<span class="dv">2</span>,<span class="dv">2</span>]) <span class="co"># est. desviación típica beta2</span></span>
+<span id="cb135-79"><a href="#cb135-79" aria-hidden="true" tabindex="-1"></a>seb2</span>
+<span id="cb135-80"><a href="#cb135-80" aria-hidden="true" tabindex="-1"></a>inf_b2 <span class="ot">&lt;-</span> b2<span class="sc">-</span>t_c<span class="sc">*</span>seb2 <span class="co"># cota inferior</span></span>
+<span id="cb135-81"><a href="#cb135-81" aria-hidden="true" tabindex="-1"></a>sup_b2 <span class="ot">&lt;-</span> b2<span class="sc">+</span>t_c<span class="sc">*</span>seb2 <span class="co"># cota superior</span></span>
+<span id="cb135-82"><a href="#cb135-82" aria-hidden="true" tabindex="-1"></a>inf_b2 ; sup_b2</span>
+<span id="cb135-83"><a href="#cb135-83" aria-hidden="true" tabindex="-1"></a><span class="co"># Cálculo automático</span></span>
+<span id="cb135-84"><a href="#cb135-84" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(CAPM_SANTANDER)</span>
+<span id="cb135-85"><a href="#cb135-85" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajuste del modelo (R^2) y ANOVA</span></span>
+<span id="cb135-86"><a href="#cb135-86" aria-hidden="true" tabindex="-1"></a>s_CAPM_SANTANDER <span class="ot">&lt;-</span> <span class="fu">summary</span>(CAPM_SANTANDER)</span>
+<span id="cb135-87"><a href="#cb135-87" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(s_CAPM_SANTANDER)</span>
+<span id="cb135-88"><a href="#cb135-88" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(s_CAPM_SANTANDER)</span>
+<span id="cb135-89"><a href="#cb135-89" aria-hidden="true" tabindex="-1"></a>R2 <span class="ot">&lt;-</span> s_CAPM_SANTANDER<span class="sc">$</span>r.squared</span>
+<span id="cb135-90"><a href="#cb135-90" aria-hidden="true" tabindex="-1"></a>R2</span>
+<span id="cb135-91"><a href="#cb135-91" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(CAPM_SANTANDER)</span>
+<span id="cb135-92"><a href="#cb135-92" aria-hidden="true" tabindex="-1"></a><span class="co"># Número de obsevaciones</span></span>
+<span id="cb135-93"><a href="#cb135-93" aria-hidden="true" tabindex="-1"></a>T <span class="ot">&lt;-</span> <span class="fu">nobs</span>(CAPM_SANTANDER)</span>
+<span id="cb135-94"><a href="#cb135-94" aria-hidden="true" tabindex="-1"></a>T</span>
+<span id="cb135-95"><a href="#cb135-95" aria-hidden="true" tabindex="-1"></a><span class="co"># Número de parámetros</span></span>
+<span id="cb135-96"><a href="#cb135-96" aria-hidden="true" tabindex="-1"></a>K <span class="ot">&lt;-</span> T<span class="sc">-</span>df</span>
+<span id="cb135-97"><a href="#cb135-97" aria-hidden="true" tabindex="-1"></a>K</span>
+<span id="cb135-98"><a href="#cb135-98" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadístico F de significación global</span></span>
+<span id="cb135-99"><a href="#cb135-99" aria-hidden="true" tabindex="-1"></a>F_0 <span class="ot">&lt;-</span> (R2<span class="sc">/</span>(K<span class="dv">-1</span>))<span class="sc">/</span>((<span class="dv">1</span><span class="sc">-</span>R2)<span class="sc">/</span>(T<span class="sc">-</span>K))</span>
+<span id="cb135-100"><a href="#cb135-100" aria-hidden="true" tabindex="-1"></a>F_0</span>
+<span id="cb135-101"><a href="#cb135-101" aria-hidden="true" tabindex="-1"></a><span class="co"># Residuos del modelo</span></span>
+<span id="cb135-102"><a href="#cb135-102" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> s_CAPM_SANTANDER<span class="sc">$</span>residuals</span>
+<span id="cb135-103"><a href="#cb135-103" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">ts</span>(res, <span class="at">start=</span><span class="fu">c</span>(<span class="dv">2001</span>,<span class="dv">5</span>), <span class="at">end =</span> <span class="fu">c</span>(<span class="dv">2018</span>,<span class="dv">1</span>), <span class="at">frequency =</span> <span class="dv">12</span>)</span>
+<span id="cb135-104"><a href="#cb135-104" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(res)</span>
+<span id="cb135-105"><a href="#cb135-105" aria-hidden="true" tabindex="-1"></a><span class="co"># Histograma de los residuos y comparación con la distribución normal</span></span>
+<span id="cb135-106"><a href="#cb135-106" aria-hidden="true" tabindex="-1"></a>ehat <span class="ot">&lt;-</span> <span class="fu">resid</span>(CAPM_SANTANDER)</span>
+<span id="cb135-107"><a href="#cb135-107" aria-hidden="true" tabindex="-1"></a>ebar <span class="ot">&lt;-</span> <span class="fu">mean</span>(ehat)</span>
+<span id="cb135-108"><a href="#cb135-108" aria-hidden="true" tabindex="-1"></a>sdehat <span class="ot">&lt;-</span> <span class="fu">sd</span>(ehat)</span>
+<span id="cb135-109"><a href="#cb135-109" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(ehat, <span class="at">col=</span><span class="st">&quot;grey&quot;</span>, <span class="at">breaks =</span> <span class="dv">20</span>, <span class="at">freq=</span><span class="cn">FALSE</span>, <span class="at">main=</span><span class="st">&quot;&quot;</span>, </span>
+<span id="cb135-110"><a href="#cb135-110" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;density&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;ehat&quot;</span>)</span>
+<span id="cb135-111"><a href="#cb135-111" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, ebar, sdehat), <span class="at">col=</span><span class="dv">2</span>, <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">ylab=</span><span class="st">&quot;density&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;ehat&quot;</span>)</span>
+<span id="cb135-112"><a href="#cb135-112" aria-hidden="true" tabindex="-1"></a><span class="co"># Contrastes de hipótesis bilaterales</span></span>
+<span id="cb135-113"><a href="#cb135-113" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb135-114"><a href="#cb135-114" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;Valor alfa&quot; del activo: beta1=0 versus beta1≠0</span></span>
+<span id="cb135-115"><a href="#cb135-115" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadístico t</span></span>
+<span id="cb135-116"><a href="#cb135-116" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span> <span class="co"># nivel de significación</span></span>
+<span id="cb135-117"><a href="#cb135-117" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="fu">coef</span>(CAPM_SANTANDER)[[<span class="dv">1</span>]] <span class="co"># estimación del parámetro beta1</span></span>
+<span id="cb135-118"><a href="#cb135-118" aria-hidden="true" tabindex="-1"></a>b1</span>
+<span id="cb135-119"><a href="#cb135-119" aria-hidden="true" tabindex="-1"></a>seb1 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">vcov</span>(CAPM_SANTANDER)[<span class="dv">1</span>,<span class="dv">1</span>]) <span class="co"># est. desviación típica beta1</span></span>
+<span id="cb135-120"><a href="#cb135-120" aria-hidden="true" tabindex="-1"></a>seb1</span>
+<span id="cb135-121"><a href="#cb135-121" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb135-122"><a href="#cb135-122" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">df.residual</span>(CAPM_SANTANDER) <span class="co"># grados de libertad</span></span>
+<span id="cb135-123"><a href="#cb135-123" aria-hidden="true" tabindex="-1"></a>t_0 <span class="ot">&lt;-</span> (b1<span class="sc">-</span>c)<span class="sc">/</span>seb1 <span class="co"># estadístico t</span></span>
+<span id="cb135-124"><a href="#cb135-124" aria-hidden="true" tabindex="-1"></a>t_0</span>
+<span id="cb135-125"><a href="#cb135-125" aria-hidden="true" tabindex="-1"></a><span class="co"># Método del valor crítico</span></span>
+<span id="cb135-126"><a href="#cb135-126" aria-hidden="true" tabindex="-1"></a>t_c <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>, df) <span class="co"># valor crítico</span></span>
+<span id="cb135-127"><a href="#cb135-127" aria-hidden="true" tabindex="-1"></a>t_c</span>
+<span id="cb135-128"><a href="#cb135-128" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de la función de densidad de la distribución t de Student, </span></span>
+<span id="cb135-129"><a href="#cb135-129" aria-hidden="true" tabindex="-1"></a><span class="co"># del valor crítico y del estadístico t_0</span></span>
+<span id="cb135-130"><a href="#cb135-130" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x, df), <span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">ylab=</span><span class="st">&quot; &quot;</span>, <span class="at">xlab=</span><span class="st">&quot;t&quot;</span>)</span>
+<span id="cb135-131"><a href="#cb135-131" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">c</span>(<span class="sc">-</span>t_c, t_c, t_0), <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>), <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>))</span>
+<span id="cb135-132"><a href="#cb135-132" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;-t_c&quot;</span>, <span class="st">&quot;t_c&quot;</span>, <span class="st">&quot;t_0&quot;</span>), </span>
+<span id="cb135-133"><a href="#cb135-133" aria-hidden="true" tabindex="-1"></a>       <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>), <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>))</span>
+<span id="cb135-134"><a href="#cb135-134" aria-hidden="true" tabindex="-1"></a><span class="co"># Método del P-valor</span></span>
+<span id="cb135-135"><a href="#cb135-135" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">pt</span>(<span class="fu">abs</span>(t_0), df))</span>
+<span id="cb135-136"><a href="#cb135-136" aria-hidden="true" tabindex="-1"></a>p</span>
+<span id="cb135-137"><a href="#cb135-137" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de la función de densidad de la distribución t y del estadístico t_0</span></span>
+<span id="cb135-138"><a href="#cb135-138" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x, df), <span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">ylab=</span><span class="st">&quot; &quot;</span>, <span class="at">xlab=</span><span class="st">&quot;t&quot;</span>)</span>
+<span id="cb135-139"><a href="#cb135-139" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">c</span>(t_0), <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>), <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">3</span>))</span>
+<span id="cb135-140"><a href="#cb135-140" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;t_0&quot;</span>), <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>), <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">3</span>))</span>
+<span id="cb135-141"><a href="#cb135-141" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadístico F</span></span>
+<span id="cb135-142"><a href="#cb135-142" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb135-143"><a href="#cb135-143" aria-hidden="true" tabindex="-1"></a>H_0 <span class="ot">&lt;-</span> <span class="st">&quot;(Intercept) = 0&quot;</span></span>
+<span id="cb135-144"><a href="#cb135-144" aria-hidden="true" tabindex="-1"></a><span class="fu">linearHypothesis</span>(CAPM_SANTANDER, H_0, <span class="at">test=</span><span class="st">&quot;F&quot;</span>)</span>
+<span id="cb135-145"><a href="#cb135-145" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de la función de densidad de la distribución F de Fisher-Snedecor, </span></span>
+<span id="cb135-146"><a href="#cb135-146" aria-hidden="true" tabindex="-1"></a><span class="co"># del valor crítico y del estadístico F_0</span></span>
+<span id="cb135-147"><a href="#cb135-147" aria-hidden="true" tabindex="-1"></a>F_0 <span class="ot">&lt;-</span> <span class="fu">linearHypothesis</span>(CAPM_SANTANDER, H_0, <span class="at">test=</span><span class="st">&quot;F&quot;</span>)[<span class="dv">2</span>,<span class="dv">5</span>] <span class="co"># estadístico F</span></span>
+<span id="cb135-148"><a href="#cb135-148" aria-hidden="true" tabindex="-1"></a>F_0</span>
+<span id="cb135-149"><a href="#cb135-149" aria-hidden="true" tabindex="-1"></a>F_c <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="dv">1</span><span class="sc">-</span>alpha, <span class="dv">1</span>, df) <span class="co"># valor crítico</span></span>
+<span id="cb135-150"><a href="#cb135-150" aria-hidden="true" tabindex="-1"></a>F_c</span>
+<span id="cb135-151"><a href="#cb135-151" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">df</span>(x, <span class="dv">1</span>, df), <span class="dv">0</span>, <span class="dv">5</span>, <span class="at">ylab=</span><span class="st">&quot; &quot;</span>, <span class="at">xlab=</span><span class="st">&quot;F&quot;</span>)</span>
+<span id="cb135-152"><a href="#cb135-152" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">c</span>(F_0,F_c), <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;red&quot;</span>), <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))</span>
+<span id="cb135-153"><a href="#cb135-153" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;F&quot;</span>,<span class="st">&quot;Fcr&quot;</span>), <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>,<span class="st">&quot;red&quot;</span>), <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">3</span>))</span>
+<span id="cb135-154"><a href="#cb135-154" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;Valor beta&quot; del activo: beta2=1 versus beta2≠1</span></span>
+<span id="cb135-155"><a href="#cb135-155" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadístico t</span></span>
+<span id="cb135-156"><a href="#cb135-156" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span> <span class="co"># nivel de significación</span></span>
+<span id="cb135-157"><a href="#cb135-157" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> <span class="fu">coef</span>(CAPM_SANTANDER)[[<span class="dv">2</span>]] <span class="co"># estimación del parámetro beta2</span></span>
+<span id="cb135-158"><a href="#cb135-158" aria-hidden="true" tabindex="-1"></a>b2</span>
+<span id="cb135-159"><a href="#cb135-159" aria-hidden="true" tabindex="-1"></a>seb2 <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(<span class="fu">vcov</span>(CAPM_SANTANDER)[<span class="dv">2</span>,<span class="dv">2</span>]) <span class="co"># est. desviación típica beta2</span></span>
+<span id="cb135-160"><a href="#cb135-160" aria-hidden="true" tabindex="-1"></a>seb2</span>
+<span id="cb135-161"><a href="#cb135-161" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb135-162"><a href="#cb135-162" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">df.residual</span>(CAPM_SANTANDER) <span class="co"># grados de libertad</span></span>
+<span id="cb135-163"><a href="#cb135-163" aria-hidden="true" tabindex="-1"></a>t_0 <span class="ot">&lt;-</span> (b2<span class="sc">-</span>c)<span class="sc">/</span>seb2 <span class="co"># estadístico t</span></span>
+<span id="cb135-164"><a href="#cb135-164" aria-hidden="true" tabindex="-1"></a>t_0</span>
+<span id="cb135-165"><a href="#cb135-165" aria-hidden="true" tabindex="-1"></a><span class="co"># Método del valor crítico</span></span>
+<span id="cb135-166"><a href="#cb135-166" aria-hidden="true" tabindex="-1"></a>t_c <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span><span class="sc">-</span>alpha<span class="sc">/</span><span class="dv">2</span>, df) <span class="co"># valor crítico</span></span>
+<span id="cb135-167"><a href="#cb135-167" aria-hidden="true" tabindex="-1"></a>t_c</span>
+<span id="cb135-168"><a href="#cb135-168" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de la función de densidad de la distribución t, del valor crítico </span></span>
+<span id="cb135-169"><a href="#cb135-169" aria-hidden="true" tabindex="-1"></a><span class="co"># y del estadístico t_0</span></span>
+<span id="cb135-170"><a href="#cb135-170" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x, df), <span class="sc">-</span><span class="dv">6</span>, <span class="dv">6</span>, <span class="at">ylab=</span><span class="st">&quot; &quot;</span>, <span class="at">xlab=</span><span class="st">&quot;t&quot;</span>)</span>
+<span id="cb135-171"><a href="#cb135-171" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">c</span>(<span class="sc">-</span>t_c, t_c, t_0), <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>), <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>))</span>
+<span id="cb135-172"><a href="#cb135-172" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;-t_c&quot;</span>, <span class="st">&quot;t_c&quot;</span>, <span class="st">&quot;t_0&quot;</span>), </span>
+<span id="cb135-173"><a href="#cb135-173" aria-hidden="true" tabindex="-1"></a>       <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>), <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>))</span>
+<span id="cb135-174"><a href="#cb135-174" aria-hidden="true" tabindex="-1"></a><span class="co"># Método del P-valor</span></span>
+<span id="cb135-175"><a href="#cb135-175" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>(<span class="dv">1</span><span class="sc">-</span><span class="fu">pt</span>(<span class="fu">abs</span>(t_0), df))</span>
+<span id="cb135-176"><a href="#cb135-176" aria-hidden="true" tabindex="-1"></a>p</span>
+<span id="cb135-177"><a href="#cb135-177" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de la función de densidad de la distribución t y del estadístico t_0</span></span>
+<span id="cb135-178"><a href="#cb135-178" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x, df), <span class="sc">-</span><span class="dv">6</span>, <span class="dv">6</span>, <span class="at">ylab=</span><span class="st">&quot; &quot;</span>, <span class="at">xlab=</span><span class="st">&quot;t&quot;</span>)</span>
+<span id="cb135-179"><a href="#cb135-179" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">c</span>(t_0), <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>), <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">3</span>))</span>
+<span id="cb135-180"><a href="#cb135-180" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;t_0&quot;</span>), <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;blue&quot;</span>), <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">3</span>))</span>
+<span id="cb135-181"><a href="#cb135-181" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadístico F</span></span>
+<span id="cb135-182"><a href="#cb135-182" aria-hidden="true" tabindex="-1"></a>H_0 <span class="ot">&lt;-</span> <span class="st">&quot;er_IBEX = 1&quot;</span></span>
+<span id="cb135-183"><a href="#cb135-183" aria-hidden="true" tabindex="-1"></a><span class="fu">linearHypothesis</span>(CAPM_SANTANDER,H_0,<span class="at">test=</span><span class="st">&quot;F&quot;</span>)</span>
+<span id="cb135-184"><a href="#cb135-184" aria-hidden="true" tabindex="-1"></a><span class="co"># Contraste conjunto de la hipótesis beta1=0, beta2=1</span></span>
+<span id="cb135-185"><a href="#cb135-185" aria-hidden="true" tabindex="-1"></a>H_0 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;(Intercept) = 0&quot;</span>, <span class="st">&quot;er_IBEX = 1&quot;</span>)</span>
+<span id="cb135-186"><a href="#cb135-186" aria-hidden="true" tabindex="-1"></a><span class="fu">linearHypothesis</span>(CAPM_SANTANDER,H_0,<span class="at">test=</span><span class="st">&quot;F&quot;</span>)</span>
+<span id="cb135-187"><a href="#cb135-187" aria-hidden="true" tabindex="-1"></a><span class="co"># Contrastes unilaterales</span></span>
+<span id="cb135-188"><a href="#cb135-188" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb135-189"><a href="#cb135-189" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿Activo defensivo o agresivo?: beta2≤1 versus beta2&gt;1</span></span>
+<span id="cb135-190"><a href="#cb135-190" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb135-191"><a href="#cb135-191" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb135-192"><a href="#cb135-192" aria-hidden="true" tabindex="-1"></a>t_0 <span class="ot">&lt;-</span> (b2<span class="sc">-</span>c)<span class="sc">/</span>seb2</span>
+<span id="cb135-193"><a href="#cb135-193" aria-hidden="true" tabindex="-1"></a>t_0</span>
+<span id="cb135-194"><a href="#cb135-194" aria-hidden="true" tabindex="-1"></a><span class="co"># Método del valor crítico</span></span>
+<span id="cb135-195"><a href="#cb135-195" aria-hidden="true" tabindex="-1"></a>t_c <span class="ot">&lt;-</span> <span class="fu">qt</span>(<span class="dv">1</span><span class="sc">-</span>alpha, df) <span class="co"># alpha no se divide por 2</span></span>
+<span id="cb135-196"><a href="#cb135-196" aria-hidden="true" tabindex="-1"></a>t_c</span>
+<span id="cb135-197"><a href="#cb135-197" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x, df), <span class="sc">-</span><span class="dv">6</span>, <span class="dv">6</span>, <span class="at">ylab=</span><span class="st">&quot; &quot;</span>, <span class="at">xlab=</span><span class="st">&quot;t&quot;</span>)</span>
+<span id="cb135-198"><a href="#cb135-198" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">c</span>(t_c, t_0), <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>), <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>))</span>
+<span id="cb135-199"><a href="#cb135-199" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;t_c&quot;</span>, <span class="st">&quot;t_0&quot;</span>), <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>), <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>))</span>
+<span id="cb135-200"><a href="#cb135-200" aria-hidden="true" tabindex="-1"></a><span class="co"># Método del P-valor</span></span>
+<span id="cb135-201"><a href="#cb135-201" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">-</span><span class="fu">pt</span>(t_0, df)</span>
+<span id="cb135-202"><a href="#cb135-202" aria-hidden="true" tabindex="-1"></a>p</span>
+<span id="cb135-203"><a href="#cb135-203" aria-hidden="true" tabindex="-1"></a><span class="co"># ¿Activo ultra-agresivo?: beta2≥2 versus beta2&lt;2</span></span>
+<span id="cb135-204"><a href="#cb135-204" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb135-205"><a href="#cb135-205" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb135-206"><a href="#cb135-206" aria-hidden="true" tabindex="-1"></a>t_0 <span class="ot">&lt;-</span> (b2<span class="sc">-</span>c)<span class="sc">/</span>seb2</span>
+<span id="cb135-207"><a href="#cb135-207" aria-hidden="true" tabindex="-1"></a>t_0</span>
+<span id="cb135-208"><a href="#cb135-208" aria-hidden="true" tabindex="-1"></a><span class="co"># Método del valor crítico</span></span>
+<span id="cb135-209"><a href="#cb135-209" aria-hidden="true" tabindex="-1"></a>t_c <span class="ot">&lt;-</span> <span class="fu">qt</span>(alpha, df) <span class="co"># alpha no se divide por 2</span></span>
+<span id="cb135-210"><a href="#cb135-210" aria-hidden="true" tabindex="-1"></a>t_c</span>
+<span id="cb135-211"><a href="#cb135-211" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dt</span>(x, df), <span class="sc">-</span><span class="dv">20</span>, <span class="dv">20</span>, <span class="at">ylab=</span><span class="st">&quot; &quot;</span>, <span class="at">xlab=</span><span class="st">&quot;t&quot;</span>)</span>
+<span id="cb135-212"><a href="#cb135-212" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fu">c</span>(t_c, t_0), <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>), <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>))</span>
+<span id="cb135-213"><a href="#cb135-213" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="at">legend=</span><span class="fu">c</span>(<span class="st">&quot;t_c&quot;</span>, <span class="st">&quot;t_0&quot;</span>), <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;blue&quot;</span>), <span class="at">lty=</span><span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>))</span>
+<span id="cb135-214"><a href="#cb135-214" aria-hidden="true" tabindex="-1"></a><span class="co"># Método del P-valor</span></span>
+<span id="cb135-215"><a href="#cb135-215" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">pt</span>(t_0, df)</span>
+<span id="cb135-216"><a href="#cb135-216" aria-hidden="true" tabindex="-1"></a>p</span>
+<span id="cb135-217"><a href="#cb135-217" aria-hidden="true" tabindex="-1"></a><span class="co"># NOTA:</span></span>
+<span id="cb135-218"><a href="#cb135-218" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribuciones de probabilidad en R -&gt;</span></span>
+<span id="cb135-219"><a href="#cb135-219" aria-hidden="true" tabindex="-1"></a><span class="co"># https://rstudio.github.io/r-manuals/r-intro/Probability-distributions.html</span></span>
+<span id="cb135-220"><a href="#cb135-220" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb135-221"><a href="#cb135-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb135-222"><a href="#cb135-222" aria-hidden="true" tabindex="-1"></a><span class="fu"># Código Python {.unnumbered}</span></span>
+<span id="cb135-223"><a href="#cb135-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb135-226"><a href="#cb135-226" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb135-227"><a href="#cb135-227" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: true</span></span>
+<span id="cb135-228"><a href="#cb135-228" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb135-229"><a href="#cb135-229" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb135-230"><a href="#cb135-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb135-231"><a href="#cb135-231" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de librerías</span></span>
+<span id="cb135-232"><a href="#cb135-232" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb135-233"><a href="#cb135-233" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb135-234"><a href="#cb135-234" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb135-235"><a href="#cb135-235" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb135-236"><a href="#cb135-236" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
+<span id="cb135-237"><a href="#cb135-237" aria-hidden="true" tabindex="-1"></a><span class="co"># Librería SciPy (stats): https://docs.scipy.org/doc/scipy/tutorial/stats.html</span></span>
+<span id="cb135-238"><a href="#cb135-238" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy <span class="im">as</span> sp </span>
+<span id="cb135-239"><a href="#cb135-239" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de datos</span></span>
+<span id="cb135-240"><a href="#cb135-240" aria-hidden="true" tabindex="-1"></a>CAPM_ESP <span class="op">=</span> pd.read_csv(<span class="st">&#39;data/CAPM_ESP.csv&#39;</span>, delimiter<span class="op">=</span><span class="st">&#39;;&#39;</span>, </span>
+<span id="cb135-241"><a href="#cb135-241" aria-hidden="true" tabindex="-1"></a>parse_dates<span class="op">=</span>[<span class="st">&#39;date&#39;</span>], index_col<span class="op">=</span><span class="st">&#39;date&#39;</span>)</span>
+<span id="cb135-242"><a href="#cb135-242" aria-hidden="true" tabindex="-1"></a>CAPM_ESP.head()</span>
+<span id="cb135-243"><a href="#cb135-243" aria-hidden="true" tabindex="-1"></a>CAPM_ESP.tail()</span>
+<span id="cb135-244"><a href="#cb135-244" aria-hidden="true" tabindex="-1"></a><span class="co"># Transformación de variables</span></span>
+<span id="cb135-245"><a href="#cb135-245" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> LogDiff(x):</span>
+<span id="cb135-246"><a href="#cb135-246" aria-hidden="true" tabindex="-1"></a>    x_diff <span class="op">=</span> <span class="dv">100</span><span class="op">*</span>np.log(x<span class="op">/</span>x.shift(<span class="dv">1</span>))</span>
+<span id="cb135-247"><a href="#cb135-247" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x_diff</span>
+<span id="cb135-248"><a href="#cb135-248" aria-hidden="true" tabindex="-1"></a>CAPM_ESP[<span class="st">&#39;r_IBEX&#39;</span>] <span class="op">=</span> LogDiff(CAPM_ESP[<span class="st">&#39;P_IBEX35&#39;</span>])</span>
+<span id="cb135-249"><a href="#cb135-249" aria-hidden="true" tabindex="-1"></a>CAPM_ESP[<span class="st">&#39;r_SAN&#39;</span>] <span class="op">=</span> LogDiff(CAPM_ESP[<span class="st">&#39;P_SANTANDER&#39;</span>])</span>
+<span id="cb135-250"><a href="#cb135-250" aria-hidden="true" tabindex="-1"></a>CAPM_ESP[<span class="st">&#39;r_LT1Y&#39;</span>] <span class="op">=</span> CAPM_ESP[<span class="st">&#39;R_LT1Y&#39;</span>]<span class="op">/</span><span class="dv">12</span></span>
+<span id="cb135-251"><a href="#cb135-251" aria-hidden="true" tabindex="-1"></a>CAPM_ESP[<span class="st">&#39;er_IBEX&#39;</span>] <span class="op">=</span> LogDiff(CAPM_ESP[<span class="st">&#39;P_IBEX35&#39;</span>]) <span class="op">-</span> CAPM_ESP[<span class="st">&#39;R_LT1Y&#39;</span>]<span class="op">/</span><span class="dv">12</span></span>
+<span id="cb135-252"><a href="#cb135-252" aria-hidden="true" tabindex="-1"></a>CAPM_ESP[<span class="st">&#39;er_SAN&#39;</span>] <span class="op">=</span> LogDiff(CAPM_ESP[<span class="st">&#39;P_SANTANDER&#39;</span>]) <span class="op">-</span> CAPM_ESP[<span class="st">&#39;R_LT1Y&#39;</span>]<span class="op">/</span><span class="dv">12</span></span>
+<span id="cb135-253"><a href="#cb135-253" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráficas de las variables del modelo</span></span>
+<span id="cb135-254"><a href="#cb135-254" aria-hidden="true" tabindex="-1"></a>plt.figure(<span class="dv">1</span>)</span>
+<span id="cb135-255"><a href="#cb135-255" aria-hidden="true" tabindex="-1"></a>plt.plot(CAPM_ESP[<span class="st">&#39;er_IBEX&#39;</span>], label<span class="op">=</span><span class="st">&#39;Exceso de rendimiento IBEX35&#39;</span>)</span>
+<span id="cb135-256"><a href="#cb135-256" aria-hidden="true" tabindex="-1"></a>plt.plot(CAPM_ESP[<span class="st">&#39;er_SAN&#39;</span>], label<span class="op">=</span><span class="st">&#39;Exceso de rendimiento Banco Santander&#39;</span>)</span>
+<span id="cb135-257"><a href="#cb135-257" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Date&#39;</span>)</span>
+<span id="cb135-258"><a href="#cb135-258" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;%&#39;</span>)</span>
+<span id="cb135-259"><a href="#cb135-259" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Variables del modelo CAPM para el Banco Santander&#39;</span>)</span>
+<span id="cb135-260"><a href="#cb135-260" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb135-261"><a href="#cb135-261" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb135-262"><a href="#cb135-262" aria-hidden="true" tabindex="-1"></a><span class="co"># Diagrama de puntos asociado a la regresión</span></span>
+<span id="cb135-263"><a href="#cb135-263" aria-hidden="true" tabindex="-1"></a>plt.figure(<span class="dv">2</span>)</span>
+<span id="cb135-264"><a href="#cb135-264" aria-hidden="true" tabindex="-1"></a>plt.scatter(CAPM_ESP[<span class="st">&#39;er_IBEX&#39;</span>], CAPM_ESP[<span class="st">&#39;er_SAN&#39;</span>])</span>
+<span id="cb135-265"><a href="#cb135-265" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;er_IBEX&#39;</span>)</span>
+<span id="cb135-266"><a href="#cb135-266" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;er_SAN&#39;</span>)</span>
+<span id="cb135-267"><a href="#cb135-267" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Exceso de rendimiento de SAN frente a IBEX&#39;</span>)</span>
+<span id="cb135-268"><a href="#cb135-268" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb135-269"><a href="#cb135-269" aria-hidden="true" tabindex="-1"></a><span class="co"># Modelo CAPM para las acciones del Banco Santander</span></span>
+<span id="cb135-270"><a href="#cb135-270" aria-hidden="true" tabindex="-1"></a>formula <span class="op">=</span> <span class="st">&#39;er_SAN ~ er_IBEX&#39;</span></span>
+<span id="cb135-271"><a href="#cb135-271" aria-hidden="true" tabindex="-1"></a>CAPM_SANTANDER <span class="op">=</span> smf.ols(formula, CAPM_ESP).fit()</span>
+<span id="cb135-272"><a href="#cb135-272" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(CAPM_SANTANDER.summary())</span>
+<span id="cb135-273"><a href="#cb135-273" aria-hidden="true" tabindex="-1"></a><span class="co"># Intervalos de confianza para los parámetros estructurales del modelo</span></span>
+<span id="cb135-274"><a href="#cb135-274" aria-hidden="true" tabindex="-1"></a><span class="co"># Automático</span></span>
+<span id="cb135-275"><a href="#cb135-275" aria-hidden="true" tabindex="-1"></a>CAPM_SANTANDER.conf_int()</span>
+<span id="cb135-276"><a href="#cb135-276" aria-hidden="true" tabindex="-1"></a><span class="co"># Manualmente</span></span>
+<span id="cb135-277"><a href="#cb135-277" aria-hidden="true" tabindex="-1"></a>t_c <span class="op">=</span> np.array(sp.stats.t.interval(<span class="fl">0.95</span>,CAPM_SANTANDER.df_resid))</span>
+<span id="cb135-278"><a href="#cb135-278" aria-hidden="true" tabindex="-1"></a>CAPM_SANTANDER.params[<span class="dv">0</span>]<span class="op">+</span>CAPM_SANTANDER.bse[<span class="dv">0</span>]<span class="op">*</span>t_c</span>
+<span id="cb135-279"><a href="#cb135-279" aria-hidden="true" tabindex="-1"></a>CAPM_SANTANDER.params[<span class="dv">1</span>]<span class="op">+</span>CAPM_SANTANDER.bse[<span class="dv">1</span>]<span class="op">*</span>t_c</span>
+<span id="cb135-280"><a href="#cb135-280" aria-hidden="true" tabindex="-1"></a><span class="co"># ANOVA</span></span>
+<span id="cb135-281"><a href="#cb135-281" aria-hidden="true" tabindex="-1"></a>sm.stats.anova_lm(CAPM_SANTANDER)</span>
+<span id="cb135-282"><a href="#cb135-282" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajuste del modelo (R^2)</span></span>
+<span id="cb135-283"><a href="#cb135-283" aria-hidden="true" tabindex="-1"></a>CAPM_SANTANDER.rsquared</span>
+<span id="cb135-284"><a href="#cb135-284" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadístico F de significación global</span></span>
+<span id="cb135-285"><a href="#cb135-285" aria-hidden="true" tabindex="-1"></a>CAPM_SANTANDER.fvalue, CAPM_SANTANDER.f_pvalue</span>
+<span id="cb135-286"><a href="#cb135-286" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadístico F y R^2</span></span>
+<span id="cb135-287"><a href="#cb135-287" aria-hidden="true" tabindex="-1"></a>F_0 <span class="op">=</span> (CAPM_SANTANDER.rsquared<span class="op">/</span>(CAPM_SANTANDER.df_model))<span class="op">/</span>((<span class="dv">1</span><span class="op">-</span>CAPM_SANTANDER.rsquared)<span class="op">/</span>(CAPM_SANTANDER.df_resid))</span>
+<span id="cb135-288"><a href="#cb135-288" aria-hidden="true" tabindex="-1"></a>F_0, <span class="dv">1</span><span class="op">-</span>sp.stats.f.cdf(F_0, CAPM_SANTANDER.df_model, CAPM_SANTANDER.df_resid)</span>
+<span id="cb135-289"><a href="#cb135-289" aria-hidden="true" tabindex="-1"></a><span class="co"># Número de obsevaciones</span></span>
+<span id="cb135-290"><a href="#cb135-290" aria-hidden="true" tabindex="-1"></a>CAPM_SANTANDER.nobs</span>
+<span id="cb135-291"><a href="#cb135-291" aria-hidden="true" tabindex="-1"></a><span class="co"># Número de parámetros</span></span>
+<span id="cb135-292"><a href="#cb135-292" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="op">+</span>CAPM_SANTANDER.df_model</span>
+<span id="cb135-293"><a href="#cb135-293" aria-hidden="true" tabindex="-1"></a><span class="co"># Errores estimados (residuos) del modelo</span></span>
+<span id="cb135-294"><a href="#cb135-294" aria-hidden="true" tabindex="-1"></a>plt.figure(<span class="dv">3</span>)</span>
+<span id="cb135-295"><a href="#cb135-295" aria-hidden="true" tabindex="-1"></a>plt.plot(CAPM_SANTANDER.resid, label<span class="op">=</span><span class="st">&#39;res&#39;</span>)</span>
+<span id="cb135-296"><a href="#cb135-296" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Date&#39;</span>)</span>
+<span id="cb135-297"><a href="#cb135-297" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Residuos del modelo CAPM para el Banco Santander&#39;</span>)</span>
+<span id="cb135-298"><a href="#cb135-298" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb135-299"><a href="#cb135-299" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb135-300"><a href="#cb135-300" aria-hidden="true" tabindex="-1"></a><span class="co"># Histograma de los residuos y comparación con la distribución normal</span></span>
+<span id="cb135-301"><a href="#cb135-301" aria-hidden="true" tabindex="-1"></a>ebar <span class="op">=</span> np.mean(CAPM_SANTANDER.resid)</span>
+<span id="cb135-302"><a href="#cb135-302" aria-hidden="true" tabindex="-1"></a>sdehat <span class="op">=</span> np.std(CAPM_SANTANDER.resid)</span>
+<span id="cb135-303"><a href="#cb135-303" aria-hidden="true" tabindex="-1"></a>plt.figure(<span class="dv">4</span>)</span>
+<span id="cb135-304"><a href="#cb135-304" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb135-305"><a href="#cb135-305" aria-hidden="true" tabindex="-1"></a>ax.hist(CAPM_SANTANDER.resid, bins<span class="op">=</span><span class="dv">20</span>, density<span class="op">=</span><span class="va">True</span>, </span>
+<span id="cb135-306"><a href="#cb135-306" aria-hidden="true" tabindex="-1"></a>edgecolor<span class="op">=</span><span class="st">&#39;white&#39;</span>, linewidth<span class="op">=</span><span class="fl">1.2</span>)</span>
+<span id="cb135-307"><a href="#cb135-307" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="bu">min</span>(CAPM_SANTANDER.resid), <span class="bu">max</span>(CAPM_SANTANDER.resid), <span class="dv">100</span>)</span>
+<span id="cb135-308"><a href="#cb135-308" aria-hidden="true" tabindex="-1"></a>ax.plot(x, sp.stats.norm.pdf(x, ebar, sdehat), color<span class="op">=</span><span class="st">&#39;black&#39;</span>, </span>
+<span id="cb135-309"><a href="#cb135-309" aria-hidden="true" tabindex="-1"></a>label <span class="op">=</span> <span class="st">&#39;Distribución normal&#39;</span>)</span>
+<span id="cb135-310"><a href="#cb135-310" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">&#39;Residuos del modelo CAPM para el Banco Santander&#39;</span>)</span>
+<span id="cb135-311"><a href="#cb135-311" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&#39;Residuos&#39;</span>)</span>
+<span id="cb135-312"><a href="#cb135-312" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&#39;Densidad&#39;</span>)</span>
+<span id="cb135-313"><a href="#cb135-313" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">&#39;best&#39;</span>)</span>
+<span id="cb135-314"><a href="#cb135-314" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb135-315"><a href="#cb135-315" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb135-316"><a href="#cb135-316" aria-hidden="true" tabindex="-1"></a><span class="co"># Contrastes de hipótesis bilaterales</span></span>
+<span id="cb135-317"><a href="#cb135-317" aria-hidden="true" tabindex="-1"></a><span class="co"># beta1=0 versus beta1≠0</span></span>
+<span id="cb135-318"><a href="#cb135-318" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadístico t</span></span>
+<span id="cb135-319"><a href="#cb135-319" aria-hidden="true" tabindex="-1"></a>t_stat <span class="op">=</span> (CAPM_SANTANDER.params[<span class="st">&#39;Intercept&#39;</span>]<span class="op">-</span><span class="dv">0</span>)<span class="op">/</span>CAPM_SANTANDER.bse[<span class="st">&#39;Intercept&#39;</span>]</span>
+<span id="cb135-320"><a href="#cb135-320" aria-hidden="true" tabindex="-1"></a>t_stat, <span class="dv">2</span><span class="op">*</span>sp.stats.t.cdf(t_stat, CAPM_SANTANDER.df_resid)</span>
+<span id="cb135-321"><a href="#cb135-321" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadístico F y P-valor</span></span>
+<span id="cb135-322"><a href="#cb135-322" aria-hidden="true" tabindex="-1"></a>H_0 <span class="op">=</span> <span class="st">&#39;Intercept = 0&#39;</span></span>
+<span id="cb135-323"><a href="#cb135-323" aria-hidden="true" tabindex="-1"></a>F_0 <span class="op">=</span> CAPM_SANTANDER.f_test(H_0)</span>
+<span id="cb135-324"><a href="#cb135-324" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(F_0)</span>
+<span id="cb135-325"><a href="#cb135-325" aria-hidden="true" tabindex="-1"></a><span class="co"># beta2=1 versus beta2≠1</span></span>
+<span id="cb135-326"><a href="#cb135-326" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadístico t y P-valor</span></span>
+<span id="cb135-327"><a href="#cb135-327" aria-hidden="true" tabindex="-1"></a>t_0 <span class="op">=</span> (CAPM_SANTANDER.params[<span class="st">&#39;er_IBEX&#39;</span>]<span class="op">-</span><span class="dv">1</span>)<span class="op">/</span>CAPM_SANTANDER.bse[<span class="st">&#39;er_IBEX&#39;</span>]</span>
+<span id="cb135-328"><a href="#cb135-328" aria-hidden="true" tabindex="-1"></a>t_0, <span class="dv">2</span><span class="op">*</span>(<span class="dv">1</span><span class="op">-</span>sp.stats.t.cdf(<span class="bu">abs</span>(t_0), CAPM_SANTANDER.df_resid))</span>
+<span id="cb135-329"><a href="#cb135-329" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadístico F y P-valor</span></span>
+<span id="cb135-330"><a href="#cb135-330" aria-hidden="true" tabindex="-1"></a>H_0 <span class="op">=</span> <span class="st">&#39;er_IBEX = 1&#39;</span></span>
+<span id="cb135-331"><a href="#cb135-331" aria-hidden="true" tabindex="-1"></a>F_0 <span class="op">=</span> CAPM_SANTANDER.f_test(H_0)</span>
+<span id="cb135-332"><a href="#cb135-332" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(F_0)</span>
+<span id="cb135-333"><a href="#cb135-333" aria-hidden="true" tabindex="-1"></a><span class="co"># Contraste conjunto de la hipótesis beta1=0, beta2=1</span></span>
+<span id="cb135-334"><a href="#cb135-334" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadístico F y P-valor</span></span>
+<span id="cb135-335"><a href="#cb135-335" aria-hidden="true" tabindex="-1"></a>H_0 <span class="op">=</span> <span class="st">&#39;Intercept = 0 , er_IBEX = 1&#39;</span></span>
+<span id="cb135-336"><a href="#cb135-336" aria-hidden="true" tabindex="-1"></a>F_0 <span class="op">=</span> CAPM_SANTANDER.f_test(H_0)</span>
+<span id="cb135-337"><a href="#cb135-337" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(F_0)</span>
+<span id="cb135-338"><a href="#cb135-338" aria-hidden="true" tabindex="-1"></a><span class="co"># Contrastes unilaterales</span></span>
+<span id="cb135-339"><a href="#cb135-339" aria-hidden="true" tabindex="-1"></a><span class="co"># beta2≤1 versus beta2&gt;1</span></span>
+<span id="cb135-340"><a href="#cb135-340" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadístico t y P-valor</span></span>
+<span id="cb135-341"><a href="#cb135-341" aria-hidden="true" tabindex="-1"></a>t_0 <span class="op">=</span> (CAPM_SANTANDER.params[<span class="st">&#39;er_IBEX&#39;</span>]<span class="op">-</span><span class="dv">1</span>)<span class="op">/</span>CAPM_SANTANDER.bse[<span class="st">&#39;er_IBEX&#39;</span>]</span>
+<span id="cb135-342"><a href="#cb135-342" aria-hidden="true" tabindex="-1"></a>t_0, <span class="dv">1</span><span class="op">-</span>sp.stats.t.cdf(t_0, CAPM_SANTANDER.df_resid)</span>
+<span id="cb135-343"><a href="#cb135-343" aria-hidden="true" tabindex="-1"></a><span class="co"># beta2≥2 versus beta2&lt;2</span></span>
+<span id="cb135-344"><a href="#cb135-344" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadístico t y P-valor</span></span>
+<span id="cb135-345"><a href="#cb135-345" aria-hidden="true" tabindex="-1"></a>t_0 <span class="op">=</span> (CAPM_SANTANDER.params[<span class="st">&#39;er_IBEX&#39;</span>]<span class="op">-</span><span class="dv">2</span>)<span class="op">/</span>CAPM_SANTANDER.bse[<span class="st">&#39;er_IBEX&#39;</span>]</span>
+<span id="cb135-346"><a href="#cb135-346" aria-hidden="true" tabindex="-1"></a>t_0, sp.stats.t.cdf(t_0, CAPM_SANTANDER.df_resid)</span>
+<span id="cb135-347"><a href="#cb135-347" aria-hidden="true" tabindex="-1"></a><span class="co"># NOTA:</span></span>
+<span id="cb135-348"><a href="#cb135-348" aria-hidden="true" tabindex="-1"></a><span class="co"># Distribuciones de probabilidad en Python (librería SciPy) -&gt;</span></span>
+<span id="cb135-349"><a href="#cb135-349" aria-hidden="true" tabindex="-1"></a><span class="co"># https://docs.scipy.org/doc/scipy/reference/stats.html</span></span>
+<span id="cb135-350"><a href="#cb135-350" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb135-351"><a href="#cb135-351" aria-hidden="true" tabindex="-1"></a>:::</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

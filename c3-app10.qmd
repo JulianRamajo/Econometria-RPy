@@ -1,5 +1,5 @@
 ---
-editor: visual
+title: "Aplicación 3.10: Regresores endógenos"
 engine: knitr
 excerpt: ""
 draft: false
@@ -16,9 +16,7 @@ format:
 ```
 
 ::: justify
-# Aplicación 3.10: Regresores endógenos {.unnumbered}
-
-## Determinantes de la inflación al nivel internacional {.unnumbered}
+# Determinantes de la inflación al nivel internacional {.unnumbered}
 
 Para explicar las variaciones que se producen en la inflación observada al nivel internacional (muestra de 76 países) se propone el siguiente modelo econométrico, el cual se obtiene de la [teoría cuantitativa del dinero](https://es.wikipedia.org/wiki/Teor%C3%ADa_cuantitativa_del_dinero):
 
@@ -31,7 +29,8 @@ Se asumirá que la variable $RM$ es exógena (política monetaria independiente)
 Como instrumentos para la variable potencialmente endógena $RY$ se tomarán el nivel inicial de PIB per cápita ($YPC0$), el nivel de educación relativo de la población ($EDUC$), el nivel de inversión ($INV$) y la tasa de crecimiento de la población ($RPOB$ ).
 :::
 
-## Código R {.unnumbered}
+::: {.panel-tabset group="language"}
+# Código R {.unnumbered}
 
 ```{r}
 #| eval: true
@@ -66,7 +65,7 @@ msummary(model_list)
 modelplot(model_list)
 ```
 
-## Código Python {.unnumbered}
+# Código Python {.unnumbered}
 
 ```{python}
 #| eval: true
@@ -106,3 +105,4 @@ res_modelos["MCO"] = res_modelo_MCO
 res_modelos["IV"] = res_modelo_IV
 print(compare(res_modelos))
 ```
+:::

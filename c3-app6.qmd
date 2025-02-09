@@ -1,5 +1,5 @@
 ---
-editor: visual
+title: "Aplicación 3.6: Autocorrelación temporal y regresiones dinámicas"
 engine: knitr
 excerpt: ""
 draft: false
@@ -16,9 +16,7 @@ format:
 ```
 
 ::: justify
-# Aplicación 3.6: Autocorrelación temporal y regresiones dinámicas {.unnumbered}
-
-## Caso univariante (especificación ARDL): Tipos de interés en España {.unnumbered}
+# Caso univariante (especificación ARDL): Tipos de interés en España {.unnumbered}
 
 En la primera aplicación se estimará un modelo de regresión uniecuacional para explicar los tipos de interés de largo plazo vigentes en la economía española en la década de los años 1980, se analizará la correlación serial de los residuos de dicho modelo, y se propondrán soluciones al problema detectado de autocorrelación en los errores.
 
@@ -29,7 +27,8 @@ $$RL_{t} = \beta_1 + \beta_2  R3M_{t} + \beta_3  RD_{t} + e_{t}$$
 donde $RL$ y $R3M$ son los tipos de interés de largo y corto (3 meses) plazo, respectivamente, y $RD$ es el tipo de interés de remuneración de los depósitos bancarios. Dicha especificación se corresponde con el denominado modelo de Klein-Monti.
 :::
 
-### Código R {.unnumbered}
+::: {.panel-tabset group="language"}
+# Código R {.unnumbered}
 
 ```{r}
 #| include: true
@@ -103,7 +102,7 @@ nlWaldtest(dynlm_KM_1, "(b[3]+b[4])/(1-b[2])")
 nlWaldtest(dynlm_KM_1, "(b[5]+b[6])/(1-b[2])")
 ```
 
-### Código Python {.unnumbered}
+# Código Python {.unnumbered}
 
 ```{python}
 #| include: true
@@ -200,16 +199,18 @@ H_0_b3 = '(RD = 0)'
 W_test = lm_KM_dyn.wald_test(H_0_b3, use_f = False)
 W_test
 ```
+:::
 
 ::: justify
-## Caso multivariante (especificación VAR): Evolución temporal de tipos de cambio {.unnumbered}
+# Caso multivariante (especificación VAR): Evolución temporal de tipos de cambio {.unnumbered}
 
 En esta aplicación se estimará un modelo vectorial autorregresivo para explicar la evolución en el tiempo de las variaciones diarias en los tipos de cambio respecto al dólar de tres de las principales monedas al nivel mundial, el euro, el yen y la libra.
 
-El vector $\mathbf{z}$ que se usará para el estimar el modelo $\mathbf{z}_{t} = \mathbf{A}_{0} + \mathbf{A}_{1}\mathbf{z}_{t - 1} + \mathbf{A}_{2}\mathbf{z}_{t - 2} + \ldots\mathbf{A}_{p}\mathbf{z}_{t - p} + \mathbf{u}_{t}$  está compuesto en este caso por los cambios porcentuales diarios de los tipos de cambio, $\mathbf{z} = (rEurUsd, rUsdJpy, rGbpUsd)'$, donde $EurUsd$, $UsdJpy$ y $GbpUsd$ son, respectivamente, los tipos de cambio de cierre diarios respecto al dólar del euro, el yen y la libra.
+El vector $\mathbf{z}$ que se usará para el estimar el modelo $\mathbf{z}_{t} = \mathbf{A}_{0} + \mathbf{A}_{1}\mathbf{z}_{t - 1} + \mathbf{A}_{2}\mathbf{z}_{t - 2} + \ldots\mathbf{A}_{p}\mathbf{z}_{t - p} + \mathbf{u}_{t}$ está compuesto en este caso por los cambios porcentuales diarios de los tipos de cambio, $\mathbf{z} = (rEurUsd, rUsdJpy, rGbpUsd)'$, donde $EurUsd$, $UsdJpy$ y $GbpUsd$ son, respectivamente, los tipos de cambio de cierre diarios respecto al dólar del euro, el yen y la libra.
 :::
 
-### Código R {.unnumbered}
+::: {.panel-tabset group="language"}
+# Código R {.unnumbered}
 
 ```{r}
 #| include: true
@@ -295,7 +296,7 @@ show(VAR_GARCH_fit)
 VAR_GARCH_fit@mfit$Rt
 ```
 
-### Código Python {.unnumbered}
+# Código Python {.unnumbered}
 
 ```{python}
 #| include: true
@@ -333,3 +334,4 @@ plt.figure(6)
 fig = fevd_VAR2.plot()
 plt.show()
 ```
+:::

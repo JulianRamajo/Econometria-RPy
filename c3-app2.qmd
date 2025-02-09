@@ -1,5 +1,5 @@
 ---
-editor: visual
+title: "Aplicación 3.2: Inestabilidad paramétrica"
 engine: knitr
 excerpt: ""
 draft: false
@@ -16,14 +16,12 @@ format:
 ```
 
 ::: justify
-# Aplicación 3.2: Inestabilidad paramétrica {.unnumbered}
-
 En esta aplicación se estimarán varias regresiones que, tras el correspondiente contraste de estabilidad paramétrica, permiten que los parámetros estructurales del modelo de regresión varíen a lo largo de la muestra.
 :::
 
-## Diferenciación salarial por sexo (corte transversal) {.unnumbered}
-
 ::: justify
+# Diferenciación salarial por sexo (datos de corte transversal) {.unnumbered}
+
 En este ejemplo, al igual que en la aplicación 2.5, se usará como especificación econométrica de partida el siguiente modelo log-lineal, que se corresponde con la [ecuación de salarios de Mincer](https://es.wikipedia.org/wiki/Funci%C3%B3n_de_ingresos_de_Mincer):
 
 $$
@@ -33,7 +31,8 @@ $$
 donde $SALARIO$, $EDUC$ y $EXPER$ representan, respectivamente, el salario percibido, el nivel de educación y el grado de experiencia de cada uno de los 526 indviduos que componen la base muestral.
 :::
 
-### Código R {.unnumbered}
+::: {.panel-tabset group="language"}
+# Código R {.unnumbered}
 
 ```{r}
 #| include: true
@@ -81,7 +80,7 @@ anova(lm_SAL, lm_SAL_int)
 summary(lm_SAL_int)
 ```
 
-### Código Python {.unnumbered}
+# Código Python {.unnumbered}
 
 ```{python}
 #| include: true
@@ -142,9 +141,10 @@ print(lm_SAL_int.summary())
 # Test de Chow de cambio estructural
 sm.stats.anova_lm(lm_SAL,lm_SAL_int) 
 ```
+:::
 
 ::: justify
-## Exportaciones antes y después de la entrada de España en la Unión Europea (series temporales)  {.unnumbered}
+# Exportaciones antes y después de la entrada de España en la Unión Europea (datos de series temporales) {.unnumbered}
 
 Tanto la teoría económica como la experiencia econométrica internacional nos señalan que las exportaciones de bienes y servicios de un país dependen de dos variables básicas, un indicador de actividad económica mundial y un indicador de precios relativos. Para estimar una ecuación de exportaciones para el caso español, se han tomado series de datos históricos para el período 1970-1997 de las siguientes variables: las exportaciones reales de bienes y servicios, excluido el turismo ($XGS$); el índice anual del producto interior bruto real mundial ($WGDP$); y el tipo de cambio efectivo real respecto al conjunto de las diez monedas principales, corregido por la relación de precios de exportación de España respecto a la media ponderada de los precios de exportación de los principales países ($REER$).
 
@@ -155,7 +155,8 @@ log(XGS_{t}) = \beta_1 + \beta_2  log(WGDP_{t}) +  \beta_3  log(REER_{t}) + e_{t
 $$
 :::
 
-### Código R {.unnumbered}
+::: {.panel-tabset group="language"}
+# Código R {.unnumbered}
 
 ```{r}
 #| include: true
@@ -238,7 +239,7 @@ plot(efp(log(XGS) ~ log(WGDP) + log(REER), data = EXP_ESP_ts))
 summary(lm(log(XGS) ~ (log(WGDP) + log(REER))*D1986, data=EXP_ESP_ts))
 ```
 
-### Código Python {.unnumbered}
+# Código Python {.unnumbered}
 
 ```{python}
 #| include: true
@@ -297,3 +298,4 @@ print(lm_X_ESP_int.summary())
 # Test de Chow de cambio estructural
 sm.stats.anova_lm(lm_X_ESP,lm_X_ESP_int) 
 ```
+:::

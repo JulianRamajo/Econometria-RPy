@@ -1,5 +1,5 @@
 ---
-editor: visual
+title: "Aplicación 2.3: Inferencia estadística"
 engine: knitr
 excerpt: ""
 draft: false
@@ -16,9 +16,7 @@ format:
 ```
 
 ::: justify
-# Aplicación 2.3: Inferencia estadística en el MRL {.unnumbered}
-
-## Modelo CAPM para las acciones del Banco Santander {.unnumbered}
+# Modelo CAPM para las acciones del Banco Santander {.unnumbered}
 
 En esta aplicación se estimará una versión simple del [modelo CAPM](https://es.wikipedia.org/wiki/Modelo_de_valoraci%C3%B3n_de_activos_financieros) para las acciones del Banco Santander:
 
@@ -29,7 +27,8 @@ donde $erSAN$ representa el *exceso de rendimiento* de las acciones del Banco Sa
 Como ejercicio, se pueden repetir todos los cálculos de la aplicación para analizar las empresas Telefónica e Inditex, cuyos datos están contenidos en el fichero usado en la aplicación.
 :::
 
-## Código R {.unnumbered}
+::: {.panel-tabset group="language"}
+# Código R {.unnumbered}
 
 ```{r}
 #| include: true
@@ -218,7 +217,7 @@ p
 # https://rstudio.github.io/r-manuals/r-intro/Probability-distributions.html
 ```
 
-## Código Python {.unnumbered}
+# Código Python {.unnumbered}
 
 ```{python}
 #| include: true
@@ -345,3 +344,4 @@ t_0, sp.stats.t.cdf(t_0, CAPM_SANTANDER.df_resid)
 # Distribuciones de probabilidad en Python (librería SciPy) ->
 # https://docs.scipy.org/doc/scipy/reference/stats.html
 ```
+:::

@@ -1,5 +1,5 @@
 ---
-editor: visual
+title: "Aplicación 3.4: Heteroscedasticidad"
 engine: knitr
 excerpt: ""
 draft: false
@@ -16,9 +16,7 @@ format:
 ```
 
 ::: justify
-# Aplicación 3.4: Heteroscedasticidad {.unnumbered}
-
-## Función de demanda con varianza no constante {.unnumbered}
+# Función de demanda con varianza no constante {.unnumbered}
 
 Empleando datos de corte transversal, en este ejemplo se va a estimar un modelo de demanda para un determinado producto A:
 
@@ -35,7 +33,8 @@ Esta especificación para la varianza residual equivale a suponer que ${σ_i}^2 
 De forma complementaria, compararemos los resultados obtenidos por MCP con los que se consiguen al estimar la función de demanda por MCO, pero corrigiendo la matriz de covarianzas usando el método de White (MCO-HC).
 :::
 
-## Código R {.unnumbered}
+::: {.panel-tabset group="language"}
+# Código R {.unnumbered}
 
 ```{r}
 #| include: true
@@ -105,7 +104,7 @@ summary(modelo_MCP <- lm(log(QA) ~ log(PA) + log(PB) + log(PC)+ log(Y),
                          weights = 1/sigma2, data = DEM_HET))
 ```
 
-## Código Python {.unnumbered}
+# Código Python {.unnumbered}
 
 ```{python}
 #| include: true
@@ -168,3 +167,4 @@ weights = w , data = DEM_HET)
 modelo_MCP = modelo2.fit()
 print(modelo_MCP.summary())
 ```
+:::

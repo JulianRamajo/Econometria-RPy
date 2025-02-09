@@ -1,5 +1,5 @@
 ---
-editor: visual
+title: "Aplicación 1.1: Gestión y visualización de datos"
 engine: knitr
 excerpt: ""
 draft: false
@@ -16,16 +16,15 @@ format:
 ```
 
 ::: justify
-# Aplicación 1.1: Gestión y visualización de datos {.unnumbered}
-
-## Gramática básica del *tidyverse* en R y Python {.unnumbered}
+# Gramática básica del *tidyverse* en R y Python {.unnumbered}
 
 En esta aplicación se pondrán ejemplos básicos de gestión y visualización de datos en R y Python usando la "filosofía *tidyverse*", una forma de trabajar dentro de cada lenguaje con el objetivo de estructurar los datos originales para un tratamiento estadístico posterior:
 
 *"A grandes rasgos, el tidyverse es un lenguaje para resolver los retos de la ciencia de datos \[...\]. Su objetivo principal es facilitar una conversación entre un humano y un ordenador acerca de los datos. De forma menos abstracta, el tidyverse es una colección de \[...\] librerías que comparten una filosofía de diseño de alto nivel y unas estructuras gramatical y de datos de bajo nivel, de modo que aprender una librería facilita el aprendizaje de la siguiente."* (Traducido al español de Wickham et al., 2019)
 :::
 
-## Código R {.unnumbered}
+::: {.panel-tabset group="language"}
+# Código R {.unnumbered}
 
 ::: justify
 En las siguientes páginas web se pueden encontrar los detalles sobre la gestión (limpieza y preparación) '*a la tidyverse'* de bases de datos y realización de gráficos en R:
@@ -69,7 +68,11 @@ library(tidyverse)
 tidyverse_packages()
 ```
 
-![](images/tidyverse.png){fig-align="center" width="500"}
+![](tidyverse.png){fig-align="center" width="500"}
+
+```{r}
+library(reticulate)
+```
 
 ```{r}
 #| include: true
@@ -166,7 +169,7 @@ AVG_lifeExp_gdpPercap
 # full_join(df1, df2), semi_join(df1, df2), anti_join(df1, df2)
 ```
 
-![](images/dplyr-joins.png){width="500"}
+![](dplyr-joins.png){width="500"}
 
 ```{r}
 #| include: true
@@ -239,7 +242,7 @@ plot_ly(gapminder,
            yaxis = list(title = "Experanza de vida al nacer"))
 ```
 
-## Código Python {.unnumbered}
+# Código Python {.unnumbered}
 
 ::: justify
 En las siguientes páginas web se pueden encontrar los detalles sobre la gestión '*a la tidyverse'* de datos y la realización de gráficos en Python:
@@ -260,10 +263,6 @@ En las siguientes páginas web se pueden encontrar los detalles sobre la gestió
 ::: justify
 En términos generales, para aprender cómo hacer "ciencia de datos" con Python se puede consultar el libro de McKinney: <https://wesmckinney.com/book/>.
 :::
-
-```{r}
-library(reticulate)
-```
 
 ```{python}
 #| include: true
@@ -379,3 +378,4 @@ px.scatter(gapminder,
             animation_frame= 'year'
 )
 ```
+:::

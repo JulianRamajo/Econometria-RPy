@@ -1,5 +1,5 @@
 ---
-editor: visual
+title: "Aplicación 3.3: No normalidad de los errores y observaciones atípicas"
 engine: knitr
 excerpt: ""
 draft: false
@@ -16,14 +16,13 @@ format:
 ```
 
 ::: justify
-# Aplicación 3.3: No normalidad de los errores y observaciones atípicas {.unnumbered}
-
-## Datos atípicos simulados {.unnumbered}
+# Datos atípicos simulados {.unnumbered}
 
 En esta aplicación se tratará el tema de la no normalidad de los errores causada por la presencia de observaciones atípicas, y se propondrán estimadores que son 'robustos' ante la presencia de dichos datos en la base muestral.
 :::
 
-## Código R {.unnumbered}
+::: {.panel-tabset group="language"}
+# Código R {.unnumbered}
 
 ```{r}
 #| include: true
@@ -162,7 +161,7 @@ abline(rlm_YX, lty=2)
 legend("topleft", c("Regresión MCO", "Regresión MM"), lty = c(1, 2), bty = "n")
 ```
 
-## Código Python {.unnumbered}
+# Código Python {.unnumbered}
 
 ```{python}
 #| include: true
@@ -259,3 +258,4 @@ from statsmodels.formula.api import rlm
 rlm_YX = rlm("Y ~ X", ATIP).fit()
 print(rlm_YX.summary())
 ```
+:::

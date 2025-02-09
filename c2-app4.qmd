@@ -1,5 +1,5 @@
 ---
-editor: visual
+title: "Aplicación 2.4: Predicciones"
 engine: knitr
 excerpt: ""
 draft: false
@@ -16,18 +16,17 @@ format:
 ```
 
 ::: justify
-# Aplicación 2.4: Predicciones {.unnumbered}
+# Curva de Engel para el gasto en alimentos {.unnumbered}
 
-## Curva de Engel para el gasto en alimentos {.unnumbered}
-
-En esta aplicación se estimará una [curva de Engel](https://es.wikipedia.org/wiki/Curva_de_Engel) que relaciona el gasto familiar en alimentación ($GALIM$) con la renta disponible ($RENTA$), usando una muestra de 235 familias americanas:
+En esta aplicación se estimará una [curva de Engel](https://es.wikipedia.org/wiki/Curva_de_Engel) que relaciona el gasto de las familias en alimentación ($GALIM$) con la renta disponible ($RENTA$), usando una muestra de 235 familias americanas:
 
 $$GALIM_{i} = \beta_1 + \beta_2  RENTA_{i} + e_{i}$$
 
 Una vez estimado el modelo, se usa la ecuación estimada para predecir el valor esperado del gasto en alimentos de distintos tipos de familia en función de su renta familiar.
 :::
 
-## Código R {.unnumbered}
+::: {.panel-tabset group="language"}
+# Código R {.unnumbered}
 
 ```{r}
 #| include: true
@@ -67,7 +66,7 @@ pred_GALIM_IC <- predict(lin_model, new_RENTA, interval="confidence", level=0.95
 pred_GALIM_IC
 ```
 
-## Código Python {.unnumbered}
+# Código Python {.unnumbered}
 
 ```{python}
 #| include: true
@@ -96,3 +95,4 @@ print(f'pred_GALIM: \n{pred_GALIM}\n')
 pred_GALIM_IC = lin_model.get_prediction(new_RENTA).summary_frame(alpha=0.05)
 print(f'pred_GALIM_IC: \n{pred_GALIM_IC}\n')
 ```
+:::

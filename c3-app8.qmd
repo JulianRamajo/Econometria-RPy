@@ -1,5 +1,5 @@
 ---
-editor: visual
+title: "Aplicación 3.8: Falta de observaciones"
 engine: knitr
 excerpt: ""
 draft: false
@@ -16,18 +16,17 @@ format:
 ```
 
 ::: justify
-# Aplicación 3.8: Falta de observaciones {.unnumbered}
-
-## Exclusión social en el comportamiento de las aseguradoras de Chicago {.unnumbered}
+# Exclusión social en el comportamiento de las aseguradoras de Chicago {.unnumbered}
 
 En esta aplicación se usarán los datos de un estudio de la década de 1970 sobre la relación entre la exclusión social por parte de las compañías de seguros (variable $INVOLACT$) y la composición racial ($RACE$), los índices de incendios ($FIRE$) y robos ($THEFT$), la antigüedad de las viviendas ($AGE$) y el logaritmo de la renta disponible ($INCOME$) en 47 distritos postales de Chicago:
 
 $$INVOLACT_{i} = \beta_1 + \beta_2  RACE_{i} + \beta_3  FIRE_{i} + \beta_4  THEFT_{i} + \beta_5  AGE_{i}  + \beta_4  log(INCOME_{i}) + e_{i}$$
 
-Dado que la base muestral contiene datos perdidos (_missing data_), se mostrarán distintas técnicas de localización de los mismos, y se propondrán diferentes soluciones para tratar el problema de la falta de observaciones.
+Dado que la base muestral contiene datos perdidos (*missing data*), se mostrarán distintas técnicas de localización de los mismos, y se propondrán diferentes soluciones para tratar el problema de la falta de observaciones.
 :::
 
-## Código R {.unnumbered}
+::: {.panel-tabset group="language"}
+# Código R {.unnumbered}
 
 ```{r}
 #| include: true
@@ -187,7 +186,7 @@ mod_full <- lm(involact ~ race+fire+theft+age+log(income), chredlin)
 summary(mod_full)
 ```
 
-## Código Python {.unnumbered}
+# Código Python {.unnumbered}
 
 ```{python}
 #| include: true
@@ -242,3 +241,4 @@ mod_3 = smimice.MICE(formula, sm.OLS, imp)
 results = mod_3.fit(10, 10)
 print(results.summary())
 ```
+:::

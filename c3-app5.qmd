@@ -1,5 +1,5 @@
 ---
-editor: visual
+title: "Aplicación 3.5: Volatilidad variable en el tiempo"
 engine: knitr
 excerpt: ""
 draft: false
@@ -16,9 +16,7 @@ format:
 ```
 
 ::: justify
-# Aplicación 3.5: Volatilidad variable en el tiempo {.unnumbered}
-
-## Relación entre los precios de los carburantes y el precio del petroleo {.unnumbered}
+# Relación entre los precios de los carburantes y el precio del petroleo {.unnumbered}
 
 En esta aplicación se estimará un modelo econométrico con dinámica en el tiempo para explicar el precio semanal de la gasolina en el mercado minorista de Canadá. En la regresión planteada los residuos MCO muestran clústeres de volatilidad, por lo que se generalizará la especificación inicial permitiedo heteroscedasticidad autorregresiva condicional (efectos ARCH) en los errores del modelo.
 
@@ -35,10 +33,10 @@ donde $PGASOL$ es el precio de la gasolina, $PCRUDO$ es el precio del petróleo 
 En cuanto a la modelización de los efectos ARCH, se utilizará una especifación $ARCH(2)$ para la varianza condicional, $h_{t}$, dada por la expresión:
 
 $${h_{t} = \alpha_{0} + \alpha_{1}e_{t - 1}^{2} + \alpha_{2}e_{t - 2}^{2} }$$
-
 :::
 
-## Código R {.unnumbered}
+::: {.panel-tabset group="language"}
+# Código R {.unnumbered}
 
 ```{r}
 #| include: true
@@ -108,7 +106,7 @@ plot(resid_GARCH_fit, which=1)
 plot(resid_GARCH_fit, which=3)
 ```
 
-## Código Python {.unnumbered}
+# Código Python {.unnumbered}
 
 ```{python}
 #| eval: true
@@ -193,3 +191,4 @@ print(mv_garch_model)
 fig = mv_garch_model.plot()
 plt.show()
 ```
+:::

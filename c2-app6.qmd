@@ -1,5 +1,5 @@
 ---
-editor: visual
+title: "Aplicación 2.6: Análisis econométrico mixto (datos espaciales, forma funcional, inferencia y predicción)"
 engine: knitr
 excerpt: ""
 draft: false
@@ -16,9 +16,7 @@ format:
 ```
 
 ::: justify
-# Aplicación 2.6: Análisis econométrico mixto (datos espaciales, forma funcional, inferencia y predicción) {.unnumbered}
-
-## Medición de la calidad de vida {.unnumbered}
+# Medición de la calidad de vida {.unnumbered}
 
 La renta per cápita es la forma más usual de cuantificar el nivel de bienestar de un país, permitiendo además la comparación entre distintas economías, independientemente de su tamaño. Sin embargo, utilizar sólo el PIB de los habitantes de un territorio como indicador del bienestar social y del progreso del país resulta bastante inapropiado, como se reconoce en el [Informe Stiglitz-Sen-Fitoussi](https://ec.europa.eu/eurostat/documents/8131721/8131772/Stiglitz-Sen-Fitoussi-Commission-report.pdf) del año 2009.
 
@@ -27,7 +25,8 @@ Distintos organismos, como la OCDE, las Naciones Unidas o la Comisión Europea, 
 Para este ejercicio utilizaremos los datos del año 2021 elaborados por las Naciones Unidas para construir el *Índice de Desarrollo Humano* (<https://hdr.undp.org/data-center/human-development-index#/indicies/HDI>), que es un indicador de bienestar agregado de los países (con escala entre 0 y 100) que engloba tanto los niveles de salud \[medida por la variable *LifeExp*, la esperanza de vida al nacer, medida en años\] y educación \[medida por la variable *ExpEduc*, el grado de escolarización esperado para cada persona, medido en años\] como el nivel económico de cada país \[medido por la variable *GNIpc*, la renta per cápita, medida en dólares constantes en términos de paridad de poder adquisitivo\].
 :::
 
-## Código R
+::: {.panel-tabset group="language"}
+# Código R
 
 ```{r}
 #| include: true
@@ -128,7 +127,7 @@ pred_HDI_IC=exp(pred_log_HDI_IC)
 pred_HDI_IC
 ```
 
-## Código Python
+# Código Python
 
 ```{python}
 #| include: true
@@ -237,3 +236,4 @@ print(pred_log_HDI_IC[['mean','mean_ci_lower', 'mean_ci_upper']])
 pred_HDI_IC=np.exp(pred_log_HDI_IC)
 print(pred_HDI_IC[['mean','mean_ci_lower', 'mean_ci_upper']])
 ```
+:::

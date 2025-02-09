@@ -1,5 +1,5 @@
 ---
-editor: visual
+title: "Aplicación 1.2: Exploración de datos"
 engine: knitr
 excerpt: ""
 draft: false
@@ -16,18 +16,17 @@ format:
 ```
 
 ::: justify
-# Aplicación 1.2: Exploración de datos {.unnumbered}
-
-## Comparación de los lenguajes R y Python {.unnumbered}
+# Comparación de los lenguajes R y Python {.unnumbered}
 
 En esta aplicación se usarán las librerías estándar de R y Python para explorar la base de datos seleccionada, replicando los resultados con los correspondientes comandos en ambos lenguajes.
 
 En concreto, para el lenguaje R se utilizará la colección de librerías contenidas en el paquete `tidyverse` (<https://www.tidyverse.org/packages/>), y para Python se usarán las librerías `numpy` (<https://numpy.org/>), `pandas` (<https://pandas.pydata.org/>), `matplotlib` (<https://matplotlib.org/>) y `seaborn` (<https://seaborn.pydata.org/>). Las librerías especializadas en estadística y econometría se verán en aplicaciones posteriores.
 :::
 
-## Código R {.unnumbered}
+::: {.panel-tabset group="language"}
+# Código R {.unnumbered}
 
-### Lectura de librerías
+## Lectura de librerías
 
 ```{r}
 #| include: true
@@ -40,7 +39,7 @@ library(tidyverse)
 library(palmerpenguins)
 ```
 
-### Lectura de datos
+## Lectura de datos
 
 ```{r}
 data("penguins")
@@ -49,7 +48,7 @@ df %>%
   head()
 ```
 
-### Análisis exploratorio
+## Análisis exploratorio
 
 Recuento de casos:
 
@@ -231,7 +230,7 @@ df %>%
   geom_line(aes(color = species))
 ```
 
-### Agrupación - resumen
+## Agrupación - resumen
 
 Media y desviación estándar de la longitud del pico para cada especie
 
@@ -252,7 +251,7 @@ df %>%
             sd_bill_length = sd(bill_length_mm, na.rm = TRUE))
 ```
 
-### Agrupación - cálculo
+## Agrupación - cálculo
 
 Añadir una nueva columna al fichero de datos que muestre la longitud media de las aletas agrupadas por especies
 
@@ -286,9 +285,9 @@ df %>%
   head()
 ```
 
-## Código Python {.unnumbered}
+# Código Python {.unnumbered}
 
-### Lectura de librerías
+## Lectura de librerías
 
 ```{python}
 #| include: true
@@ -304,14 +303,14 @@ import seaborn as sns
 from palmerpenguins import load_penguins
 ```
 
-### Lectura de datos
+## Lectura de datos
 
 ```{python}
 df = load_penguins()
 df.head()
 ```
 
-### Análisis exploratorio
+## Análisis exploratorio
 
 Recuento de casos:
 
@@ -456,7 +455,7 @@ sns.relplot(x = 'year', y = 'body_mass_g', kind = 'line',
 plt.show()
 ```
 
-### Agrupación - resumen
+## Agrupación - resumen
 
 Media y desviación estándar de la longitud del pico para cada especie
 
@@ -480,7 +479,7 @@ species_bill_length_sex = (df
 species_bill_length_sex
 ```
 
-### Agrupación - cálculo
+## Agrupación - cálculo
 
 Añadir una nueva columna al fichero de datos que muestre la longitud media de las aletas agrupadas por especies
 
@@ -504,3 +503,4 @@ df = df.assign(
     sd_val = df.groupby(["species"]).bill_length_mm.transform('std'))
 df.head()
 ```
+:::

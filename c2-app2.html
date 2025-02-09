@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>c2-app2</title>
+<title>Aplicación 2.2: Regresiones con datos de series temporales</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -3222,9 +3222,25 @@ window.Quarto = {
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
 
-<main class="content" id="quarto-document-content"><div class="quarto-title-block"><div class="quarto-title-tools-only"><h1></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Aplicación 2.2: Regresiones con datos de series temporales</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+</div>
 
 
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
 
 
 <div class="cell">
@@ -3232,18 +3248,17 @@ window.Quarto = {
 .justify { text-align: justify !important }
 </style>
 </div>
-<section id="aplicación-2.2-regresiones-con-datos-de-series-temporales" class="level1 unnumbered justify">
-<h1 class="unnumbered">Aplicación 2.2: Regresiones con datos de series temporales</h1>
-<section id="consumo-privado-en-españa" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="consumo-privado-en-españa">Consumo privado en España</h2>
+<section id="consumo-privado-en-españa" class="level1 unnumbered justify">
+<h1 class="unnumbered">Consumo privado en España</h1>
 <p>En esta aplicación se estimará una función de consumo de tipo Keynesiano agregada (para un consumidor representativo), usando datos de series temporales para España del período 1964-2022:</p>
 <p><span class="math display">\[C_{t} = \beta_1 + \beta_2  Y_{t} + e_{t}\]</span></p>
 <p>donde <span class="math inline">\(C\)</span> representa el consumo privado (gasto en consumo final de los hogares e instituciones privadas sin fines de lucro al servicio de los hogares -ISFLSH-, en millones de € constantes de 2015), e <span class="math inline">\(Y\)</span> es la renta (renta disponible bruta de los hogares e ISFLSH, en millones de € constantes de 2015).</p>
 <p>Desde el punto de vista técnico, el objetivo principal del ejemplo es la introducción de las principales funciones y librerías especializadas de R y Python para regresiones con series temporales.</p>
 </section>
-</section>
-<section id="código-r" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="código-r">Código R</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href>Código R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href>Código Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
 <details open class="code-fold">
 <summary>Code</summary>
@@ -3502,9 +3517,8 @@ Multiple R-squared: 0.9922, Adjusted R-squared: 0.9921
 F-statistic:  7287 on 1 and 57 DF, p-value: &lt; 2.22e-16</code></pre>
 </div>
 </div>
-</section>
-<section id="código-python" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="código-python">Código Python</h2>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="cell">
 <details open class="code-fold">
 <summary>Code</summary>
@@ -3627,8 +3641,8 @@ max    693029.305659  749751.796026</code></pre>
 Dep. Variable:                      C   R-squared:                       0.992
 Model:                            OLS   Adj. R-squared:                  0.992
 Method:                 Least Squares   F-statistic:                     7287.
-Date:                Tue, 04 Feb 2025   Prob (F-statistic):           7.70e-62
-Time:                        17:39:10   Log-Likelihood:                -648.82
+Date:                Sun, 09 Feb 2025   Prob (F-statistic):           7.70e-62
+Time:                        13:04:52   Log-Likelihood:                -648.82
 No. Observations:                  59   AIC:                             1302.
 Df Residuals:                      57   BIC:                             1306.
 Df Model:                           1                                         
@@ -3651,9 +3665,11 @@ Notes:
 strong multicollinearity or other numerical problems.</code></pre>
 </div>
 </div>
+</div>
+</div>
+</div>
 <!-- -->
 
-</section>
 
 </main>
 <!-- /main column -->
@@ -4126,7 +4142,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class>
 <div class="sourceCode" id="cb34" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="an">editor:</span><span class="co"> visual</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;Aplicación 2.2: Regresiones con datos de series temporales&quot;</span></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="an">engine:</span><span class="co"> knitr</span></span>
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="an">excerpt:</span><span class="co"> &quot;&quot;</span></span>
 <span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="an">draft:</span><span class="co"> false</span></span>
@@ -4143,164 +4159,164 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>::: justify</span>
-<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a><span class="fu"># Aplicación 2.2: Regresiones con datos de series temporales {.unnumbered}</span></span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a><span class="fu"># Consumo privado en España {.unnumbered}</span></span>
 <span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## Consumo privado en España {.unnumbered}</span></span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>En esta aplicación se estimará una función de consumo de tipo Keynesiano agregada (para un consumidor representativo), usando datos de series temporales para España del período 1964-2022:</span>
 <span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a>En esta aplicación se estimará una función de consumo de tipo Keynesiano agregada (para un consumidor representativo), usando datos de series temporales para España del período 1964-2022:</span>
+<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a>$$C_{t} = \beta_1 + \beta_2  Y_{t} + e_{t}$$</span>
 <span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a>$$C_{t} = \beta_1 + \beta_2  Y_{t} + e_{t}$$</span>
+<span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a>donde $C$ representa el consumo privado (gasto en consumo final de los hogares e instituciones privadas sin fines de lucro al servicio de los hogares -ISFLSH-, en millones de € constantes de 2015), e $Y$ es la renta (renta disponible bruta de los hogares e ISFLSH, en millones de € constantes de 2015).</span>
 <span id="cb34-26"><a href="#cb34-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-27"><a href="#cb34-27" aria-hidden="true" tabindex="-1"></a>donde $C$ representa el consumo privado (gasto en consumo final de los hogares e instituciones privadas sin fines de lucro al servicio de los hogares -ISFLSH-, en millones de € constantes de 2015), e $Y$ es la renta (renta disponible bruta de los hogares e ISFLSH, en millones de € constantes de 2015).</span>
-<span id="cb34-28"><a href="#cb34-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-29"><a href="#cb34-29" aria-hidden="true" tabindex="-1"></a>Desde el punto de vista técnico, el objetivo principal del ejemplo es la introducción de las principales funciones y librerías especializadas de R y Python para regresiones con series temporales.</span>
-<span id="cb34-30"><a href="#cb34-30" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb34-31"><a href="#cb34-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-32"><a href="#cb34-32" aria-hidden="true" tabindex="-1"></a><span class="fu">## Código R {.unnumbered}</span></span>
-<span id="cb34-33"><a href="#cb34-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-36"><a href="#cb34-36" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb34-37"><a href="#cb34-37" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: true</span></span>
-<span id="cb34-38"><a href="#cb34-38" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb34-39"><a href="#cb34-39" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb34-40"><a href="#cb34-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-41"><a href="#cb34-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de librerías</span></span>
-<span id="cb34-42"><a href="#cb34-42" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb34-43"><a href="#cb34-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de datos</span></span>
-<span id="cb34-44"><a href="#cb34-44" aria-hidden="true" tabindex="-1"></a>CONS_ESP <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/CONS_ESP_ts.csv&quot;</span>)</span>
-<span id="cb34-45"><a href="#cb34-45" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(CONS_ESP)</span>
-<span id="cb34-46"><a href="#cb34-46" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(CONS_ESP)</span>
-<span id="cb34-47"><a href="#cb34-47" aria-hidden="true" tabindex="-1"></a><span class="co"># Asignación del formato de series temporales</span></span>
-<span id="cb34-48"><a href="#cb34-48" aria-hidden="true" tabindex="-1"></a><span class="co"># (https://cran.r-project.org/web/views/TimeSeries.html)</span></span>
-<span id="cb34-49"><a href="#cb34-49" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb34-50"><a href="#cb34-50" aria-hidden="true" tabindex="-1"></a><span class="co"># Aquí se usará la clase básica &quot;ts&quot;, válida para series temporales </span></span>
-<span id="cb34-51"><a href="#cb34-51" aria-hidden="true" tabindex="-1"></a><span class="co"># regulares (espaciadas de forma homogénea en el tiempo).</span></span>
-<span id="cb34-52"><a href="#cb34-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Pueden usarse otras clases más generales, siendo las más usadas:</span></span>
-<span id="cb34-53"><a href="#cb34-53" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;zoo&quot;: https://cran.r-project.org/web/packages/zoo/index.html </span></span>
-<span id="cb34-54"><a href="#cb34-54" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;xts&quot;: https://github.com/joshuaulrich/xts</span></span>
-<span id="cb34-55"><a href="#cb34-55" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;tsibble&quot;: https://github.com/robjhyndman/fpp3package</span></span>
-<span id="cb34-56"><a href="#cb34-56" aria-hidden="true" tabindex="-1"></a><span class="co"># Ver anexo para una demostración sobre el &lt;&lt;tidyverts&gt;&gt;, </span></span>
-<span id="cb34-57"><a href="#cb34-57" aria-hidden="true" tabindex="-1"></a><span class="co"># el complemento al tidyverse para el análisis de series temporales.</span></span>
-<span id="cb34-58"><a href="#cb34-58" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb34-59"><a href="#cb34-59" aria-hidden="true" tabindex="-1"></a>ts_CONS_ESP <span class="ot">&lt;-</span> <span class="fu">ts</span>(CONS_ESP[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>], <span class="at">start=</span><span class="fu">c</span>(<span class="dv">1964</span>), <span class="at">end =</span> <span class="fu">c</span>(<span class="dv">2022</span>))</span>
-<span id="cb34-60"><a href="#cb34-60" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb34-61"><a href="#cb34-61" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadística descriptiva</span></span>
-<span id="cb34-62"><a href="#cb34-62" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ts_CONS_ESP)</span>
-<span id="cb34-63"><a href="#cb34-63" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráficas</span></span>
-<span id="cb34-64"><a href="#cb34-64" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> CONS_ESP, <span class="fu">aes</span>(<span class="at">x =</span> Date)) <span class="sc">+</span></span>
-<span id="cb34-65"><a href="#cb34-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> C)) <span class="sc">+</span></span>
-<span id="cb34-66"><a href="#cb34-66" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Consumo privado en España (millones €)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Año&quot;</span>)</span>
-<span id="cb34-67"><a href="#cb34-67" aria-hidden="true" tabindex="-1"></a>g1</span>
-<span id="cb34-68"><a href="#cb34-68" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> CONS_ESP, <span class="fu">aes</span>(<span class="at">x =</span> Date)) <span class="sc">+</span></span>
-<span id="cb34-69"><a href="#cb34-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> Y)) <span class="sc">+</span></span>
-<span id="cb34-70"><a href="#cb34-70" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Renta disponible en España (millones €)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Año&quot;</span>)</span>
-<span id="cb34-71"><a href="#cb34-71" aria-hidden="true" tabindex="-1"></a>g2</span>
-<span id="cb34-72"><a href="#cb34-72" aria-hidden="true" tabindex="-1"></a><span class="co"># Diagrama de puntos con línea de regresión</span></span>
-<span id="cb34-73"><a href="#cb34-73" aria-hidden="true" tabindex="-1"></a>g3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(CONS_ESP, <span class="fu">aes</span>(<span class="at">x =</span> Y, <span class="at">y =</span> C)) <span class="sc">+</span> </span>
-<span id="cb34-74"><a href="#cb34-74" aria-hidden="true" tabindex="-1"></a>               <span class="fu">geom_point</span>() <span class="sc">+</span>  </span>
-<span id="cb34-75"><a href="#cb34-75" aria-hidden="true" tabindex="-1"></a>               <span class="fu">stat_smooth</span>(<span class="at">method =</span> lm) <span class="sc">+</span>  </span>
-<span id="cb34-76"><a href="#cb34-76" aria-hidden="true" tabindex="-1"></a>               <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Renta disponible&quot;</span>,<span class="at">y =</span> <span class="st">&quot;Consumo privado&quot;</span>)</span>
-<span id="cb34-77"><a href="#cb34-77" aria-hidden="true" tabindex="-1"></a>g3</span>
-<span id="cb34-78"><a href="#cb34-78" aria-hidden="true" tabindex="-1"></a><span class="co"># Regresión por MCO</span></span>
-<span id="cb34-79"><a href="#cb34-79" aria-hidden="true" tabindex="-1"></a>lin_model <span class="ot">&lt;-</span> <span class="fu">lm</span> (<span class="at">formula =</span> C <span class="sc">~</span> Y, <span class="at">data =</span> ts_CONS_ESP)</span>
-<span id="cb34-80"><a href="#cb34-80" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lin_model)</span>
-<span id="cb34-81"><a href="#cb34-81" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb34-82"><a href="#cb34-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-85"><a href="#cb34-85" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb34-86"><a href="#cb34-86" aria-hidden="true" tabindex="-1"></a><span class="co"># ANEXO: La  librería fpp3 y el tidyverts&#39; (https://tidyverts.org/)</span></span>
-<span id="cb34-87"><a href="#cb34-87" aria-hidden="true" tabindex="-1"></a><span class="co"># La macro-librería `fpp3` contiene varias librerías específicas</span></span>
-<span id="cb34-88"><a href="#cb34-88" aria-hidden="true" tabindex="-1"></a><span class="co"># y otras generales, como `tidyverse` y  `lubridate`.</span></span>
-<span id="cb34-89"><a href="#cb34-89" aria-hidden="true" tabindex="-1"></a><span class="co"># La clase `tsibble` proporciona una infraestructura de datos para ordenar</span></span>
-<span id="cb34-90"><a href="#cb34-90" aria-hidden="true" tabindex="-1"></a><span class="co"># y manipular series temporales. Se pueden encontrar los detalles en las</span></span>
-<span id="cb34-91"><a href="#cb34-91" aria-hidden="true" tabindex="-1"></a><span class="co"># páginas webs https://tsibble.tidyverts.org/index.html y</span></span>
-<span id="cb34-92"><a href="#cb34-92" aria-hidden="true" tabindex="-1"></a><span class="co"># https://robjhyndman.com/publications/tsibble/.</span></span>
-<span id="cb34-93"><a href="#cb34-93" aria-hidden="true" tabindex="-1"></a><span class="co"># Toda la información de la librería fpp3 se encuentra en:</span></span>
-<span id="cb34-94"><a href="#cb34-94" aria-hidden="true" tabindex="-1"></a><span class="co"># https://github.com/robjhyndman/fpp3package. </span></span>
-<span id="cb34-95"><a href="#cb34-95" aria-hidden="true" tabindex="-1"></a><span class="co"># El libro de texto que acompaña a esta librería es el siguiente:</span></span>
-<span id="cb34-96"><a href="#cb34-96" aria-hidden="true" tabindex="-1"></a><span class="co"># FORECASTING: PRINCIPLES AND PRACTICE -&gt; https://otexts.com/fpp3/.</span></span>
-<span id="cb34-97"><a href="#cb34-97" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb34-98"><a href="#cb34-98" aria-hidden="true" tabindex="-1"></a><span class="co"># NOTA:</span></span>
-<span id="cb34-99"><a href="#cb34-99" aria-hidden="true" tabindex="-1"></a><span class="co"># Existen otras librerías especializadas en el análisis de series temporales, </span></span>
-<span id="cb34-100"><a href="#cb34-100" aria-hidden="true" tabindex="-1"></a><span class="co"># como `TSstudio` (https://ramikrispin.github.io/TSstudio/),</span></span>
-<span id="cb34-101"><a href="#cb34-101" aria-hidden="true" tabindex="-1"></a><span class="co"># `timetk` (https://business-science.github.io/timetk/) o </span></span>
-<span id="cb34-102"><a href="#cb34-102" aria-hidden="true" tabindex="-1"></a><span class="co"># `tsbox`(https://docs.ropensci.org/tsbox/).</span></span>
-<span id="cb34-103"><a href="#cb34-103" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb34-104"><a href="#cb34-104" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fpp3) </span>
-<span id="cb34-105"><a href="#cb34-105" aria-hidden="true" tabindex="-1"></a><span class="co"># Creación del objeto tsibble</span></span>
-<span id="cb34-106"><a href="#cb34-106" aria-hidden="true" tabindex="-1"></a>CONS_ESP_ts <span class="ot">&lt;-</span>  CONS_ESP[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>] <span class="sc">%&gt;%</span></span>
-<span id="cb34-107"><a href="#cb34-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Year =</span> <span class="dv">1964</span><span class="sc">:</span><span class="dv">2022</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb34-108"><a href="#cb34-108" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> Year)</span>
-<span id="cb34-109"><a href="#cb34-109" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráficas individuales</span></span>
-<span id="cb34-110"><a href="#cb34-110" aria-hidden="true" tabindex="-1"></a>CONS_ESP_ts <span class="sc">%&gt;%</span> <span class="fu">autoplot</span>(C) <span class="sc">+</span></span>
-<span id="cb34-111"><a href="#cb34-111" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Consumo privado en España&quot;</span>) <span class="sc">+</span></span>
-<span id="cb34-112"><a href="#cb34-112" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Millones €&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Año&quot;</span>)</span>
-<span id="cb34-113"><a href="#cb34-113" aria-hidden="true" tabindex="-1"></a>CONS_ESP_ts <span class="sc">%&gt;%</span> <span class="fu">autoplot</span>(Y) <span class="sc">+</span></span>
-<span id="cb34-114"><a href="#cb34-114" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Renta disponible en España&quot;</span>) <span class="sc">+</span></span>
-<span id="cb34-115"><a href="#cb34-115" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Millones €&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Año&quot;</span>)</span>
-<span id="cb34-116"><a href="#cb34-116" aria-hidden="true" tabindex="-1"></a><span class="co"># Diagrama de puntos junto con la recta de regresión estimada</span></span>
-<span id="cb34-117"><a href="#cb34-117" aria-hidden="true" tabindex="-1"></a>CONS_ESP_ts <span class="sc">%&gt;%</span></span>
-<span id="cb34-118"><a href="#cb34-118" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Y, <span class="at">y=</span>C)) <span class="sc">+</span></span>
-<span id="cb34-119"><a href="#cb34-119" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Consumo privado&quot;</span>) <span class="sc">+</span></span>
-<span id="cb34-120"><a href="#cb34-120" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Renta disponible&quot;</span>) <span class="sc">+</span></span>
-<span id="cb34-121"><a href="#cb34-121" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb34-122"><a href="#cb34-122" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span><span class="cn">FALSE</span>)</span>
-<span id="cb34-123"><a href="#cb34-123" aria-hidden="true" tabindex="-1"></a><span class="co"># Regresión por MCO</span></span>
-<span id="cb34-124"><a href="#cb34-124" aria-hidden="true" tabindex="-1"></a>CONS_ESP_ts <span class="sc">%&gt;%</span></span>
-<span id="cb34-125"><a href="#cb34-125" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="at">tslm =</span> <span class="fu">TSLM</span>(C <span class="sc">~</span> Y)) <span class="sc">%&gt;%</span></span>
-<span id="cb34-126"><a href="#cb34-126" aria-hidden="true" tabindex="-1"></a>  <span class="fu">report</span>()</span>
-<span id="cb34-127"><a href="#cb34-127" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb34-128"><a href="#cb34-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-129"><a href="#cb34-129" aria-hidden="true" tabindex="-1"></a><span class="fu">## Código Python {.unnumbered}</span></span>
-<span id="cb34-130"><a href="#cb34-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-133"><a href="#cb34-133" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
-<span id="cb34-134"><a href="#cb34-134" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: true</span></span>
-<span id="cb34-135"><a href="#cb34-135" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb34-136"><a href="#cb34-136" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb34-137"><a href="#cb34-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-138"><a href="#cb34-138" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de librerías</span></span>
-<span id="cb34-139"><a href="#cb34-139" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb34-140"><a href="#cb34-140" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb34-141"><a href="#cb34-141" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb34-142"><a href="#cb34-142" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
-<span id="cb34-143"><a href="#cb34-143" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de datos </span></span>
-<span id="cb34-144"><a href="#cb34-144" aria-hidden="true" tabindex="-1"></a><span class="co"># (al introducir la opción index_col se está asignando en este caso</span></span>
-<span id="cb34-145"><a href="#cb34-145" aria-hidden="true" tabindex="-1"></a><span class="co"># de forma implícita un formato temporal para el resto de columnas)</span></span>
-<span id="cb34-146"><a href="#cb34-146" aria-hidden="true" tabindex="-1"></a>CONS_ESP <span class="op">=</span> pd.read_csv(<span class="st">&quot;data/CONS_ESP_ts.csv&quot;</span>, index_col<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb34-147"><a href="#cb34-147" aria-hidden="true" tabindex="-1"></a><span class="co"># (al introducir la opción index_col se está asignando en este caso</span></span>
-<span id="cb34-148"><a href="#cb34-148" aria-hidden="true" tabindex="-1"></a><span class="co"># de forma implícita un formato temporal para el resto de columnas)</span></span>
-<span id="cb34-149"><a href="#cb34-149" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb34-150"><a href="#cb34-150" aria-hidden="true" tabindex="-1"></a><span class="co"># Asignación del formato temporal </span></span>
-<span id="cb34-151"><a href="#cb34-151" aria-hidden="true" tabindex="-1"></a><span class="co"># (https://pandas.pydata.org/docs/user_guide/timeseries.html)</span></span>
-<span id="cb34-152"><a href="#cb34-152" aria-hidden="true" tabindex="-1"></a><span class="co"># Un análisis detallado puede encontrarse en la siguiente página web:</span></span>
-<span id="cb34-153"><a href="#cb34-153" aria-hidden="true" tabindex="-1"></a><span class="co"># https://jakevdp.github.io/PythonDataScienceHandbook/</span></span>
-<span id="cb34-154"><a href="#cb34-154" aria-hidden="true" tabindex="-1"></a><span class="co"># 03.11-working-with-time-series.html</span></span>
-<span id="cb34-155"><a href="#cb34-155" aria-hidden="true" tabindex="-1"></a>ts_CONS_ESP <span class="op">=</span> pd.read_csv(<span class="st">&quot;data/CONS_ESP_ts.csv&quot;</span>, </span>
-<span id="cb34-156"><a href="#cb34-156" aria-hidden="true" tabindex="-1"></a>parse_dates<span class="op">=</span>[<span class="st">&#39;Date&#39;</span>], index_col<span class="op">=</span><span class="st">&#39;Date&#39;</span>)</span>
-<span id="cb34-157"><a href="#cb34-157" aria-hidden="true" tabindex="-1"></a>ts_CONS_ESP.head()</span>
-<span id="cb34-158"><a href="#cb34-158" aria-hidden="true" tabindex="-1"></a>ts_CONS_ESP.tail()</span>
-<span id="cb34-159"><a href="#cb34-159" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadística descriptiva</span></span>
-<span id="cb34-160"><a href="#cb34-160" aria-hidden="true" tabindex="-1"></a>ts_CONS_ESP.describe()</span>
-<span id="cb34-161"><a href="#cb34-161" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráficas</span></span>
-<span id="cb34-162"><a href="#cb34-162" aria-hidden="true" tabindex="-1"></a>plt.plot(ts_CONS_ESP[<span class="st">&quot;C&quot;</span>])</span>
-<span id="cb34-163"><a href="#cb34-163" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;Año&quot;</span>)</span>
-<span id="cb34-164"><a href="#cb34-164" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;Consumo privado en España (millones €)&quot;</span>)</span>
-<span id="cb34-165"><a href="#cb34-165" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb34-166"><a href="#cb34-166" aria-hidden="true" tabindex="-1"></a>plt.plot(ts_CONS_ESP[<span class="st">&quot;Y&quot;</span>])</span>
-<span id="cb34-167"><a href="#cb34-167" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;Año&quot;</span>)</span>
-<span id="cb34-168"><a href="#cb34-168" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;Renta disponible en España (millones €)&quot;</span>)</span>
-<span id="cb34-169"><a href="#cb34-169" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb34-170"><a href="#cb34-170" aria-hidden="true" tabindex="-1"></a><span class="co"># Diagrama de puntos con línea de regresión</span></span>
-<span id="cb34-171"><a href="#cb34-171" aria-hidden="true" tabindex="-1"></a>reg <span class="op">=</span> smf.ols(formula <span class="op">=</span> <span class="st">&quot;C ~ Y&quot;</span>, data <span class="op">=</span> ts_CONS_ESP)</span>
-<span id="cb34-172"><a href="#cb34-172" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> reg.fit()</span>
-<span id="cb34-173"><a href="#cb34-173" aria-hidden="true" tabindex="-1"></a>plt.scatter(ts_CONS_ESP[<span class="st">&quot;Y&quot;</span>], ts_CONS_ESP[<span class="st">&quot;C&quot;</span>], color <span class="op">=</span> <span class="st">&quot;black&quot;</span>)</span>
-<span id="cb34-174"><a href="#cb34-174" aria-hidden="true" tabindex="-1"></a>plt.plot(ts_CONS_ESP[<span class="st">&quot;Y&quot;</span>], res.fittedvalues, color <span class="op">=</span> <span class="st">&quot;blue&quot;</span>)</span>
-<span id="cb34-175"><a href="#cb34-175" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;Renta disponible&quot;</span>)</span>
-<span id="cb34-176"><a href="#cb34-176" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;Consumo privado&quot;</span>)</span>
-<span id="cb34-177"><a href="#cb34-177" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
-<span id="cb34-178"><a href="#cb34-178" aria-hidden="true" tabindex="-1"></a><span class="co"># Regresión por MCO</span></span>
-<span id="cb34-179"><a href="#cb34-179" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> smf.ols(formula <span class="op">=</span> <span class="st">&quot;C ~ Y&quot;</span>, data <span class="op">=</span> ts_CONS_ESP)</span>
-<span id="cb34-180"><a href="#cb34-180" aria-hidden="true" tabindex="-1"></a>lin_model <span class="op">=</span> model.fit()</span>
-<span id="cb34-181"><a href="#cb34-181" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lin_model.summary())</span>
-<span id="cb34-182"><a href="#cb34-182" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb34-27"><a href="#cb34-27" aria-hidden="true" tabindex="-1"></a>Desde el punto de vista técnico, el objetivo principal del ejemplo es la introducción de las principales funciones y librerías especializadas de R y Python para regresiones con series temporales.</span>
+<span id="cb34-28"><a href="#cb34-28" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb34-29"><a href="#cb34-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-30"><a href="#cb34-30" aria-hidden="true" tabindex="-1"></a>::: {.panel-tabset group=&quot;language&quot;}</span>
+<span id="cb34-31"><a href="#cb34-31" aria-hidden="true" tabindex="-1"></a><span class="fu"># Código R {.unnumbered}</span></span>
+<span id="cb34-32"><a href="#cb34-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-35"><a href="#cb34-35" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb34-36"><a href="#cb34-36" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: true</span></span>
+<span id="cb34-37"><a href="#cb34-37" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb34-38"><a href="#cb34-38" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb34-39"><a href="#cb34-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-40"><a href="#cb34-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de librerías</span></span>
+<span id="cb34-41"><a href="#cb34-41" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb34-42"><a href="#cb34-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de datos</span></span>
+<span id="cb34-43"><a href="#cb34-43" aria-hidden="true" tabindex="-1"></a>CONS_ESP <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/CONS_ESP_ts.csv&quot;</span>)</span>
+<span id="cb34-44"><a href="#cb34-44" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(CONS_ESP)</span>
+<span id="cb34-45"><a href="#cb34-45" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(CONS_ESP)</span>
+<span id="cb34-46"><a href="#cb34-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Asignación del formato de series temporales</span></span>
+<span id="cb34-47"><a href="#cb34-47" aria-hidden="true" tabindex="-1"></a><span class="co"># (https://cran.r-project.org/web/views/TimeSeries.html)</span></span>
+<span id="cb34-48"><a href="#cb34-48" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb34-49"><a href="#cb34-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Aquí se usará la clase básica &quot;ts&quot;, válida para series temporales </span></span>
+<span id="cb34-50"><a href="#cb34-50" aria-hidden="true" tabindex="-1"></a><span class="co"># regulares (espaciadas de forma homogénea en el tiempo).</span></span>
+<span id="cb34-51"><a href="#cb34-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Pueden usarse otras clases más generales, siendo las más usadas:</span></span>
+<span id="cb34-52"><a href="#cb34-52" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;zoo&quot;: https://cran.r-project.org/web/packages/zoo/index.html </span></span>
+<span id="cb34-53"><a href="#cb34-53" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;xts&quot;: https://github.com/joshuaulrich/xts</span></span>
+<span id="cb34-54"><a href="#cb34-54" aria-hidden="true" tabindex="-1"></a><span class="co"># &quot;tsibble&quot;: https://github.com/robjhyndman/fpp3package</span></span>
+<span id="cb34-55"><a href="#cb34-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Ver anexo para una demostración sobre el &lt;&lt;tidyverts&gt;&gt;, </span></span>
+<span id="cb34-56"><a href="#cb34-56" aria-hidden="true" tabindex="-1"></a><span class="co"># el complemento al tidyverse para el análisis de series temporales.</span></span>
+<span id="cb34-57"><a href="#cb34-57" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb34-58"><a href="#cb34-58" aria-hidden="true" tabindex="-1"></a>ts_CONS_ESP <span class="ot">&lt;-</span> <span class="fu">ts</span>(CONS_ESP[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>], <span class="at">start=</span><span class="fu">c</span>(<span class="dv">1964</span>), <span class="at">end =</span> <span class="fu">c</span>(<span class="dv">2022</span>))</span>
+<span id="cb34-59"><a href="#cb34-59" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb34-60"><a href="#cb34-60" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadística descriptiva</span></span>
+<span id="cb34-61"><a href="#cb34-61" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ts_CONS_ESP)</span>
+<span id="cb34-62"><a href="#cb34-62" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráficas</span></span>
+<span id="cb34-63"><a href="#cb34-63" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> CONS_ESP, <span class="fu">aes</span>(<span class="at">x =</span> Date)) <span class="sc">+</span></span>
+<span id="cb34-64"><a href="#cb34-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> C)) <span class="sc">+</span></span>
+<span id="cb34-65"><a href="#cb34-65" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Consumo privado en España (millones €)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Año&quot;</span>)</span>
+<span id="cb34-66"><a href="#cb34-66" aria-hidden="true" tabindex="-1"></a>g1</span>
+<span id="cb34-67"><a href="#cb34-67" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> CONS_ESP, <span class="fu">aes</span>(<span class="at">x =</span> Date)) <span class="sc">+</span></span>
+<span id="cb34-68"><a href="#cb34-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y =</span> Y)) <span class="sc">+</span></span>
+<span id="cb34-69"><a href="#cb34-69" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Renta disponible en España (millones €)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Año&quot;</span>)</span>
+<span id="cb34-70"><a href="#cb34-70" aria-hidden="true" tabindex="-1"></a>g2</span>
+<span id="cb34-71"><a href="#cb34-71" aria-hidden="true" tabindex="-1"></a><span class="co"># Diagrama de puntos con línea de regresión</span></span>
+<span id="cb34-72"><a href="#cb34-72" aria-hidden="true" tabindex="-1"></a>g3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(CONS_ESP, <span class="fu">aes</span>(<span class="at">x =</span> Y, <span class="at">y =</span> C)) <span class="sc">+</span> </span>
+<span id="cb34-73"><a href="#cb34-73" aria-hidden="true" tabindex="-1"></a>               <span class="fu">geom_point</span>() <span class="sc">+</span>  </span>
+<span id="cb34-74"><a href="#cb34-74" aria-hidden="true" tabindex="-1"></a>               <span class="fu">stat_smooth</span>(<span class="at">method =</span> lm) <span class="sc">+</span>  </span>
+<span id="cb34-75"><a href="#cb34-75" aria-hidden="true" tabindex="-1"></a>               <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Renta disponible&quot;</span>,<span class="at">y =</span> <span class="st">&quot;Consumo privado&quot;</span>)</span>
+<span id="cb34-76"><a href="#cb34-76" aria-hidden="true" tabindex="-1"></a>g3</span>
+<span id="cb34-77"><a href="#cb34-77" aria-hidden="true" tabindex="-1"></a><span class="co"># Regresión por MCO</span></span>
+<span id="cb34-78"><a href="#cb34-78" aria-hidden="true" tabindex="-1"></a>lin_model <span class="ot">&lt;-</span> <span class="fu">lm</span> (<span class="at">formula =</span> C <span class="sc">~</span> Y, <span class="at">data =</span> ts_CONS_ESP)</span>
+<span id="cb34-79"><a href="#cb34-79" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lin_model)</span>
+<span id="cb34-80"><a href="#cb34-80" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb34-81"><a href="#cb34-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-84"><a href="#cb34-84" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb34-85"><a href="#cb34-85" aria-hidden="true" tabindex="-1"></a><span class="co"># ANEXO: La  librería fpp3 y el tidyverts&#39; (https://tidyverts.org/)</span></span>
+<span id="cb34-86"><a href="#cb34-86" aria-hidden="true" tabindex="-1"></a><span class="co"># La macro-librería `fpp3` contiene varias librerías específicas</span></span>
+<span id="cb34-87"><a href="#cb34-87" aria-hidden="true" tabindex="-1"></a><span class="co"># y otras generales, como `tidyverse` y  `lubridate`.</span></span>
+<span id="cb34-88"><a href="#cb34-88" aria-hidden="true" tabindex="-1"></a><span class="co"># La clase `tsibble` proporciona una infraestructura de datos para ordenar</span></span>
+<span id="cb34-89"><a href="#cb34-89" aria-hidden="true" tabindex="-1"></a><span class="co"># y manipular series temporales. Se pueden encontrar los detalles en las</span></span>
+<span id="cb34-90"><a href="#cb34-90" aria-hidden="true" tabindex="-1"></a><span class="co"># páginas webs https://tsibble.tidyverts.org/index.html y</span></span>
+<span id="cb34-91"><a href="#cb34-91" aria-hidden="true" tabindex="-1"></a><span class="co"># https://robjhyndman.com/publications/tsibble/.</span></span>
+<span id="cb34-92"><a href="#cb34-92" aria-hidden="true" tabindex="-1"></a><span class="co"># Toda la información de la librería fpp3 se encuentra en:</span></span>
+<span id="cb34-93"><a href="#cb34-93" aria-hidden="true" tabindex="-1"></a><span class="co"># https://github.com/robjhyndman/fpp3package. </span></span>
+<span id="cb34-94"><a href="#cb34-94" aria-hidden="true" tabindex="-1"></a><span class="co"># El libro de texto que acompaña a esta librería es el siguiente:</span></span>
+<span id="cb34-95"><a href="#cb34-95" aria-hidden="true" tabindex="-1"></a><span class="co"># FORECASTING: PRINCIPLES AND PRACTICE -&gt; https://otexts.com/fpp3/.</span></span>
+<span id="cb34-96"><a href="#cb34-96" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb34-97"><a href="#cb34-97" aria-hidden="true" tabindex="-1"></a><span class="co"># NOTA:</span></span>
+<span id="cb34-98"><a href="#cb34-98" aria-hidden="true" tabindex="-1"></a><span class="co"># Existen otras librerías especializadas en el análisis de series temporales, </span></span>
+<span id="cb34-99"><a href="#cb34-99" aria-hidden="true" tabindex="-1"></a><span class="co"># como `TSstudio` (https://ramikrispin.github.io/TSstudio/),</span></span>
+<span id="cb34-100"><a href="#cb34-100" aria-hidden="true" tabindex="-1"></a><span class="co"># `timetk` (https://business-science.github.io/timetk/) o </span></span>
+<span id="cb34-101"><a href="#cb34-101" aria-hidden="true" tabindex="-1"></a><span class="co"># `tsbox`(https://docs.ropensci.org/tsbox/).</span></span>
+<span id="cb34-102"><a href="#cb34-102" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb34-103"><a href="#cb34-103" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fpp3) </span>
+<span id="cb34-104"><a href="#cb34-104" aria-hidden="true" tabindex="-1"></a><span class="co"># Creación del objeto tsibble</span></span>
+<span id="cb34-105"><a href="#cb34-105" aria-hidden="true" tabindex="-1"></a>CONS_ESP_ts <span class="ot">&lt;-</span>  CONS_ESP[,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>] <span class="sc">%&gt;%</span></span>
+<span id="cb34-106"><a href="#cb34-106" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Year =</span> <span class="dv">1964</span><span class="sc">:</span><span class="dv">2022</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb34-107"><a href="#cb34-107" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tsibble</span>(<span class="at">index =</span> Year)</span>
+<span id="cb34-108"><a href="#cb34-108" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráficas individuales</span></span>
+<span id="cb34-109"><a href="#cb34-109" aria-hidden="true" tabindex="-1"></a>CONS_ESP_ts <span class="sc">%&gt;%</span> <span class="fu">autoplot</span>(C) <span class="sc">+</span></span>
+<span id="cb34-110"><a href="#cb34-110" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Consumo privado en España&quot;</span>) <span class="sc">+</span></span>
+<span id="cb34-111"><a href="#cb34-111" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Millones €&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Año&quot;</span>)</span>
+<span id="cb34-112"><a href="#cb34-112" aria-hidden="true" tabindex="-1"></a>CONS_ESP_ts <span class="sc">%&gt;%</span> <span class="fu">autoplot</span>(Y) <span class="sc">+</span></span>
+<span id="cb34-113"><a href="#cb34-113" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Renta disponible en España&quot;</span>) <span class="sc">+</span></span>
+<span id="cb34-114"><a href="#cb34-114" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Millones €&quot;</span>) <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Año&quot;</span>)</span>
+<span id="cb34-115"><a href="#cb34-115" aria-hidden="true" tabindex="-1"></a><span class="co"># Diagrama de puntos junto con la recta de regresión estimada</span></span>
+<span id="cb34-116"><a href="#cb34-116" aria-hidden="true" tabindex="-1"></a>CONS_ESP_ts <span class="sc">%&gt;%</span></span>
+<span id="cb34-117"><a href="#cb34-117" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>Y, <span class="at">y=</span>C)) <span class="sc">+</span></span>
+<span id="cb34-118"><a href="#cb34-118" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;Consumo privado&quot;</span>) <span class="sc">+</span></span>
+<span id="cb34-119"><a href="#cb34-119" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Renta disponible&quot;</span>) <span class="sc">+</span></span>
+<span id="cb34-120"><a href="#cb34-120" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb34-121"><a href="#cb34-121" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span><span class="st">&quot;lm&quot;</span>, <span class="at">se=</span><span class="cn">FALSE</span>)</span>
+<span id="cb34-122"><a href="#cb34-122" aria-hidden="true" tabindex="-1"></a><span class="co"># Regresión por MCO</span></span>
+<span id="cb34-123"><a href="#cb34-123" aria-hidden="true" tabindex="-1"></a>CONS_ESP_ts <span class="sc">%&gt;%</span></span>
+<span id="cb34-124"><a href="#cb34-124" aria-hidden="true" tabindex="-1"></a>  <span class="fu">model</span>(<span class="at">tslm =</span> <span class="fu">TSLM</span>(C <span class="sc">~</span> Y)) <span class="sc">%&gt;%</span></span>
+<span id="cb34-125"><a href="#cb34-125" aria-hidden="true" tabindex="-1"></a>  <span class="fu">report</span>()</span>
+<span id="cb34-126"><a href="#cb34-126" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb34-127"><a href="#cb34-127" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-128"><a href="#cb34-128" aria-hidden="true" tabindex="-1"></a><span class="fu"># Código Python {.unnumbered}</span></span>
+<span id="cb34-129"><a href="#cb34-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-132"><a href="#cb34-132" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
+<span id="cb34-133"><a href="#cb34-133" aria-hidden="true" tabindex="-1"></a><span class="co">#| include: true</span></span>
+<span id="cb34-134"><a href="#cb34-134" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb34-135"><a href="#cb34-135" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb34-136"><a href="#cb34-136" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-137"><a href="#cb34-137" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de librerías</span></span>
+<span id="cb34-138"><a href="#cb34-138" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb34-139"><a href="#cb34-139" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb34-140"><a href="#cb34-140" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb34-141"><a href="#cb34-141" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</span>
+<span id="cb34-142"><a href="#cb34-142" aria-hidden="true" tabindex="-1"></a><span class="co"># Lectura de datos </span></span>
+<span id="cb34-143"><a href="#cb34-143" aria-hidden="true" tabindex="-1"></a><span class="co"># (al introducir la opción index_col se está asignando en este caso</span></span>
+<span id="cb34-144"><a href="#cb34-144" aria-hidden="true" tabindex="-1"></a><span class="co"># de forma implícita un formato temporal para el resto de columnas)</span></span>
+<span id="cb34-145"><a href="#cb34-145" aria-hidden="true" tabindex="-1"></a>CONS_ESP <span class="op">=</span> pd.read_csv(<span class="st">&quot;data/CONS_ESP_ts.csv&quot;</span>, index_col<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb34-146"><a href="#cb34-146" aria-hidden="true" tabindex="-1"></a><span class="co"># (al introducir la opción index_col se está asignando en este caso</span></span>
+<span id="cb34-147"><a href="#cb34-147" aria-hidden="true" tabindex="-1"></a><span class="co"># de forma implícita un formato temporal para el resto de columnas)</span></span>
+<span id="cb34-148"><a href="#cb34-148" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb34-149"><a href="#cb34-149" aria-hidden="true" tabindex="-1"></a><span class="co"># Asignación del formato temporal </span></span>
+<span id="cb34-150"><a href="#cb34-150" aria-hidden="true" tabindex="-1"></a><span class="co"># (https://pandas.pydata.org/docs/user_guide/timeseries.html)</span></span>
+<span id="cb34-151"><a href="#cb34-151" aria-hidden="true" tabindex="-1"></a><span class="co"># Un análisis detallado puede encontrarse en la siguiente página web:</span></span>
+<span id="cb34-152"><a href="#cb34-152" aria-hidden="true" tabindex="-1"></a><span class="co"># https://jakevdp.github.io/PythonDataScienceHandbook/</span></span>
+<span id="cb34-153"><a href="#cb34-153" aria-hidden="true" tabindex="-1"></a><span class="co"># 03.11-working-with-time-series.html</span></span>
+<span id="cb34-154"><a href="#cb34-154" aria-hidden="true" tabindex="-1"></a>ts_CONS_ESP <span class="op">=</span> pd.read_csv(<span class="st">&quot;data/CONS_ESP_ts.csv&quot;</span>, </span>
+<span id="cb34-155"><a href="#cb34-155" aria-hidden="true" tabindex="-1"></a>parse_dates<span class="op">=</span>[<span class="st">&#39;Date&#39;</span>], index_col<span class="op">=</span><span class="st">&#39;Date&#39;</span>)</span>
+<span id="cb34-156"><a href="#cb34-156" aria-hidden="true" tabindex="-1"></a>ts_CONS_ESP.head()</span>
+<span id="cb34-157"><a href="#cb34-157" aria-hidden="true" tabindex="-1"></a>ts_CONS_ESP.tail()</span>
+<span id="cb34-158"><a href="#cb34-158" aria-hidden="true" tabindex="-1"></a><span class="co"># Estadística descriptiva</span></span>
+<span id="cb34-159"><a href="#cb34-159" aria-hidden="true" tabindex="-1"></a>ts_CONS_ESP.describe()</span>
+<span id="cb34-160"><a href="#cb34-160" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráficas</span></span>
+<span id="cb34-161"><a href="#cb34-161" aria-hidden="true" tabindex="-1"></a>plt.plot(ts_CONS_ESP[<span class="st">&quot;C&quot;</span>])</span>
+<span id="cb34-162"><a href="#cb34-162" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;Año&quot;</span>)</span>
+<span id="cb34-163"><a href="#cb34-163" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;Consumo privado en España (millones €)&quot;</span>)</span>
+<span id="cb34-164"><a href="#cb34-164" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb34-165"><a href="#cb34-165" aria-hidden="true" tabindex="-1"></a>plt.plot(ts_CONS_ESP[<span class="st">&quot;Y&quot;</span>])</span>
+<span id="cb34-166"><a href="#cb34-166" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;Año&quot;</span>)</span>
+<span id="cb34-167"><a href="#cb34-167" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;Renta disponible en España (millones €)&quot;</span>)</span>
+<span id="cb34-168"><a href="#cb34-168" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb34-169"><a href="#cb34-169" aria-hidden="true" tabindex="-1"></a><span class="co"># Diagrama de puntos con línea de regresión</span></span>
+<span id="cb34-170"><a href="#cb34-170" aria-hidden="true" tabindex="-1"></a>reg <span class="op">=</span> smf.ols(formula <span class="op">=</span> <span class="st">&quot;C ~ Y&quot;</span>, data <span class="op">=</span> ts_CONS_ESP)</span>
+<span id="cb34-171"><a href="#cb34-171" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> reg.fit()</span>
+<span id="cb34-172"><a href="#cb34-172" aria-hidden="true" tabindex="-1"></a>plt.scatter(ts_CONS_ESP[<span class="st">&quot;Y&quot;</span>], ts_CONS_ESP[<span class="st">&quot;C&quot;</span>], color <span class="op">=</span> <span class="st">&quot;black&quot;</span>)</span>
+<span id="cb34-173"><a href="#cb34-173" aria-hidden="true" tabindex="-1"></a>plt.plot(ts_CONS_ESP[<span class="st">&quot;Y&quot;</span>], res.fittedvalues, color <span class="op">=</span> <span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb34-174"><a href="#cb34-174" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">&quot;Renta disponible&quot;</span>)</span>
+<span id="cb34-175"><a href="#cb34-175" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">&quot;Consumo privado&quot;</span>)</span>
+<span id="cb34-176"><a href="#cb34-176" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb34-177"><a href="#cb34-177" aria-hidden="true" tabindex="-1"></a><span class="co"># Regresión por MCO</span></span>
+<span id="cb34-178"><a href="#cb34-178" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> smf.ols(formula <span class="op">=</span> <span class="st">&quot;C ~ Y&quot;</span>, data <span class="op">=</span> ts_CONS_ESP)</span>
+<span id="cb34-179"><a href="#cb34-179" aria-hidden="true" tabindex="-1"></a>lin_model <span class="op">=</span> model.fit()</span>
+<span id="cb34-180"><a href="#cb34-180" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(lin_model.summary())</span>
+<span id="cb34-181"><a href="#cb34-181" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb34-182"><a href="#cb34-182" aria-hidden="true" tabindex="-1"></a>:::</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

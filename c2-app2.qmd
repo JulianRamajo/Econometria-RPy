@@ -1,5 +1,5 @@
 ---
-editor: visual
+title: "Aplicación 2.2: Regresiones con datos de series temporales"
 engine: knitr
 excerpt: ""
 draft: false
@@ -16,9 +16,7 @@ format:
 ```
 
 ::: justify
-# Aplicación 2.2: Regresiones con datos de series temporales {.unnumbered}
-
-## Consumo privado en España {.unnumbered}
+# Consumo privado en España {.unnumbered}
 
 En esta aplicación se estimará una función de consumo de tipo Keynesiano agregada (para un consumidor representativo), usando datos de series temporales para España del período 1964-2022:
 
@@ -29,7 +27,8 @@ donde $C$ representa el consumo privado (gasto en consumo final de los hogares e
 Desde el punto de vista técnico, el objetivo principal del ejemplo es la introducción de las principales funciones y librerías especializadas de R y Python para regresiones con series temporales.
 :::
 
-## Código R {.unnumbered}
+::: {.panel-tabset group="language"}
+# Código R {.unnumbered}
 
 ```{r}
 #| include: true
@@ -122,7 +121,7 @@ CONS_ESP_ts %>%
   report()
 ```
 
-## Código Python {.unnumbered}
+# Código Python {.unnumbered}
 
 ```{python}
 #| include: true
@@ -174,3 +173,4 @@ model = smf.ols(formula = "C ~ Y", data = ts_CONS_ESP)
 lin_model = model.fit()
 print(lin_model.summary())
 ```
+:::

@@ -1,5 +1,5 @@
 ---
-editor: visual
+title: "Aplicación 3.9: Multicolinealidad"
 engine: knitr
 excerpt: ""
 draft: false
@@ -16,9 +16,7 @@ format:
 ```
 
 ::: justify
-# Aplicación 3.9: Multicolinealidad {.unnumbered}
-
-## Análisis de la rentabilidad empresarial {.unnumbered}
+# Análisis de la rentabilidad empresarial {.unnumbered}
 
 En este ejercicio se intentará explicar la rentabilidad anual (RENTAB) obtenida por 80 empresas, utilizando para ello diferente información contable interna en forma de ratios económico-financieros (R1, R2,..., R10), así como datos sobre el volumen de ventas totales (VT), usándose esta última variable como medida del tamaño de cada empresa:
 
@@ -27,7 +25,8 @@ $$RENTAB_{i} = \beta_1 + \beta_2  log(VT_{i}) + \beta_3  R1_{i} + ... + \beta_{1
 Desde un punto de vista metodológico, en este ejemplo se usarán distintas técnicas estadísticas para detectar y corregir el problema de colinealidad elevada entre las variables explicativas de la regresión propuesta.
 :::
 
-## Código R {.unnumbered}
+::: {.panel-tabset group="language"}
+# Código R {.unnumbered}
 
 ```{r}
 #| include: true
@@ -180,7 +179,7 @@ x_vars <- data.matrix(dataTransformed[, 1:11])
 y_var <- dataTransformed[, "RENTAB"]
 ```
 
-## Código Python {.unnumbered}
+# Código Python {.unnumbered}
 
 ```{python}
 #| include: true
@@ -343,3 +342,4 @@ plt.axhline(np.max(scores), linestyle='--', color='.5')
 plt.xlim([alphas[0], alphas[-1]])
 plt.show()
 ```
+:::

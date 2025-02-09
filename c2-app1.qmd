@@ -1,5 +1,5 @@
 ---
-editor: visual
+title: "Aplicación 2.1: Regresiones con datos de corte transversal"
 engine: knitr
 excerpt: ""
 draft: false
@@ -16,9 +16,7 @@ format:
 ```
 
 ::: justify
-# Aplicación 2.1: Regresiones con datos de corte transversal {.unnumbered}
-
-## Demanda familiar de carne {.unnumbered}
+# Demanda familiar de carne {.unnumbered}
 
 En esta aplicación se estimará una función de demanda de carne con datos microeconómicos sobre 30 familias americanas ( *i* = 1, 2,..., 30):
 
@@ -29,7 +27,8 @@ donde $Q$ representa la cantidad de carne demandada, $P$ es el precio pagado por
 Desde el punto de vista técnico, en el ejemplo se utilizarán distintas funciones y librerías que permiten la estimación de modelos estadísticos. Concretamente, en el caso del lenguaje R se usa la función `lm()` (<https://rstudio.github.io/r-manuals/r-intro/Statistical-models-in-R.html>) para el ajuste del modelo lineal propuesto, y en el caso de Python se proponen tanto el uso de la librería estándar en este lenguaje de programación para la estimación de modelos estadísticos y econométricos, `statsmodels` (<https://www.statsmodels.org/>), como la librería `scikit-learn` ([https://scikit-learn.org/](#0){.uri}), si bien esta última está más especializada en técnicas generales de *machine learning*.
 :::
 
-## Código R {.unnumbered}
+::: {.panel-tabset group="language"}
+# Código R
 
 ```{r}
 #| include: true
@@ -86,7 +85,7 @@ log_model <- lm(formula = log(Q) ~ log(P) + log(Y), data = DEM_CARNE)
 summary(log_model)
 ```
 
-## Código Python {.unnumbered}
+# Código Python
 
 ```{python}
 #| include: true
@@ -150,3 +149,4 @@ model = smf.ols(formula = "np.log(Q) ~ np.log(P) + np.log(Y)", data = DEM_CARNE)
 log_model = model.fit()
 print(log_model.summary())
 ```
+:::

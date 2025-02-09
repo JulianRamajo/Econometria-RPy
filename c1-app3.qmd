@@ -1,5 +1,5 @@
 ---
-editor: visual
+title: "Aplicación 1.3: Datos financieros"
 engine: knitr
 excerpt: ""
 draft: false
@@ -16,16 +16,15 @@ format:
 ```
 
 ::: justify
-# Aplicación 1.3: Datos financieros {.unnumbered}
-
-## Propiedades estadísticas básicas de los activos bursátiles {.unnumbered}
+# Propiedades estadísticas básicas de los activos bursátiles {.unnumbered}
 
 El objetivo de esta aplicación es familiarizarse con la descarga, manejo y visualización de datos bursátiles procedentes de la plataforma [Yahoo!Finanzas](https://es.finance.yahoo.com/), así como entender las propiedades estadísticas básicas de las series temporales asociadas.
 
 Se usará el enfoque *tidyverse* para este tipo de datos, por lo que esta aplicación puede entenderse como un "análisis financiero ordenado" (*tidy finance*). Para una exposición completa de todos los métodos y modelos empíricos recientes de economía financiera puede consultarse la página <https://www.tidy-finance.org/> y los libros online (usando R o Python) asociados a la misma.
 :::
 
-### Código R {.unnumbered}
+::: {.panel-tabset group="language"}
+# Código R {.unnumbered}
 
 ```{r}
 #| include: true
@@ -122,7 +121,7 @@ rSAN %>%
   print(n = Inf)
 ```
 
-### Código Python {.unnumbered}
+# Código Python {.unnumbered}
 
 ```{python}
 #| include: true
@@ -197,16 +196,18 @@ pSAN['year'] = pSAN["Date"].dt.year
 est_anual = pSAN.groupby('year').agg({'ret': ['mean', 'std', 'min', 'max']})
 est_anual.round(3)
 ```
+:::
 
 ::: justify
-## Comportamiento temporal de los activos bursátiles {.unnumbered}
+# Comportamiento temporal de los activos bursátiles {.unnumbered}
 
 En esta aplicación se analizará gráficamente la relación existente entre las variables financieras $rSAN_t$ y $rIBEX_t$, donde $rSAN$ es el rendimiento (no el precio) de las acciones del Banco Santander y $rIBEX$ es el rendimiento del índice bursátil Ibex 35 (<https://en.wikipedia.org/wiki/IBEX_35>).
 
 Durante la aplicación, se tendrán que ejecutar comandos específicos de filtrado, selección, transformación, fusión de ficheros, agrupación, ordenación y resumen, todas ellos asociados a operaciones básicas en la gestión de datos.
 :::
 
-### Código R {.unnumbered}
+::: {.panel-tabset group="language"}
+# Código R {.unnumbered}
 
 ```{r}
 #| include: true
@@ -266,7 +267,7 @@ p3 <- ggplot(IBEX_SAN, aes(x = rIBEX, y = rSAN)) +
 p3
 ```
 
-### Código Python {.unnumbered}
+# Código Python {.unnumbered}
 
 ```{python}
 #| include: true
@@ -324,3 +325,4 @@ geom_smooth(method = 'lm', se = False, color = "blue") +
 labs(x="Rendimiento Ibex 35", y="Rendimiento acciones Banco Santander") + 
 theme_bw())
 ```
+:::
